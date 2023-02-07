@@ -1,6 +1,9 @@
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println();
+        JFrame frame = new JFrame();
+        Gui gui = new Gui();
 
 
     }
