@@ -1,17 +1,19 @@
 public class Deck {
-    public void shuffle() {
-        String[] SUITS = {
-                "Clubs", "Diamonds", "Hearts", "Spades"
-        };
+    String[] SUITS = {
+            "Clubs", "Diamonds", "Hearts", "Spades"
+    };
 
-        String[] RANKS = {
-                "2", "3", "4", "5", "6", "7", "8", "9", "10",
-                "Jack", "Queen", "King", "Ace"
-        };
+    String[] RANKS = {
+            "2", "3", "4", "5", "6", "7", "8", "9", "10",
+            "Jack", "Queen", "King", "Ace"
+    };
+    int n = SUITS.length * RANKS.length;
+    String[] deck = new String[n];
+    public void asign() {
 
         // initialize deck
         int n = SUITS.length * RANKS.length;
-        String[] deck = new String[n];
+        // String[] deck = new String[n];
         for (int i = 0; i < RANKS.length; i++) {
             for (int j = 0; j < SUITS.length; j++) {
                 deck[SUITS.length*i + j] = RANKS[i] + " of " + SUITS[j];
@@ -26,9 +28,14 @@ public class Deck {
             deck[i] = temp;
         }
 
+
+    }
+
+    public void print(){
         // print shuffled deck
         for (int i = 0; i < n; i++) {
             System.out.println(deck[i]);
         }
     }
+
 }
