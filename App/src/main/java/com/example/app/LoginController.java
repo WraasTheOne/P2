@@ -25,15 +25,6 @@ public class LoginController
     private Scene scene;
     private Parent root;
 
-    /*public void switchToScene1(ActionEvent event) throws IOException
-    {
-        root = FXMLLoader.load(getClass().getResource("tutorialGUI.fxml"));
-        stage = (Stage)((Node)event.getSource()).getScene().getWindow();
-        scene = new Scene(root);
-        stage.setScene(scene);
-        stage.show();
-    }*/
-
     public static boolean passwordIsTrue = false;
 
     public void LogIn(ActionEvent event) throws IOException
