@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.chart.BarChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -12,7 +14,7 @@
    <children>
       <BorderPane layoutX="-1.0" prefHeight="400.0" prefWidth="610.0">
          <left>
-            <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" >
+            <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <Button fx:id="Button1" mnemonicParsing="false" onAction="#buttonCliked" prefHeight="26.0" prefWidth="100.0" text="Home" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
@@ -24,12 +26,17 @@
             <HBox id="hbox" prefHeight="52.0" prefWidth="605.0" styleClass="hBox" BorderPane.alignment="CENTER" />
          </top>
          <center>
-            <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <children>
-                  <Label fx:id="Label1" layoutY="166.0" text="Label" />
-               </children>
-            </AnchorPane>
+            <BarChart fx:id="chart" BorderPane.alignment="CENTER">
+              <xAxis>
+                <CategoryAxis side="BOTTOM" />
+              </xAxis>
+              <yAxis>
+                <NumberAxis side="LEFT" />
+              </yAxis>
+            </BarChart>
          </center>
       </BorderPane>
+      <Button fx:id="ButtonEx" layoutX="286.0" layoutY="388.0" mnemonicParsing="false" text="Button" />
+      <Separator layoutX="639.0" layoutY="172.0" prefHeight="3.0" prefWidth="70.0" />
    </children>
 </AnchorPane>
