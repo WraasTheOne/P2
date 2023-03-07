@@ -2,19 +2,21 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.LoggedInController" stylesheets="@stylesheet.css">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.LoggedInController">
    <children>
       <BorderPane layoutX="-1.0" prefHeight="400.0" prefWidth="610.0">
          <left>
-            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER" >
                <children>
-                  <Button fx:id="Button1" mnemonicParsing="false" onAction="#buttonCliked" prefHeight="26.0" prefWidth="100.0" text="Button" />
-                  <Button fx:id="Button2" mnemonicParsing="false" prefHeight="5.0" prefWidth="100.0" text="Button" />
+                  <Button fx:id="Button1" mnemonicParsing="false" onAction="#buttonCliked" prefHeight="26.0" prefWidth="100.0" text="Home" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button fx:id="Button2" mnemonicParsing="false" prefHeight="5.0" prefWidth="100.0" text="Sold" />
                </children>
             </VBox>
          </left>

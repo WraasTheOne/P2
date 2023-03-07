@@ -3,7 +3,8 @@ package com.example.app;
 public enum View {
     HELLO("hello-view.fxml"),
     LoggedIn("LoggedIn.fxml"),
-    Signup("signUp.fxml");
+    Signup("signUp.fxml"),
+    LOGIN("Loggin.fxml");
     //ACHINES("VMs.fxml");
 
 

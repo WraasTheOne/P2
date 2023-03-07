@@ -22,6 +22,6 @@ public class LoggedInController {
         Button1.setText("hej");
         Button2.setText("ad");
         ViewSwitch.switchView(View.HELLO);
-
+        
     }
 }

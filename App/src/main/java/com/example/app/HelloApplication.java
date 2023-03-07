@@ -14,7 +14,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(new Pane(),420,420);
 
         ViewSwitch.setScene(scene);
-        ViewSwitch.switchView(View.LoggedIn);
+        ViewSwitch.switchView(View.LOGIN);
         //stage.setMaximized(true);
         stage.setScene(scene);
         stage.setTitle("SagaLabs-Manager");
