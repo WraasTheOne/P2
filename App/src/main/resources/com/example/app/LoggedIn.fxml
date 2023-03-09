@@ -23,7 +23,7 @@
             </VBox>
          </left>
          <top>
-            <HBox id="hbox" prefHeight="52.0" prefWidth="605.0" styleClass="hBox" BorderPane.alignment="CENTER" />
+            <HBox id="hbox" prefHeight="39.0" prefWidth="318.0" styleClass="hBox" BorderPane.alignment="CENTER" />
          </top>
          <center>
             <BarChart fx:id="chart" BorderPane.alignment="CENTER">
@@ -36,7 +36,11 @@
             </BarChart>
          </center>
       </BorderPane>
-      <Button fx:id="ButtonEx" layoutX="286.0" layoutY="388.0" mnemonicParsing="false" text="Button" />
-      <Separator layoutX="639.0" layoutY="172.0" prefHeight="3.0" prefWidth="70.0" />
+      <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">
+         <children>
+            <Separator prefHeight="0.0" prefWidth="278.0" />
+            <Button fx:id="Button3" mnemonicParsing="false" text="Button" onAction="#showChart"/>
+         </children>
+      </HBox>
    </children>
 </AnchorPane>

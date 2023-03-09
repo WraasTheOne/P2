@@ -1,4 +1,6 @@
-#LoginButton{
+
+
+#Button1{
     -fx-border-color: transparent;
     -fx-border-width: 0;
     -fx-background-radius: 0;
@@ -10,6 +12,20 @@
     -fx-alignment: center;
     -fx-position-shape: center;        
 }
+
+#Button3{
+    -fx-border-color: transparent;
+    -fx-border-width: 0;
+    -fx-background-radius: 0;
+    -fx-background-color: #205295;
+    -fx-font-family:"Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 1em; /* 12 */
+    -fx-text-fill: white;
+    -fx-text-alignment: center;
+    -fx-alignment: center;
+    -fx-position-shape: center;
+}
+
 #ButtonEx{
     -fx-border-color: transparent;
     -fx-border-width: 0;

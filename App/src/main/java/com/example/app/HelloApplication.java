@@ -17,11 +17,11 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        Scene scene = new Scene(new Pane(),900,420);
+        Scene scene = new Scene(new Pane(),600,420);
 
         ViewSwitch.setScene(scene);
         ViewSwitch.switchView(View.LoggedIn);
-        //stage.setMaximized(true);
+
         stage.setScene(scene);
         stage.setTitle("P2 - app");
         stage.show();

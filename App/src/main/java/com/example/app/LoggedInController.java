@@ -24,8 +24,12 @@ public class LoggedInController {
         //Label1.setText("Welcome to JavaFX Application!");
         //Button1.setText("hej");
         //Button2.setText("ad");
-        //ViewSwitch.switchView(View.HELLO);
+        ViewSwitch.switchView(View.HELLO);
 
+    }
+
+    @FXML
+    protected void showChart() throws IOException{
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("test");
         series1.getData().add(new XYChart.Data<>("Test1",17));
@@ -39,4 +43,7 @@ public class LoggedInController {
         chart.getData().addAll(series1,series2);
 
     }
+
+
+
 }
