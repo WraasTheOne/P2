@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane fx:controller="com.example.app.SignUpController" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" stylesheets="@stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox layoutX="158.0" layoutY="-2.0" prefHeight="408.0" prefWidth="315.0">
          <children>
             <Separator orientation="VERTICAL" prefHeight="133.0" prefWidth="11.0" />
-            <TextField />
+            <TextField fx:id="textField" />
             <Separator orientation="VERTICAL" prefHeight="15.0" prefWidth="11.0" />
-            <PasswordField />
+            <PasswordField fx:id="pasField" />
             <Separator orientation="VERTICAL" prefHeight="34.0" prefWidth="20.0" />
-            <Button fx:id="LoginButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Button" />
+            <Button fx:id="LoginButton" alignment="CENTER" mnemonicParsing="false" prefHeight="25.0" prefWidth="104.0" text="Button" onAction="#Loggin"/>
          </children>
       </VBox>
    </children>

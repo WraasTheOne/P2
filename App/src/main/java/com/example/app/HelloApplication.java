@@ -20,7 +20,7 @@ public class HelloApplication extends Application {
         Scene scene = new Scene(new Pane(),600,420);
 
         ViewSwitch.setScene(scene);
-        ViewSwitch.switchView(View.LoggedIn);
+        ViewSwitch.switchView(View.LOGIN);
 
         stage.setScene(scene);
         stage.setTitle("P2 - app");
