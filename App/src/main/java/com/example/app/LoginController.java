@@ -25,11 +25,13 @@ public class LoginController
     private Scene scene;
     private Parent root;
 
-    public static boolean passwordIsTrue = false;
+    public static String currentUsername;
+    public static String currentPassword;
 
     public void LogIn(ActionEvent event) throws IOException
     {
-        if(textField.getText().equals("yam") && passwordField.getText().equals("oceans"))
+
+        if(textField.getText().equals(currentUsername) && passwordField.getText().equals(currentPassword))
         {
             System.out.println("Success!!");
 
