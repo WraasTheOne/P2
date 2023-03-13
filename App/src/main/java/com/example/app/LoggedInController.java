@@ -29,19 +29,18 @@ public class LoggedInController {
     }
 
     @FXML
-    protected void showChart() throws IOException{
+    protected void showChart() throws IOException {
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("test");
-        series1.getData().add(new XYChart.Data<>("Test1",17));
-        series1.getData().add(new XYChart.Data<>("Test2",10));
+        series1.getData().add(new XYChart.Data<>("Test1", 17));
+        series1.getData().add(new XYChart.Data<>("Test2", 10));
 
         XYChart.Series series2 = new XYChart.Series();
         series2.setName("test");
-        series2.getData().add(new XYChart.Data<>("Test1",130));
-        series2.getData().add(new XYChart.Data<>("Test2",75));
+        series2.getData().add(new XYChart.Data<>("Test1", 130));
+        series2.getData().add(new XYChart.Data<>("Test2", 75));
 
-        chart.getData().addAll(series1,series2);
-
+        chart.getData().setAll(series1, series2);
     }
 
 

@@ -20,9 +20,10 @@ public class SignUpController {
    @FXML
    private PasswordField pasField;
 
+
    @FXML
     protected void Loggin() throws IOException{
-       pasField.getText();
+       ViewSwitch.switchView(View.LoggedIn);
 
    }
 
