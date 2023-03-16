@@ -25,6 +25,8 @@ public class SignUpController {
     protected void Loggin() throws IOException{
        ViewSwitch.switchView(View.LoggedIn);
 
+
    }
+
 
 }
