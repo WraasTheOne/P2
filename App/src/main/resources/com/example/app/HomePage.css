@@ -1,0 +1,19 @@
+
+.button{
+    -fx-background-color: #2C74B3;
+}
+
+
+.button:hover{
+    -fx-font-size: 20;
+}
+
+
+
+#VBox1{
+    -fx-background-color: #2C74B3;
+}
+
+#HBox1{
+    -fx-background-color: #205295;
+}

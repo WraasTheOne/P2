@@ -15,5 +15,6 @@ public class HelloController {
         welcomeText.setText("Welcome to JavaFX Application!");
         ViewSwitch.switchView(View.LoggedIn);
 
+
     }
 }
