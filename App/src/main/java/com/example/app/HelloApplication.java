@@ -17,9 +17,7 @@ public class HelloApplication extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
         Scene scene = new Scene(new Pane(),600,420);
-
         ViewSwitch.setScene(scene);
         ViewSwitch.switchView(View.LOGIN);
 
