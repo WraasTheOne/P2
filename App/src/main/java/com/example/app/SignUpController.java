@@ -8,6 +8,7 @@ import javafx.scene.control.*;
 
 import java.io.IOException;
 
+
 public class SignUpController {
 
 
@@ -27,6 +28,4 @@ public class SignUpController {
 
 
    }
-
-
 }

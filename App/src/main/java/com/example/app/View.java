@@ -5,7 +5,6 @@ public enum View {
     LoggedIn("LoggedIn.fxml"),
     Signup("signUp.fxml"),
     LOGIN("Loggin.fxml");
-    //ACHINES("VMs.fxml");
 
 
     private String fileName;
