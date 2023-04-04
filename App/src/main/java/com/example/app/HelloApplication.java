@@ -1,5 +1,6 @@
 package com.example.app;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,8 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import io.github.cdimascio.dotenv.Dotenv;
+
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -18,7 +21,8 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-        Scene scene = new Scene(new Pane(),600,420);
+
+        Scene scene = new Scene(new Pane(),600,400);
 
         ViewSwitch.setScene(scene);
         ViewSwitch.switchView(View.LOGIN);
@@ -26,6 +30,8 @@ public class HelloApplication extends Application {
         stage.setScene(scene);
         stage.setTitle("P2 - app");
         stage.show();
+
+
     }
 
     public static void main(String[] args) {

@@ -7,6 +7,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.*;
 
 import java.io.IOException;
+import java.sql.SQLException;
+
 
 public class SignUpController {
 
@@ -22,11 +24,9 @@ public class SignUpController {
 
 
    @FXML
-    protected void Loggin() throws IOException{
+    protected void Loggin() throws IOException, SQLException {
+       DBUtil.start();
        ViewSwitch.switchView(View.LoggedIn);
 
-
    }
-
-
 }

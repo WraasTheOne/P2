@@ -4,8 +4,9 @@ public enum View {
     HELLO("hello-view.fxml"),
     LoggedIn("LoggedIn.fxml"),
     Signup("signUp.fxml"),
+
+    Tabelview("Tabelview.fxml"),
     LOGIN("Loggin.fxml");
-    //ACHINES("VMs.fxml");
 
 
     private String fileName;
