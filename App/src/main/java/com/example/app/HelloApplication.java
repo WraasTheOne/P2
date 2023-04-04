@@ -1,6 +1,6 @@
 package com.example.app;
 
-import io.github.cdimascio.dotenv.Dotenv;
+
 import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,7 +11,6 @@ import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-import io.github.cdimascio.dotenv.Dotenv;
 
 import java.io.IOException;
 
