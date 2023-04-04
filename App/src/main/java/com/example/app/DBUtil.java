@@ -18,20 +18,19 @@ public class DBUtil {
         try {
             myDbConn = DriverManager.getConnection(url, User, Pasword);
             statement = myDbConn.createStatement();
-        }catch (SQLException ex){
-            System.out.println("prut "+ ex);
+        } catch (SQLException ex) {
+            System.out.println("prut " + ex);
         }
 
         String test = "select * from users";
 
 
         System.out.println(statement);
-        ResultSet resultSet = statement.executeQuery(test);
+        ResultSet resultSet = statement.executeQuery("select * from users");
         System.out.println(resultSet);
-        while (resultSet.next()){
+        while (resultSet.next()) {
             System.out.println(resultSet.getString("name"));
         }
-
 
     }
 }
