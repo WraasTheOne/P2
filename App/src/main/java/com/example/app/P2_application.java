@@ -24,7 +24,7 @@ public class P2_application extends Application
 
         Image icon = new Image("C:\\Users\\yamoc\\IdeaProjects\\P2\\App\\src\\ikon.png");
 
-        Parent root = FXMLLoader.load(getClass().getResource("login_scene.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("login_sycene.fxml"));
         Scene scene = new Scene(root);
         stage.getIcons().add(icon);
 

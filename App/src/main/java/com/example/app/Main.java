@@ -9,10 +9,11 @@ import javafx.scene.chart.Chart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.io.File;
 
-public class HelloApplication extends Application {
+
+public class Main extends Application {
 
 
     @Override
@@ -26,7 +27,8 @@ public class HelloApplication extends Application {
         stage.show();
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         launch();
     }
 
