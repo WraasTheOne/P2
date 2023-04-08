@@ -2,13 +2,17 @@ package com.example.app;
 
 import javax.xml.transform.Result;
 import java.sql.*;
+import io.github.cdimascio.dotenv.Dotenv;
+
 
 public class DBUtil
 {
     private String DBName;
-    private String password = "QQ1122ww";
-    private String user = "ADM";
-    private String url = "jdbc:mysql://wmsp2.mysql.database.azure.com:3306/firtMazur?useSSL=true";
+
+    private Dotenv dotenv = Dotenv.load();
+    private String password = dotenv.get("PASSWORD_MYSQL_AZURE");
+    private String user = dotenv.get("USER_MYSQL_AZURE");
+    private String url = dotenv.get("DATABASE_MYSQL_AZURE");
     //private String sql = "SELECT Name, Password FROM p2.kooperation";
 
 
