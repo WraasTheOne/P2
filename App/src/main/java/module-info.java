@@ -7,6 +7,7 @@ module com.example.app {
     requires org.kordamp.bootstrapfx.core;
     requires java.sql;
     requires dotenv.java;
+    requires java.dotenv;
 
     opens com.example.app to javafx.fxml;
     exports com.example.app;

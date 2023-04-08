@@ -21,7 +21,6 @@
             <version>5.2.2</version>
         </dependency>
         <dependency>
-        <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
             <version>19</version>
