@@ -13,6 +13,7 @@ import javafx.stage.Stage;
 
 import io.github.cdimascio.dotenv.Dotenv;
 
+import java.awt.*;
 import java.io.IOException;
 
 public class HelloApplication extends Application {
@@ -22,7 +23,7 @@ public class HelloApplication extends Application {
     public void start(Stage stage) throws IOException {
 
 
-        Scene scene = new Scene(new Pane(),600,400);
+        Scene scene = new Scene(new Pane(), java.awt.Toolkit.getDefaultToolkit().getScreenSize().width, java.awt.Toolkit.getDefaultToolkit().getScreenSize().height);
 
         ViewSwitch.setScene(scene);
         ViewSwitch.switchView(View.LOGIN);
