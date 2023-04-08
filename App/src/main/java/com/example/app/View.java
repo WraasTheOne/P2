@@ -2,9 +2,10 @@ package com.example.app;
 
 public enum View {
     HELLO("hello-view.fxml"),
-    LoggedIn("LoggedIn.fxml"),
+    MAINPAGE("Main_Page.fxml"),
     Signup("signUp.fxml"),
-    LOGIN("Loggin.fxml");
+    LOGIN("Loggin.fxml"),
+    MAINPAGEADMIN("Main_Page_Admin.fxml");
     //ACHINES("VMs.fxml");
 
 

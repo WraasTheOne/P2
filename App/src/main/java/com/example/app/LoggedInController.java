@@ -10,14 +10,14 @@ import java.io.IOException;
 public class LoggedInController {
     @FXML
     private Button Button1;
-
     @FXML
     private Button Button2;
     @FXML
     private BarChart<String, Integer> chart;
     @FXML
     private Label Label1;
-
+    @FXML
+    private Label usernameDisplay;
     public LoggedInController(){
 
     }
