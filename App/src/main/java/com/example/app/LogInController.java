@@ -1,6 +1,7 @@
 package com.example.app;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
@@ -13,27 +14,25 @@ import java.sql.*;
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class SignUpController {
+public class LogInController {
 
-    private DBUtil db = new DBUtil();
-    private String tableDecide;
     @FXML
     private Button loginButton;
-
     @FXML
     private TextField usernameField;
     @FXML
     private Label statusText;
-   @FXML
-   private PasswordField passwordField;
+    @FXML
+    private PasswordField passwordField;
+    private DBUtil db = DBUtil.getInstance();
+    private String tableDecide;
 
    @FXML
     protected void Loggin() throws IOException
    {
-
-       switch(usernameField.getText())
+        //KIG PÅ IGEN
+       switch(usernameField.getText()) // SPØRG OM USERNAMES
        {
-
            case "Admin":
                tableDecide = "admin";
                break;
@@ -48,14 +47,12 @@ public class SignUpController {
 
        try
        {
-           String currentUser = usernameField.getText();
-
            ResultSet set = db.sendStatement("SELECT Name, password FROM p2." + tableDecide + " " +
-                                            "WHERE Name = '" + currentUser + "' " + "AND " +
-                                            "password = '" + passwordField.getText() + "'");
+                                            "WHERE Name = '" + usernameField.getText() + "' " + "AND " +
+                                            "password = '" + passwordField.getText() + "'"); //Sends SQL command and returns ResultSet
 
            System.out.println("SELECT Name, password FROM p2." + tableDecide + " " +
-                              "WHERE Name = '" + currentUser + "' " + "AND " +
+                              "WHERE Name = '" + usernameField.getText() + "' " + "AND " +
                               "password = '" + passwordField.getText() + "'");
 
            set.next();
@@ -63,13 +60,16 @@ public class SignUpController {
            System.out.println(set.getString("Name"));
            System.out.println(set.getString("password"));
 
-           if(set.getString("Name").equals(usernameField.getText()) && set.getString("password").equals(passwordField.getText())
+           if(set.getString("Name").equals(usernameField.getText()) &&
+                   set.getString("password").equals(passwordField.getText())
                    && !tableDecide.equals("admin"))
            {
                statusText.setText("Logging in: Please wait");
+               db.setUsername(set.getString("Name"));
                ViewSwitch.switchView(View.MAINPAGE);
            }
-           else if(set.getString("Name").equals(usernameField.getText()) && set.getString("password").equals(passwordField.getText())
+           else if(set.getString("Name").equals(usernameField.getText()) &&
+                   set.getString("password").equals(passwordField.getText())
                    && tableDecide.equals("admin"))
            {
                statusText.setText("Logging in: Please wait");
@@ -81,5 +81,6 @@ public class SignUpController {
            statusText.setTextFill(Color.RED);
            statusText.setText("Incorrect username or password");
        }
+
    }
 }

@@ -1,13 +1,17 @@
 package com.example.app;
 
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
+import javafx.fxml.Initializable;
 
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
-public class LoggedInController {
+public class MainPageController implements Initializable{
     @FXML
     private Button Button1;
     @FXML
@@ -18,8 +22,10 @@ public class LoggedInController {
     private Label Label1;
     @FXML
     private Label usernameDisplay;
-    public LoggedInController(){
 
+    private DBUtil db = DBUtil.getInstance();
+
+    public MainPageController(){
     }
 
     public void setName(){
@@ -33,7 +39,6 @@ public class LoggedInController {
         //Button1.setText("hej");
         //Button2.setText("ad");
         ViewSwitch.switchView(View.HELLO);
-
     }
 
     @FXML
@@ -51,7 +56,10 @@ public class LoggedInController {
         chart.getData().setAll(series1, series2);
     }
 
-    public void initialize(){
+    public void initialize(URL url, ResourceBundle resourceBundle)
+    {
+        usernameDisplay.setText(db.getUsername());
+
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("test");
         series1.getData().add(new XYChart.Data<>("Test1", 17));
@@ -64,6 +72,4 @@ public class LoggedInController {
 
         chart.getData().setAll(series1, series2);
     }
-
-
 }

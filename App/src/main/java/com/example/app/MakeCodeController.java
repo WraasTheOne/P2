@@ -17,15 +17,10 @@ public class MakeCodeController {
 
     @FXML
     private Text myText = new Text();
-
-
-
-
     @FXML
     protected void onStatsButtonclick(ActionEvent event){
         myText.setText("Statistics");
     }
-
 
     @FXML
     protected void onProducedButtonClick(){

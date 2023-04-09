@@ -5,12 +5,31 @@ import java.sql.*;
 
 public class DBUtil
 {
+    private String username;
     private String DBName;
     private String password = "QQ1122ww";
     private String user = "ADM";
     private String url = "jdbc:mysql://wmsp2.mysql.database.azure.com:3306/firtMazur?useSSL=true";
     //private String sql = "SELECT Name, Password FROM p2.kooperation";
 
+    private static final DBUtil instance = new DBUtil();
+
+    private DBUtil() {}
+
+    public static DBUtil getInstance()
+    {
+        return instance;
+    }
+
+    public String getUsername()
+    {
+        return username;
+    }
+
+    public void setUsername(String username)
+    {
+        this.username = username;
+    }
 
 
     public void connectToDB()
