@@ -47,9 +47,30 @@ public class LogInController {
 
        try
        {
+           Connection myConn = db.connectToDB();
+
+           /*ResultSet set = db.sendStatement("SELECT Name, Password FROM p2.admin WHERE name = '" + usernameField.getText() +
+                                            "' AND password = '" + passwordField.getText()
+                                            + "' Union "
+                                            + "SELECT Name, Password FROM p2.centercoop WHERE name = '" + usernameField.getText() +
+                                            "' AND password = '" + passwordField.getText()
+                                            + "' Union "
+                                            + "SELECT Name, Password FROM p2.kooperation WHERE name = '" + usernameField.getText() +
+                                            "' AND password = '" + passwordField.getText() + "'", myConn);
+
+            System.out.println("SELECT Name, Password FROM p2.admin WHERE name = '" + usernameField.getText() +
+                    "' AND password = '" + passwordField.getText()
+                    + "' Union "
+                    + "SELECT Name, Password FROM p2.centercoop WHERE name = '" + usernameField.getText() +
+                    "' AND password = '" + passwordField.getText()
+                    + "' Union "
+                    + "SELECT Name, Password FROM p2.kooperation WHERE name = '" + usernameField.getText() +
+                    "' AND password = '" + passwordField.getText() + "'");*/
+
+
            ResultSet set = db.sendStatement("SELECT Name, password FROM p2." + tableDecide + " " +
                                             "WHERE Name = '" + usernameField.getText() + "' " + "AND " +
-                                            "password = '" + passwordField.getText() + "'"); //Sends SQL command and returns ResultSet
+                                            "password = '" + passwordField.getText() + "'", myConn);
 
            System.out.println("SELECT Name, password FROM p2." + tableDecide + " " +
                               "WHERE Name = '" + usernameField.getText() + "' " + "AND " +
@@ -66,6 +87,7 @@ public class LogInController {
            {
                statusText.setText("Logging in: Please wait");
                db.setUsername(set.getString("Name"));
+               myConn.close();
                ViewSwitch.switchView(View.MAINPAGE);
            }
            else if(set.getString("Name").equals(usernameField.getText()) &&
@@ -73,6 +95,8 @@ public class LogInController {
                    && tableDecide.equals("admin"))
            {
                statusText.setText("Logging in: Please wait");
+               db.setUsername(set.getString("Name"));
+               myConn.close();
                ViewSwitch.switchView(View.MAINPAGEADMIN);
            }
        }
@@ -81,6 +105,5 @@ public class LogInController {
            statusText.setTextFill(Color.RED);
            statusText.setText("Incorrect username or password");
        }
-
    }
 }

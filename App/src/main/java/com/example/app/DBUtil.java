@@ -32,16 +32,15 @@ public class DBUtil
     }
 
 
-    public void connectToDB()
+    public Connection connectToDB() throws SQLException
     {
-
+        return DriverManager.getConnection(url, user, password);
     }
 
-    public ResultSet sendStatement(String statement)
+    public ResultSet sendStatement(String statement, Connection myConn)
     {
         try
         {
-            Connection myConn = DriverManager.getConnection(url, user, password);
             Statement myStatement = myConn.createStatement();
             return myStatement.executeQuery(statement);
         }
