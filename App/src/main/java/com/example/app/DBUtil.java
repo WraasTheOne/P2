@@ -26,7 +26,7 @@ public class DBUtil {
 
 
         System.out.println(statement);
-        ResultSet resultSet = statement.executeQuery("select * from users");
+        ResultSet resultSet = statement.executeQuery("select * from kooperation");
         System.out.println(resultSet);
         while (resultSet.next()) {
             System.out.println(resultSet.getString("name"));
