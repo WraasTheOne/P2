@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.View;
 
 public enum View {
     HELLO("hello-view.fxml"),
@@ -6,8 +6,8 @@ public enum View {
     Signup("signUp.fxml"),
 
     Tabelview("Tabelview.fxml"),
-    LOGIN("Loggin.fxml");
-
+    LOGIN("Loggin.fxml"),
+    BigBag("BigBag.fxml");
 
     private String fileName;
 

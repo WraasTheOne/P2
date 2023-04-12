@@ -1,5 +1,7 @@
 package com.example.app;
 
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
@@ -13,6 +15,9 @@ public class LoggedInController {
 
     @FXML
     private Button Button2;
+
+    @FXML
+    private Button Button3;
     @FXML
     private BarChart<String, Integer> chart;
     @FXML
@@ -24,6 +29,11 @@ public class LoggedInController {
 
     public void setName(){
         Button2.setText("hi");
+    }
+
+    @FXML
+    protected void goToCreateBigBag() throws IOException{
+        ViewSwitch.switchView(View.BigBag);
     }
 
     @FXML

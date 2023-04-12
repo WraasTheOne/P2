@@ -1,5 +1,7 @@
 package com.example.app;
 
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
