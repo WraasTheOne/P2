@@ -16,4 +16,6 @@ module com.example.app {
     opens com.example.app.TableStructure to javafx.fxml;
     exports com.example.app.View;
     opens com.example.app.View to javafx.fxml;
+    exports com.example.app.controllers;
+    opens com.example.app.controllers to javafx.fxml;
 }

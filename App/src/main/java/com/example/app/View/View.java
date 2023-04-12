@@ -6,7 +6,7 @@ public enum View {
     Signup("signUp.fxml"),
 
     Tabelview("Tabelview.fxml"),
-    LOGIN("Loggin.fxml"),
+    LOGIN("Login.fxml"),
     BigBag("BigBag.fxml");
 
     private String fileName;

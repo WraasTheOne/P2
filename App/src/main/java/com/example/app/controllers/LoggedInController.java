@@ -1,4 +1,4 @@
-package com.example.app;
+package com.example.app.controllers;
 
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
