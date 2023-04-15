@@ -52,11 +52,11 @@ public class LogInController {
 
            ResultSet set = db.sendStatement("SELECT Name, password FROM p2." + tableDecide +
                                             " WHERE Name = '" + usernameField.getText() + "' " + "AND " +
-                                            "password = '" + passwordField.getText() + "'"); //Sends SQL command and returns ResultSet
+                                            "password = '" + passwordField.getText() + "'", myConn); //Sends SQL command and returns ResultSet
 
            System.out.println("SELECT Name, password FROM p2." + tableDecide +
-                              "WHERE Name = '" + usernameField.getText() + "' " + "AND " +
-                              "password = '" + passwordField.getText() + "'");
+                   " WHERE Name = '" + usernameField.getText() + "' " + "AND " +
+                   "password = '" + passwordField.getText() + "'");
 
            set.next();
 
