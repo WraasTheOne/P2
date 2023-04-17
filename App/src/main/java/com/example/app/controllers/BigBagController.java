@@ -4,6 +4,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import com.example.app.TableStructure.Admin;
+import com.example.app.TableStructure.DBUtil;
+import com.example.app.TableStructure.User;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.event.ActionEvent;
@@ -31,6 +34,15 @@ public class BigBagController{
     @FXML
     public void back() throws IOException{
         ViewSwitch.switchView(View.LoggedIn);
+    }
+
+
+    @FXML
+    public void createBigbag() throws IOException{
+        DBUtil.insertBigbag(User.getID());
+
+
+
     }
 
 }

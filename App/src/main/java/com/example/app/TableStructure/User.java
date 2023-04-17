@@ -2,42 +2,42 @@ package com.example.app.TableStructure;
 
 public class User {
 
-    protected int ID;
+    protected static int ID;
 
-    protected String Name;
+    protected static String Name;
 
-    protected String Password;
-    private String Usertype;
+    protected static String Password;
+    private static String Usertype;
 
-    public int getID() {
+    public static int getID() {
         return ID;
     }
 
-    public void setID(int ID) {
-        this.ID = ID;
+    public static void setID(int ID) {
+        User.ID = ID;
     }
 
-    public String getName() {
+    public static String getName() {
         return Name;
     }
 
-    public void setName(String name) {
+    public static void setName(String name) {
         Name = name;
     }
 
-    public String getPassword() {
+    public static String getPassword() {
         return Password;
     }
 
-    public void setPassword(String password) {
+    public static void setPassword(String password) {
         Password = password;
     }
 
-    public String getUsertype() {
+    public static String getUsertype() {
         return Usertype;
     }
 
-    public void setUsertype(String usertype) {
+    public static void setUsertype(String usertype) {
         Usertype = usertype;
     }
 

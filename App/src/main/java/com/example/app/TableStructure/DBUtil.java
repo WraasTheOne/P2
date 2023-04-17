@@ -54,13 +54,6 @@ public class DBUtil {
         }
     }
 
-    /*public static ResultSet findUsername(String username, String table) throws SQLException
-    {
-        String sql = "SELECT Name, password FROM " + table + " WHERE name = '" + username + "'";
-        Statement myStatement = getConnection().createStatement();
-        return myStatement.executeQuery(sql);
-    }*/
-
     public static Boolean findUser(String username, String password, String table)
     {
         String sql = "SELECT Name, password FROM " + table + " WHERE Name = ? AND Password = ?";
