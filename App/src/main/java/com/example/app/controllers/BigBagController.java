@@ -13,23 +13,28 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 
 public class BigBagController{
     @FXML
+    public ChoiceBox<String> processChoicebox;
+    @FXML
+    public TextField typeField;
+    @FXML
     private ChoiceBox<String> locationChoicebox;
 
+
+
     private final String[] locations ={"Location 1","Location 2","Location 3"};
+
+    private final String[] processes = {"proces 1","proces 2"};
 
 
     public void initialize(){
         locationChoicebox.getItems().addAll(locations);
+        processChoicebox.getItems().addAll(processes);
     }
-    @FXML
-    public void getChoiceValue() throws IOException{
-        System.out.println(locationChoicebox.getValue());
-        System.out.println("hi");
 
-    }
 
     @FXML
     public void back() throws IOException{
@@ -39,7 +44,8 @@ public class BigBagController{
 
     @FXML
     public void createBigbag() throws IOException{
-        DBUtil.insertBigbag(User.getID());
+
+        //DBUtil.insertBigbag(User.getID(),processChoicebox.getValue(),typeField.getText(),locationChoicebox.getValue(),User.getName());
 
 
 

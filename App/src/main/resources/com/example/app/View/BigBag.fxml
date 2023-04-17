@@ -19,7 +19,7 @@
                 <Font size="10.0" />
             </font>
         </Label>
-        <TextField layoutX="62.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="159.0" />
+        <TextField fx:id="typeField" layoutX="62.0" layoutY="82.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="20.0" prefWidth="159.0" />
         <Label layoutX="18.0" layoutY="86.0" prefHeight="13.0" prefWidth="37.0" text="Type">
             <font>
                 <Font size="10.0" />
