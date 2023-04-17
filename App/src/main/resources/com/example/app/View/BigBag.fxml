@@ -30,7 +30,7 @@
                 <Font size="10.0" />
             </font>
         </Label>
-        <Button layoutX="7.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#getChoiceValue" prefHeight="28.0" prefWidth="52.0" text="Back">
+        <Button layoutX="7.0" layoutY="1.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#back" prefHeight="28.0" prefWidth="52.0" text="Back">
             <font>
                 <Font size="8.0" />
             </font>

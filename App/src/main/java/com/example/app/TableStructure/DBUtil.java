@@ -78,7 +78,7 @@ public class DBUtil {
         }catch (SQLException e){
             System.out.println(e);
             return null;
-    }
+        }
 
     }
 

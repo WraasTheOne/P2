@@ -3,6 +3,9 @@ package com.example.app.controllers;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -23,6 +26,11 @@ public class BigBagController{
         System.out.println(locationChoicebox.getValue());
         System.out.println("hi");
 
+    }
+
+    @FXML
+    public void back() throws IOException{
+        ViewSwitch.switchView(View.LoggedIn);
     }
 
 }

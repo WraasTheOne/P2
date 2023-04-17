@@ -37,17 +37,18 @@ public class LoginPageController {
     @FXML
     public void logIn() throws IOException, SQLException {
 
-        System.out.println(textField.getText() + " " + CompanyTypeChoice.getValue() + " " + pasField.getText());
+        if (!textField.getText().equals("") && !pasField.getText().equals("")) {
+            System.out.println(textField.getText() + " " + CompanyTypeChoice.getValue() + " " + pasField.getText());
 
-        Boolean infoStatus = DBUtil.findUser(textField.getText(),pasField.getText(),CompanyTypeChoice.getValue());
-        if(!infoStatus) {
-            System.out.println("not correct");
+            Boolean infoStatus = DBUtil.findUser(textField.getText(), pasField.getText(), CompanyTypeChoice.getValue());
+            if (!infoStatus) {
+                System.out.println("not correct");
+            } else {
+                ViewSwitch.switchView(View.LoggedIn);
+            }
         }else{
-            ViewSwitch.switchView(View.LoggedIn);
+            System.out.println("du har ikke indtastet noget");
         }
-
-        System.out.println("hi");
-
 
 
     }
