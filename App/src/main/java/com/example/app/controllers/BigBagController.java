@@ -1,5 +1,6 @@
 package com.example.app.controllers;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
@@ -16,6 +17,12 @@ public class BigBagController{
 
     public void initialize(){
         locationChoicebox.getItems().addAll(locations);
+    }
+    @FXML
+    public void getChoiceValue() throws IOException{
+        System.out.println(locationChoicebox.getValue());
+        System.out.println("hi");
+
     }
 
 }

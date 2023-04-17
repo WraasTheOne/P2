@@ -15,30 +15,7 @@ public class DBUtil {
     private static String User = dotenv.get("USER_MYSQL_AZURE");
     private static String Pasword = dotenv.get("PASSWORD_MYSQL_AZURE");
 
-    public static void start() throws SQLException {
-        Dotenv dotenv = Dotenv.load();
-        Connection myDbConn = null;
 
-        Statement statement = null;
-
-        try {
-            myDbConn = DriverManager.getConnection(url, User, Pasword);
-            statement = myDbConn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println("prut " + ex);
-        }
-
-        String test = "select * from kooperation";
-
-
-        System.out.println(statement);
-        ResultSet resultSet = statement.executeQuery(test);
-        System.out.println(resultSet);
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("Name"));
-        }
-
-    }
     public static Connection getConnection() {
         Connection conn = null;
 
@@ -77,11 +54,32 @@ public class DBUtil {
         }
     }
 
-    public static ResultSet findUsername(String username, String table) throws SQLException
+    /*public static ResultSet findUsername(String username, String table) throws SQLException
     {
         String sql = "SELECT Name, password FROM " + table + " WHERE name = '" + username + "'";
         Statement myStatement = getConnection().createStatement();
         return myStatement.executeQuery(sql);
+    }*/
+
+    public static Boolean findUser(String username, String password, String table)
+    {
+        String sql = "SELECT Name, password FROM " + table + " WHERE Name = ? AND Password = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
+            pstmt.setString(1,username);
+            pstmt.setString(2,password);
+            ResultSet resultSet = pstmt.executeQuery();
+            if (resultSet.next()){
+                return true;
+            }
+            else {
+                return false;
+            }
+
+        }catch (SQLException e){
+            System.out.println(e);
+            return null;
+    }
+
     }
 
 

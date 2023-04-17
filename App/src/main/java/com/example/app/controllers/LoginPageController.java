@@ -11,56 +11,44 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController {
-
     @FXML
-    private ChoiceBox<String> userTypeDecideBox;
+    public PasswordField pasField;
+    @FXML
+    private ChoiceBox<String> CompanyTypeChoice;
     @FXML
     private String[] tables = {"kooperation", "centercoop", "admin"};
     @FXML
-    public TextField usernameField;
-    @FXML
-    public PasswordField passwordField;
-    @FXML
-    public Button logInButton;
-    @FXML
-    public Label statusText;
+    public TextField textField;
+
 
     @FXML
-    public void initialize(URL arg0, ResourceBundle arg1)
+    public void initialize()
     {
-        userTypeDecideBox.getItems().addAll(tables);
+        CompanyTypeChoice.getItems().addAll(tables);
     }
 
     @FXML
-    public void logIn() throws SQLException
-    {
-        DBUtil.getConnection();
+    public void logIn() throws IOException, SQLException {
 
-        ResultSet userFound = DBUtil.findUsername(usernameField.getText(), userTypeDecideBox.getValue());
+        System.out.println(textField.getText() + " " + CompanyTypeChoice.getValue() + " " + pasField.getText());
 
-        userFound.next();
-
-        System.out.println(userFound.getString("Name"));
-        System.out.println(userFound.getString("password"));
-
-        if(userFound.getString("Name").equals(usernameField.getText()) &&
-                userFound.getString("password").equals(passwordField.getText()))
-        {
-            ViewSwitch.switchView(View.LOGIN);
-            DBUtil.getConnection().close();
+        Boolean infoStatus = DBUtil.findUser(textField.getText(),pasField.getText(),CompanyTypeChoice.getValue());
+        if(!infoStatus) {
+            System.out.println("not correct");
+        }else{
+            ViewSwitch.switchView(View.LoggedIn);
         }
-        else
-        {
-            statusText.setTextFill(Color.RED);
-            statusText.setText("Incorrect username or password");
-        }
+
+        System.out.println("hi");
+
+
 
     }
-
 }
