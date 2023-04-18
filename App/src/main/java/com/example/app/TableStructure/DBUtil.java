@@ -56,13 +56,17 @@ public class DBUtil {
 
     public static Boolean findUser(String username, String password, String table)
     {
-        String sql = "SELECT Name, password FROM " + table + " WHERE Name = ? AND Password = ?";
+
+        String sql = "SELECT * FROM " + table + " WHERE Name = ? AND Password = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
             pstmt.setString(1,username);
             pstmt.setString(2,password);
             ResultSet resultSet = pstmt.executeQuery();
 
             if (resultSet.next()){
+                com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
+                com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
+                com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
                 return true;
             }
             else {
@@ -80,13 +84,14 @@ public class DBUtil {
 
     public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
 
+
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String opdateTime = date.format(formatter);
 
         String sql = "INSERT INTO bigbags (Ownerid,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,?,?,?,?)";
 
-        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, Ownerid);
             pstmt.setInt(2, NUVProcess);
             pstmt.setString(3, opdateTime);

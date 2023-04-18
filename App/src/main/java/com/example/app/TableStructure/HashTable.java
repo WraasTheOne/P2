@@ -8,6 +8,9 @@ public class HashTable {
 
     private static final HashMap<String, Integer> locations = new HashMap<>();
 
+    private static final HashMap<String, String> userType = new HashMap<>();
+
+
     private static final String[] procesNames  = {"proces 1", "proces 2"};
 
     private static final int[] procesIndex = {1,2};
@@ -16,6 +19,12 @@ public class HashTable {
 
     private static final int[] locationIndex = {1,2,3};
 
+    private static final String[] userTypeLong  = {"kooperation", "admin","centercoop"};
+
+    private static final String[] userTypeShort  = {"KID", "AID","CID"};
+
+
+
     public static void makeHashTables(){
         for (int i : procesIndex){
             processes.put(procesNames[i-1],procesIndex[i-1]);
@@ -23,6 +32,10 @@ public class HashTable {
         for (int i : locationIndex){
             locations.put(locationNames[i-1],locationIndex[i-1]);
         }
+        for(int i = 0; i < userTypeLong.length; i++){
+            userType.put(userTypeLong[i],userTypeShort[i]);
+        }
+
     }
 
     public static int getLocationHashValue(String location){
@@ -30,7 +43,14 @@ public class HashTable {
     }
 
     public static int getProcessHashValue(String process){
+
         return processes.get(process);
+
+    }
+
+    public static String getUserTypeHashValue(String UserType){
+
+        return userType.get(UserType);
 
     }
 
