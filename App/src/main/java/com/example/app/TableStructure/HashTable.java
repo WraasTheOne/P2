@@ -12,12 +12,26 @@ public class HashTable {
 
     private static final int[] procesIndex = {1,2};
 
+    private static final String[] locationNames  = {"Location 1", "Location 2","Location 3"};
+
+    private static final int[] locationIndex = {1,2,3};
+
     public static void makeHashTables(){
         for (int i : procesIndex){
             processes.put(procesNames[i-1],procesIndex[i-1]);
         }
+        for (int i : locationIndex){
+            locations.put(locationNames[i-1],locationIndex[i-1]);
+        }
+    }
 
-        System.out.println(processes.get("proces 1"));
+    public static int getLocationHashValue(String location){
+        return locations.get(location);
+    }
+
+    public static int getProcessHashValue(String process){
+        return processes.get(process);
+
     }
 
 }

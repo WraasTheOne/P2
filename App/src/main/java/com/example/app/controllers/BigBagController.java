@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 
 import com.example.app.TableStructure.Admin;
 import com.example.app.TableStructure.DBUtil;
+import com.example.app.TableStructure.HashTable;
 import com.example.app.TableStructure.User;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
@@ -44,8 +45,13 @@ public class BigBagController{
 
     @FXML
     public void createBigbag() throws IOException{
+        System.out.println(processChoicebox.getValue());
+        HashTable.makeHashTables();
+        int processId = HashTable.getProcessHashValue(processChoicebox.getValue());
+        int locationId = HashTable.getLocationHashValue(locationChoicebox.getValue());
 
-        //DBUtil.insertBigbag(User.getID(),processChoicebox.getValue(),typeField.getText(),locationChoicebox.getValue(),User.getName());
+        System.out.println(processId + " " + locationId);
+        DBUtil.insertBigbag(User.getID(),processId,typeField.getText(),locationId,User.getName());
 
 
 

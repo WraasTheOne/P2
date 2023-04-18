@@ -3,6 +3,7 @@ package com.example.app.controllers;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.HashTable;
 import com.example.app.TableStructure.Kooperation;
+import com.example.app.TableStructure.User;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.collections.FXCollections;
@@ -50,7 +51,6 @@ public class LoginPageController {
         }else{
             System.out.println("du har ikke indtastet noget");
         }
-        HashTable.makeHashTables();
 
 
     }

@@ -61,6 +61,7 @@ public class DBUtil {
             pstmt.setString(1,username);
             pstmt.setString(2,password);
             ResultSet resultSet = pstmt.executeQuery();
+
             if (resultSet.next()){
                 return true;
             }
