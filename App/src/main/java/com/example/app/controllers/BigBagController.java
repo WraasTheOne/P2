@@ -46,7 +46,6 @@ public class BigBagController{
     @FXML
     public void createBigbag() throws IOException{
         System.out.println(processChoicebox.getValue());
-        HashTable.makeHashTables();
         int processId = HashTable.getProcessHashValue(processChoicebox.getValue());
         int locationId = HashTable.getLocationHashValue(locationChoicebox.getValue());
 

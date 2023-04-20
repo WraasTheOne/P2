@@ -36,7 +36,7 @@ public class LoginPageController {
     @FXML
     public void logIn() throws IOException, SQLException {
         HashTable.makeHashTables();
-        if (!textField.getText().equals("") && !pasField.getText().equals("")) {
+        if (!textField.getText().equals("") && !pasField.getText().equals("") && CompanyTypeChoice.getValue() != null) {
             System.out.println(textField.getText() + " " + CompanyTypeChoice.getValue() + " " + pasField.getText());
 
             Boolean infoStatus = DBUtil.findUser(textField.getText(), pasField.getText(), CompanyTypeChoice.getValue());
