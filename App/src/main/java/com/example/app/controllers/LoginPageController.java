@@ -52,10 +52,7 @@ public class LoginPageController {
         if(userFound.getString("Name").equals(usernameField.getText()) &&
                 userFound.getString("password").equals(passwordField.getText()))
         {
-            if(true)
-            {
 
-            }
 
             ViewSwitch.switchView(View.LOGIN);
             DBUtil.getConnection().close();
