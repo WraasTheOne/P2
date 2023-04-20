@@ -27,9 +27,9 @@ public class getDbMysql {
     public static String getDb(int currntId) {
 
         String url = "jdbc:mysql://wmsp2.mysql.database.azure.com/sanderdb";
-        String user = "ADM";
-        String password = "QQ1122ww";
-        //String password = "Mwr57bwk!";
+        String user = "//";
+        String password = "///";
+        //String password = "///";
 
         String currntString = "null_vardi";
         
