@@ -22,8 +22,15 @@ public class ChangeProcessController {
     //This is a function to print the qr code.
     @FXML
     public void printQR() throws IOException{
-        
+
     }
+
+    @FXML
+    public void changeProcess(){
+        int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
+
+    }
+
 
 
 }
