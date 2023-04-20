@@ -1,35 +1,39 @@
-package com.example.app;
+package com.example.app.controllers;
 
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.chart.BarChart;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
-import javafx.fxml.Initializable;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
-public class MainPageController implements Initializable{
+public class LoggedInController {
     @FXML
     private Button Button1;
+
     @FXML
     private Button Button2;
+
+    @FXML
+    private Button Button3;
     @FXML
     private BarChart<String, Integer> chart;
     @FXML
     private Label Label1;
-    @FXML
-    private Label usernameDisplay;
 
-    private DBUtil db = DBUtil.getInstance();
+    public LoggedInController(){
 
-    public MainPageController(){
     }
 
     public void setName(){
         Button2.setText("hi");
+    }
+
+    @FXML
+    protected void goToCreateBigBag() throws IOException{
+        ViewSwitch.switchView(View.BigBag);
     }
 
     @FXML
@@ -39,6 +43,7 @@ public class MainPageController implements Initializable{
         //Button1.setText("hej");
         //Button2.setText("ad");
         ViewSwitch.switchView(View.HELLO);
+
     }
 
     @FXML
@@ -56,10 +61,7 @@ public class MainPageController implements Initializable{
         chart.getData().setAll(series1, series2);
     }
 
-    public void initialize(URL url, ResourceBundle resourceBundle)
-    {
-        usernameDisplay.setText(db.getUsername());
-
+    public void initialize(){
         XYChart.Series series1 = new XYChart.Series();
         series1.setName("test");
         series1.getData().add(new XYChart.Data<>("Test1", 17));
@@ -72,4 +74,6 @@ public class MainPageController implements Initializable{
 
         chart.getData().setAll(series1, series2);
     }
+
+
 }

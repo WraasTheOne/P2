@@ -1,13 +1,13 @@
-package com.example.app;
+package com.example.app.View;
 
 public enum View {
     HELLO("hello-view.fxml"),
-    MAINPAGE("Main_Page.fxml"),
+    LoggedIn("LoggedIn.fxml"),
     Signup("signUp.fxml"),
-    LOGIN("Loggin.fxml"),
-    MAINPAGEADMIN("Main_Page_Admin.fxml");
-    //ACHINES("VMs.fxml");
 
+    Tabelview("Tabelview.fxml"),
+    LOGIN("Login.fxml"),
+    BigBag("BigBag.fxml");
 
     private String fileName;
 
