@@ -4,10 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import com.example.app.TableStructure.Admin;
-import com.example.app.TableStructure.DBUtil;
-import com.example.app.TableStructure.HashTable;
-import com.example.app.TableStructure.User;
+import com.example.app.TableStructure.*;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.event.ActionEvent;
@@ -34,6 +31,9 @@ public class BigBagController{
     public void initialize(){
         locationChoicebox.getItems().addAll(HashTable.getLocationNames());
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
+        BigBags bb = new BigBags();
+        bb.
+
     }
 
 

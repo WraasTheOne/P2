@@ -1,6 +1,8 @@
 package com.example.app.TableStructure;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
+
+
 public class BigBags {
 
     private static final String dbTable = "bigbags";
@@ -14,7 +16,7 @@ public class BigBags {
     private static int Location;
     private static String BrugerSenop;
 
-    public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
+   /* public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
         BigBags.BID = BID;
         BigBags.OwnerId = OwnerId;
         BigBags.NUVProcess = NUVProcess;
@@ -23,9 +25,9 @@ public class BigBags {
         BigBags.Type = Type;
         BigBags.Location = Location;
         BigBags.BrugerSenop = BrugerSenop;
-    }
+    }*/
 
-    public int getBID() {
+    public static int getBID() {
         return BID;
     }
 

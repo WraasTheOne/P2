@@ -36,6 +36,7 @@ public class HashTable {
             userType.put(userTypeLong[i],userTypeShort[i]);
         }
 
+
     }
 
     public static int getLocationHashValue(String location){

@@ -41,6 +41,7 @@ public class DBUtil {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+
     }
     public static void setColumnValueStr(String tableName, String columName, String value, String id, int obId) {
 
