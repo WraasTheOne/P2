@@ -80,8 +80,6 @@ public class DBUtil {
 
     }
 
-
-
     public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
 
 

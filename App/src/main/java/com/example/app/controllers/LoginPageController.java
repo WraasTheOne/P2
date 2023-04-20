@@ -26,7 +26,6 @@ public class LoginPageController {
     @FXML
     public TextField textField;
 
-
     @FXML
     public void initialize()
     {
