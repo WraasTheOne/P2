@@ -87,8 +87,6 @@ public class DBUtil {
         return myStatement.executeQuery(sql);
     }
 
-
-
     public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
 
         LocalDate date = LocalDate.now();
@@ -109,11 +107,7 @@ public class DBUtil {
             System.out.println(e.getMessage());
         }
 
-
     }
-
-
-
 
 }
 

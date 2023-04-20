@@ -7,7 +7,8 @@ public enum View {
 
     Tabelview("Tabelview.fxml"),
     LOGIN("Login.fxml"),
-    BigBag("BigBag.fxml");
+    BigBag("BigBag.fxml"),
+    USERMANAGEMENT("UserManagement.fxml");
 
     private String fileName;
 
