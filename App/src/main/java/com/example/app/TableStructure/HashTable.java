@@ -54,4 +54,15 @@ public class HashTable {
 
     }
 
+    public static String[] getLocationNames(){
+        return locationNames;
+
+    }
+
+    public static String[] getProcesNames(){
+        return procesNames;
+    }
+
+
+
 }

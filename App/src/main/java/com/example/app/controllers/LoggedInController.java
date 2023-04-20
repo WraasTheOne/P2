@@ -36,15 +36,6 @@ public class LoggedInController {
         ViewSwitch.switchView(View.BigBag);
     }
 
-    @FXML
-    protected void buttonCliked() throws IOException {
-        System.out.println("HEJ");
-        //Label1.setText("Welcome to JavaFX Application!");
-        //Button1.setText("hej");
-        //Button2.setText("ad");
-        ViewSwitch.switchView(View.HELLO);
-
-    }
 
     @FXML
     protected void showChart() throws IOException {

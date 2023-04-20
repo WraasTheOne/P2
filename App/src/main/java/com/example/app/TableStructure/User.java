@@ -41,6 +41,8 @@ public class User {
         Usertype = usertype;
     }
 
+    public static void login(){
 
+    }
 
 }

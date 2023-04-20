@@ -32,8 +32,8 @@ public class BigBagController{
 
 
     public void initialize(){
-        locationChoicebox.getItems().addAll(locations);
-        processChoicebox.getItems().addAll(processes);
+        locationChoicebox.getItems().addAll(HashTable.getLocationNames());
+        processChoicebox.getItems().addAll(HashTable.getProcesNames());
     }
 
 

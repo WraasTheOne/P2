@@ -1,5 +1,6 @@
 package com.example.app.controllers;
 
+import com.example.app.TableStructure.HashTable;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
@@ -13,7 +14,9 @@ public class ChangeProcessController {
    @FXML
     private Button printQR;
 
-
+    public void initialize(){
+        changeProcessChoicebox.getItems().addAll(HashTable.getProcesNames());
+    }
 
 
 }
