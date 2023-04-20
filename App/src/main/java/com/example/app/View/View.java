@@ -9,7 +9,7 @@ public enum View {
     LOGIN("Login.fxml"),
     BigBag("BigBag.fxml"),
 
-    ChangeProcess("ChangeProcess");
+    ChangeProcess("ChangeProcess.fxml");
 
     private String fileName;
 

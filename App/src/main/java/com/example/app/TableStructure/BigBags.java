@@ -3,26 +3,26 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 public class BigBags {
 
-    private final String dbTable = "bigbags";
-    private final String dbId = "BID";
-    private int BID;
-    private int OwnerId;
-    private int NUVProcess;
-    private String TidligProcess;
-    private String TidSenOp;
-    private String Type;
-    private int Location;
-    private String BrugerSenop;
+    private static final String dbTable = "bigbags";
+    private static final String dbId = "BID";
+    private static int BID;
+    private static int OwnerId;
+    private static int NUVProcess;
+    private static String TidligProcess;
+    private static String TidSenOp;
+    private static String Type;
+    private static int Location;
+    private static String BrugerSenop;
 
-    public BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
-        this.BID = BID;
-        this.OwnerId = OwnerId;
-        this.NUVProcess = NUVProcess;
-        this.TidligProcess = TidligProcess;
-        this.TidSenOp = TidSenOp;
-        this.Type = Type;
-        this.Location = Location;
-        this.BrugerSenop = BrugerSenop;
+    public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
+        BigBags.BID = BID;
+        BigBags.OwnerId = OwnerId;
+        BigBags.NUVProcess = NUVProcess;
+        BigBags.TidligProcess = TidligProcess;
+        BigBags.TidSenOp = TidSenOp;
+        BigBags.Type = Type;
+        BigBags.Location = Location;
+        BigBags.BrugerSenop = BrugerSenop;
     }
 
     public int getBID() {

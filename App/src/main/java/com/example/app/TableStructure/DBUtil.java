@@ -65,6 +65,7 @@ public class DBUtil {
 
             if (resultSet.next()){
                 com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
+                System.out.println(com.example.app.TableStructure.User.getID());
                 com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
                 com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
                 return true;
@@ -82,20 +83,14 @@ public class DBUtil {
 
     public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
 
-
-        LocalDate date = LocalDate.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        String opdateTime = date.format(formatter);
-
-        String sql = "INSERT INTO bigbags (Ownerid,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,?,?,?,?)";
+        String sql = "INSERT INTO bigbags (OwnerId,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,current_timestamp(),?,?,?)";
 
             try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, Ownerid);
             pstmt.setInt(2, NUVProcess);
-            pstmt.setString(3, opdateTime);
-            pstmt.setString(4,type);
-            pstmt.setInt(5,Location);
-            pstmt.setString(6,BrugerSenop);
+            pstmt.setString(3,type);
+            pstmt.setInt(4,Location);
+            pstmt.setString(5,BrugerSenop);
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
