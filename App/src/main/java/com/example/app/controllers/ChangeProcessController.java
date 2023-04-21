@@ -29,10 +29,11 @@ public class ChangeProcessController {
     }
     @FXML
     public void changeProcessButton() throws IOException{
-        //int tidProcess = HashTable.getProcessHashValue();
+
+        int tidProcess = DBUtil.getsingleValue("bigbags",1);
         int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
-
-
+        DBUtil.copyColumnValue("bigbags",tidProcess,1);
+        DBUtil.updateTimeForBigbag(1);
         BigBags.setBID(1);
         System.out.println(BigBags.getBID());
         BigBags.setNUVProcess(newProcess);

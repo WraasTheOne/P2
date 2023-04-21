@@ -8,7 +8,8 @@ module com.example.app {
     requires java.sql;
     requires java.dotenv;
     requires java.desktop;
-    requires core;
+    requires com.google.zxing;
+    //requires core;
 
 
     opens com.example.app to javafx.fxml;

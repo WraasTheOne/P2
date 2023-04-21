@@ -2,9 +2,10 @@ package com.example.app.TableStructure;
 
 public class Kooperation extends User{
 
-    public Kooperation(int kid, String name, String password) {
-        this.ID = kid;
-        this.Name = name;
-        this.Password = password;
+    public static void createBigbag(String proces, String location, String type){
+        int processId = HashTable.getProcessHashValue(proces);
+        int locationId = HashTable.getLocationHashValue(location);
+
+        DBUtil.insertBigbag(User.getID(),processId,type,locationId,User.getName());
     }
 }

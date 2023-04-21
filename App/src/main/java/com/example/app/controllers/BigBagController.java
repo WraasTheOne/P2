@@ -17,7 +17,9 @@ public class BigBagController{
     @FXML
     public ChoiceBox<String> processChoicebox;
     @FXML
-    public TextField typeField;
+    public ChoiceBox<String> typeChoicebox;
+
+
     @FXML
     private ChoiceBox<String> locationChoicebox;
 
@@ -31,6 +33,7 @@ public class BigBagController{
     public void initialize(){
         locationChoicebox.getItems().addAll(HashTable.getLocationNames());
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
+        typeChoicebox.getItems().addAll(HashTable.getMaterialType());
         BigBags bb = new BigBags();
 
 
@@ -45,12 +48,10 @@ public class BigBagController{
 
     @FXML
     public void createBigbag() throws IOException{
-        System.out.println(processChoicebox.getValue());
-        int processId = HashTable.getProcessHashValue(processChoicebox.getValue());
-        int locationId = HashTable.getLocationHashValue(locationChoicebox.getValue());
 
-        System.out.println(processId + " " + locationId);
-        DBUtil.insertBigbag(User.getID(),processId,typeField.getText(),locationId,User.getName());
+        Kooperation.createBigbag(processChoicebox.getValue(),locationChoicebox.getValue(),typeChoicebox.getValue());
+
+
 
 
 

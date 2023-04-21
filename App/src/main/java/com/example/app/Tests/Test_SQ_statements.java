@@ -30,8 +30,8 @@ public class Test_SQ_statements {
 
                case 3:
 
-
-
+                int svar = DBUtil.getsingleValue("bigbags",2);
+                   System.out.println("vores svar er "+svar);
 
                case 4:
                    System.exit(0);

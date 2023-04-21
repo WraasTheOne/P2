@@ -12,6 +12,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class WalleCubeController {
 
@@ -38,7 +39,7 @@ public class WalleCubeController {
 
 
     @FXML
-    protected void createWalleCube() throws IOException{
+    protected void createWalleCube() throws IOException {
         CenterCoop.createBigbag(WalleCubeTypeChoicebox.getValue(),WalleCubeTextField.getText());
 
     }
