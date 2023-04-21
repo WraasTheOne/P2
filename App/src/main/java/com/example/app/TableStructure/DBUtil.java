@@ -119,6 +119,25 @@ public class DBUtil {
         }
 
     }
+    /*
+     *  Ved godt at den ikke skal ligge her -k
+     *
+     */
+
+    public static void allProcesses(int OwnerID, int processID){
+
+        String sql = "select * from bigbags where OwnerId = "+OwnerID;
+        // alternativt "select NUVProcess, BID from bigbags where OwnerID = "+OwnerID;
+        try {
+            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+
+            pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
 
 
