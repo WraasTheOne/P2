@@ -1,7 +1,5 @@
 package com.example.app.TableStructure;
 
-
-
 import io.github.cdimascio.dotenv.Dotenv;
 
 import java.sql.*;
@@ -15,30 +13,7 @@ public class DBUtil {
     private static String User = dotenv.get("USER_MYSQL_AZURE");
     private static String Pasword = dotenv.get("PASSWORD_MYSQL_AZURE");
 
-    public static void start() throws SQLException {
-        Dotenv dotenv = Dotenv.load();
-        Connection myDbConn = null;
 
-        Statement statement = null;
-
-        try {
-            myDbConn = DriverManager.getConnection(url, User, Pasword);
-            statement = myDbConn.createStatement();
-        } catch (SQLException ex) {
-            System.out.println("prut " + ex);
-        }
-
-        String test = "select * from kooperation";
-
-
-        System.out.println(statement);
-        ResultSet resultSet = statement.executeQuery(test);
-        System.out.println(resultSet);
-        while (resultSet.next()) {
-            System.out.println(resultSet.getString("Name"));
-        }
-
-    }
     public static Connection getConnection() {
         Connection conn = null;
 
@@ -77,17 +52,33 @@ public class DBUtil {
         }
     }
 
-    public static ResultSet findUsername(String username, String table) throws SQLException
+    public static Boolean findUser(String username, String password, String table)
     {
-        String sql = "SELECT Name, password FROM " + table + " WHERE name = '" + username + "'";
+        String sql = "SELECT * FROM " + table + " WHERE Name = ? AND Password = ?";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
+            pstmt.setString(1,username);
+            pstmt.setString(2,password);
+            ResultSet resultSet = pstmt.executeQuery();
 
-        System.out.println("SELECT Name, password FROM " + table + " WHERE name = '" + username + "'");
+            if (resultSet.next()){
+                com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
+                com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
+                com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+                return true;
+            }
+            else {
+                return false;
+            }
 
-        Statement myStatement = getConnection().createStatement();
-        return myStatement.executeQuery(sql);
+        }catch (SQLException e){
+            System.out.println(e);
+            return null;
+        }
+
     }
 
     public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
+
 
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
@@ -95,7 +86,7 @@ public class DBUtil {
 
         String sql = "INSERT INTO bigbags (Ownerid,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,?,?,?,?)";
 
-        try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, Ownerid);
             pstmt.setInt(2, NUVProcess);
             pstmt.setString(3, opdateTime);
@@ -105,6 +96,44 @@ public class DBUtil {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static String insertUser(String newUsername, String newPassword)
+    {
+        try
+        {
+            /*String sqlFindCurrentMax = "SELECT MAX(KID) AS KID FROM kooperation";
+
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlFindCurrentMax);
+            ResultSet set = pstmt.executeQuery();
+            set.next();
+            int currentMax = set.getInt("KID");
+
+            System.out.println("current max: " + currentMax);*/
+
+            String sqlInsertUser = "INSERT INTO kooperation (name, Password) VALUES (?, ?)";
+
+            //Check if the user exists, if not, we continue creating the user
+            if(DBUtil.findUser(newUsername, newPassword, "kooperation"))
+            {
+                System.out.println("User already exists");
+                return "User already exists";
+            }
+            else
+            {
+                //User creation
+                PreparedStatement pstmt = getConnection().prepareStatement(sqlInsertUser);
+                pstmt.setString(2, newUsername);
+                pstmt.setString(3, newPassword);
+                pstmt.executeUpdate();
+                return "User created!";
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
         }
 
     }

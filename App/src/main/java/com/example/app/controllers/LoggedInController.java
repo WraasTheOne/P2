@@ -17,7 +17,10 @@ public class LoggedInController {
     private Button Button2;
 
     @FXML
-    private Button Button3;
+    private Button createBigBag;
+
+    @FXML
+    private Button users;
     @FXML
     private BarChart<String, Integer> chart;
     @FXML
@@ -34,6 +37,12 @@ public class LoggedInController {
     @FXML
     protected void goToCreateBigBag() throws IOException{
         ViewSwitch.switchView(View.BigBag);
+    }
+
+    @FXML
+    protected void goToUserManagement() throws IOException
+    {
+        ViewSwitch.switchView(View.USERMANAGEMENT);
     }
 
     @FXML

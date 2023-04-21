@@ -17,13 +17,10 @@
          <left>
             <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="Button1" mnemonicParsing="false" onAction="#buttonCliked" prefHeight="26.0" prefWidth="100.0" text="Home" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="Button2" mnemonicParsing="false" prefHeight="5.0" prefWidth="100.0" text="Sold" />
+                  <Button fx:id="createBigBag" mnemonicParsing="false" prefHeight="5.0" prefWidth="100.0" text="NA" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="Button4" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="5.0" prefWidth="100.0" text="Create Big Bag" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="Button41" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="0.0" prefWidth="100.0" text="Users" />
+                  <Button fx:id="users" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Users" />
                </children>
             </VBox>
          </left>
@@ -47,7 +44,6 @@
          <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">
             <children>
                <Separator prefHeight="0.0" prefWidth="278.0" />
-               <Button fx:id="Button3" mnemonicParsing="false" onAction="#showChart" text="Button" />
             </children>
          </HBox>
       </BorderPane>

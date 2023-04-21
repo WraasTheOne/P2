@@ -1,7 +1,6 @@
 package com.example.app.controllers;
 
-import com.example.app.TableStructure.DBUtil;
-import com.example.app.TableStructure.Kooperation;
+import com.example.app.TableStructure.*;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.collections.FXCollections;
@@ -11,56 +10,59 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.paint.Color;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController {
-
     @FXML
     private ChoiceBox<String> userTypeDecideBox = null;
+    public PasswordField pasField;
+    @FXML
+    private ChoiceBox<String> CompanyTypeChoice;
     @FXML
     private String[] tables = {"kooperation", "centercoop", "admin"};
     @FXML
-    public TextField usernameField;
-    @FXML
-    public PasswordField passwordField;
-    @FXML
-    public Button logInButton;
-    @FXML
-    public Label statusText;
+    public TextField textField;
 
     @FXML
-    public void initialize(URL arg0, ResourceBundle arg1)
+    public void initialize()
     {
-        userTypeDecideBox.getItems().addAll(tables);
+        CompanyTypeChoice.getItems().addAll(tables);
     }
 
     @FXML
-    public void logIn() throws SQLException
-    {
-        DBUtil.getConnection();
+    public void logIn() throws IOException, SQLException {
+        HashTable.makeHashTables();
+        if (!textField.getText().equals("") && !pasField.getText().equals("") && CompanyTypeChoice.getValue() != null) {
+            System.out.println(textField.getText() + " " + CompanyTypeChoice.getValue() + " " + pasField.getText());
 
-        ResultSet userFound = DBUtil.findUsername(usernameField.getText(), userTypeDecideBox.getValue());
+            Boolean infoStatus = DBUtil.findUser(textField.getText(), pasField.getText(), CompanyTypeChoice.getValue());
+            if (!infoStatus) {
+                System.out.println("not correct");
+            } else {
 
-        userFound.next();
+                switch(CompanyTypeChoice.getValue())
+                {
+                    case "kooperation":
+                        ViewSwitch.switchView(View.LoggedIn);
+                        break;
 
-        System.out.println(userFound.getString("Name"));
-        System.out.println(userFound.getString("password"));
+                    case "centercoop":
+                        ViewSwitch.switchView(View.LoggedInCenterCoop);
+                        break;
 
-        if(userFound.getString("Name").equals(usernameField.getText()) &&
-                userFound.getString("password").equals(passwordField.getText()))
-        {
+                    case "admin":
+                        ViewSwitch.switchView(View.LoggedInAdmin);
+                        break;
+                }
 
-
-            ViewSwitch.switchView(View.LOGIN);
-            DBUtil.getConnection().close();
-        }
-        else
-        {
-            statusText.setTextFill(Color.RED);
-            statusText.setText("Incorrect username or password");
+                System.out.println(User.getName());
+            }
+        }else{
+            System.out.println("du har ikke indtastet noget");
         }
 
     }
