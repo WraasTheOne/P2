@@ -17,8 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController {
-    @FXML
-    private ChoiceBox<String> userTypeDecideBox = null;
+
     public PasswordField pasField;
     @FXML
     private ChoiceBox<String> CompanyTypeChoice;

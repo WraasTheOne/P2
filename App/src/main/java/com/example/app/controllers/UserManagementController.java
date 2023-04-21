@@ -7,6 +7,7 @@ import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Label;
 
@@ -32,9 +33,13 @@ public class UserManagementController implements Initializable
     @FXML
     Label insertionStatus = null;
     @FXML
+    private ChoiceBox<String> CompanyTypeChoice;
+    @FXML
+    private String[] tables = {"kooperation", "centercoop", "admin"};
+    @FXML
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
-
+        CompanyTypeChoice.getItems().addAll(tables);
     }
     @FXML
     public void showAddUser()
@@ -43,6 +48,7 @@ public class UserManagementController implements Initializable
         removeUser.setVisible(false);
         newField1.setVisible(true);
         newField2.setVisible(true);
+        CompanyTypeChoice.setVisible(true);
         newField2.setPromptText("New password");
     }
     @FXML
@@ -54,7 +60,7 @@ public class UserManagementController implements Initializable
         }
         else
         {
-            String insertionResult = DBUtil.insertUser(newField1.getText(), newField2.getText());
+            String insertionResult = DBUtil.insertUser(newField1.getText(), newField2.getText(), CompanyTypeChoice.getValue());
             insertionStatus.setText(insertionResult);
         }
 
@@ -66,12 +72,21 @@ public class UserManagementController implements Initializable
         removeUser.setVisible(true);
         newField1.setVisible(false);
         newField2.setVisible(true);
+        CompanyTypeChoice.setVisible(true);
         newField2.setPromptText("Remove user");
     }
     @FXML
     public void removeUser()
     {
-
+        if(newField2.getText().equals(""))
+        {
+            insertionStatus.setText("Please fill the field");
+        }
+        else
+        {
+            String insertionResult = DBUtil.removeUser(newField2.getText(), CompanyTypeChoice.getValue());
+            insertionStatus.setText(insertionResult);
+        }
     }
     @FXML
     public void returnToMainMenu()
