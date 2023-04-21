@@ -32,7 +32,7 @@ public class BigBagController{
         locationChoicebox.getItems().addAll(HashTable.getLocationNames());
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
         BigBags bb = new BigBags();
-        bb.
+
 
     }
 

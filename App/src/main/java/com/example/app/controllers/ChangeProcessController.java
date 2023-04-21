@@ -27,11 +27,22 @@ public class ChangeProcessController {
     public void printQR() throws IOException{
 
     }
+    @FXML
+    public void changeProcessButton() throws IOException{
+        //int tidProcess = HashTable.getProcessHashValue();
+        int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
+
+
+        BigBags.setBID(1);
+        System.out.println(BigBags.getBID());
+        BigBags.setNUVProcess(newProcess);
+    }
 
     @FXML
     public void changeProcess(){
         int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
-        DBUtil.setColumnValueInt("bigbags","NUVProces",newProcess, BigBags.getBID(),);
+        BigBags.setBID(1);
+        BigBags.setNUVProcess(newProcess);
     }
 
 

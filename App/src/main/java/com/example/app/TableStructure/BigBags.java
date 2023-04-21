@@ -31,20 +31,17 @@ public class BigBags {
         return BID;
     }
 
-    public void setBID(int BID) {
-        this.BID = BID;
-        DBUtil.setColumnValueInt(dbTable, "BID", BID, "OwnerId", this.OwnerId);
-        setTidSenOp();
-
+    public static void setBID(int BID1) {
+        BID = BID1;
     }
 
     public int getOwnerId() {
         return OwnerId;
     }
 
-    public void setOwnerId(int OwnerId) {
-        this.OwnerId = OwnerId;
-        DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, this.BID);
+    public static void setOwnerId(int OwnerId) {
+        OwnerId = OwnerId;
+        DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, BID);
         setTidSenOp();
     }
 
@@ -52,10 +49,10 @@ public class BigBags {
         return NUVProcess;
     }
 
-    public void setNUVProcess(int NUVProcess) {
-        this.NUVProcess = NUVProcess;
-        DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, this.BID);
-        setTidSenOp();
+    public static void setNUVProcess(int NUVProcess) {
+
+        DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
+        //setTidSenOp();
 
     }
 
@@ -65,7 +62,7 @@ public class BigBags {
 
     public void setTidligProcess(String TidligProcess) {
         this.TidligProcess = TidligProcess;
-        DBUtil.setColumnValueStr(dbTable, "TidligProcess", TidligProcess, dbId, this.BID);
+        DBUtil.setColumnValueStr(dbTable, "TidligProcess", TidligProcess, dbId, BID);
         setTidSenOp();
     }
 
@@ -74,14 +71,14 @@ public class BigBags {
         return TidSenOp;
     }
 
-    public void setTidSenOp() {
+    public static void setTidSenOp() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = date.format(formatter);
 
-        this.TidSenOp = formattedDate;
+        TidSenOp = formattedDate;
 
-        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, this.BID);
+        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, BID);
     }
 
     public String getType() {
@@ -90,7 +87,7 @@ public class BigBags {
 
     public void setType(String Type) {
         this.Type = Type;
-        DBUtil.setColumnValueStr(dbTable, "Type", Type, dbId, this.BID);
+        DBUtil.setColumnValueStr(dbTable, "Type", Type, dbId, BID);
         setTidSenOp();
     }
 
@@ -100,7 +97,7 @@ public class BigBags {
 
     public void setLocation(int Location) {
         this.Location = Location;
-        DBUtil.setColumnValueInt(dbTable, "Location", Location, dbId, this.BID);
+        DBUtil.setColumnValueInt(dbTable, "Location", Location, dbId, BID);
         setTidSenOp();
 
     }
@@ -111,7 +108,7 @@ public class BigBags {
 
     public void setBrugerSenop(String BrugerSenop) {
         this.BrugerSenop = BrugerSenop;
-        DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, this.BID);
+        DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
         setTidSenOp();
 
     }

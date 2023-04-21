@@ -32,6 +32,8 @@ public class DBUtil {
     public static void setColumnValueInt(String tableName, String columName, int value, String id, int obId) {
 
         String sql = "UPDATE " + tableName + " SET " + columName + " = ? WHERE " + id + " = ?";
+
+        System.out.println("UPDATE " + tableName + " SET " + columName + " = ? WHERE " + id + " = ? " + value +  " " + obId);
         try (
                 PreparedStatement pstmt = getConnection().prepareStatement(sql)
         ) {
@@ -53,6 +55,11 @@ public class DBUtil {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+    }
+
+    public static void copyColumnValue(String tableName, int NUVProcess,int BigBagID){
+        String sql = "UPDATE  " + tableName + "SET TidligProcess = " + NUVProcess;
+
     }
 
     public static Boolean findUser(String username, String password, String table)
@@ -97,6 +104,19 @@ public class DBUtil {
             System.out.println(e.getMessage());
         }
 
+    }
+
+    public static void insertWalleCube(String Type, int CenterId){
+
+        String sql = "Insert into Wallecubes (Type, CenterId)  Values (?,?)";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setString(1,Type);
+            pstmt.setInt(2,CenterId);
+            pstmt.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println(e);
+        }
 
     }
 
