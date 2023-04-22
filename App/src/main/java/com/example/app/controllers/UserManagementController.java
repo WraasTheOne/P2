@@ -1,18 +1,18 @@
 package com.example.app.controllers;
 
-import com.example.app.TableStructure.DBUtil;
+import com.example.app.TableStructure.*;
 
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Label;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 
-import javax.swing.text.TableView;
 import java.net.URL;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
@@ -21,7 +21,13 @@ import com.example.app.TableStructure.DBUtil;
 public class UserManagementController implements Initializable
 {
     @FXML
-    TableView userTable;
+    TableView<TableData> userTable;
+    @FXML
+    TableColumn kidColumn;
+    @FXML
+    TableColumn usernameColumn;
+    @FXML
+    TableColumn passwordColumn;
     @FXML
     Button createUser;
     @FXML
@@ -35,11 +41,63 @@ public class UserManagementController implements Initializable
     @FXML
     private ChoiceBox<String> CompanyTypeChoice;
     @FXML
+    private ChoiceBox<String> CompanyTableChoice;
     private String[] tables = {"kooperation", "centercoop", "admin"};
+
+    private ObservableList<TableData> dataForTable;
     @FXML
     public void initialize(URL url, ResourceBundle resourceBundle)
     {
         CompanyTypeChoice.getItems().addAll(tables);
+        CompanyTableChoice.getItems().addAll(tables);
+
+        try
+        {
+            kidColumn.setCellValueFactory(new PropertyValueFactory<TableData, Integer>("id"));
+            usernameColumn.setCellValueFactory(new PropertyValueFactory<TableData, String>("name"));
+            passwordColumn.setCellValueFactory(new PropertyValueFactory<TableData, String>("password"));
+
+            userTable.setItems(getDataForTable("kooperation"));
+
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+        }
+    }
+    @FXML
+    private void chooseTable() throws SQLException
+    {
+        userTable.setItems(getDataForTable(CompanyTableChoice.getValue()));
+    }
+
+    private ObservableList<TableData> getDataForTable(String company) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + company;
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<TableData> data = FXCollections.observableArrayList();
+        String idType = null;
+
+        switch (company)
+        {
+            case "kooperation":
+                idType = "KID";
+                break;
+            case "centercoop":
+                idType = "CID";
+                break;
+            case "admin":
+                idType = "AID";
+                break;
+        }
+
+        while(set.next())
+        {
+            data.add(new TableData(set.getInt(idType), set.getString("Name"), set.getString("Password")));
+        }
+
+        return data;
     }
     @FXML
     public void showAddUser()
@@ -52,7 +110,7 @@ public class UserManagementController implements Initializable
         newField2.setPromptText("New password");
     }
     @FXML
-    public void addUser()
+    public void addUser() throws SQLException
     {
         if(newField1.getText().equals("") || newField2.getText().equals(""))
         {
@@ -61,9 +119,9 @@ public class UserManagementController implements Initializable
         else
         {
             String insertionResult = DBUtil.insertUser(newField1.getText(), newField2.getText(), CompanyTypeChoice.getValue());
+            userTable.setItems(getDataForTable(CompanyTableChoice.getValue()));
             insertionStatus.setText(insertionResult);
         }
-
     }
     @FXML
     public void showRemoveUser()
@@ -76,7 +134,7 @@ public class UserManagementController implements Initializable
         newField2.setPromptText("Remove user");
     }
     @FXML
-    public void removeUser()
+    public void removeUser() throws SQLException
     {
         if(newField2.getText().equals(""))
         {
@@ -85,6 +143,7 @@ public class UserManagementController implements Initializable
         else
         {
             String insertionResult = DBUtil.removeUser(newField2.getText(), CompanyTypeChoice.getValue());
+            userTable.setItems(getDataForTable(CompanyTableChoice.getValue()));
             insertionStatus.setText(insertionResult);
         }
     }

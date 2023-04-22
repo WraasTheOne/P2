@@ -133,6 +133,7 @@ public class DBUtil {
         {
             String sqlFindUser = "SELECT * FROM " + userType + " WHERE Name = ?";
             String sqlFindRelatedBigBags = "SELECT * FROM bigbags WHERE ownerId = ?";
+            String typeOfUserID = null;
 
             //We find the user to then extract the ID
             PreparedStatement pstmt = getConnection().prepareStatement(sqlFindUser);
@@ -140,22 +141,6 @@ public class DBUtil {
 
             ResultSet set = pstmt.executeQuery();
             set.next();
-            int idOfUser = set.getInt("KID");
-
-            //We find the big bags related to the user and default all of them
-            pstmt = getConnection().prepareStatement(sqlFindRelatedBigBags);
-            pstmt.setInt(1, idOfUser);
-            set = pstmt.executeQuery();
-
-            while(set.next())
-            {
-                System.out.println(set.getInt("BID"));
-                DBUtil.setColumnValueInt("bigbags","ownerId", 0, "BID", set.getInt("BID"));
-            }
-            System.out.println("OwnerID defaulted");
-
-            //We remove the user
-            String typeOfUserID = null;
 
             switch(userType)
             {
@@ -170,6 +155,21 @@ public class DBUtil {
                     break;
             }
 
+            int idOfUser = set.getInt(typeOfUserID);
+
+            //We find the big bags related to the user and default all of them
+            pstmt = getConnection().prepareStatement(sqlFindRelatedBigBags);
+            pstmt.setInt(1, idOfUser);
+            set = pstmt.executeQuery();
+
+            while(set.next())
+            {
+                System.out.println(set.getInt("BID"));
+                DBUtil.setColumnValueInt("bigbags","ownerId", 0, "BID", set.getInt("BID"));
+            }
+            System.out.println("OwnerID defaulted");
+
+            //We remove the user
             String sqlRemoveUser = "DELETE FROM " + userType + " WHERE (" + typeOfUserID + " = ?)";
             pstmt = getConnection().prepareStatement(sqlRemoveUser);
             pstmt.setInt(1, idOfUser);

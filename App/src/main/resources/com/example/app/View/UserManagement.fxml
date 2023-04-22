@@ -21,12 +21,12 @@
             <Button mnemonicParsing="false" onAction="#returnToMainMenu" prefHeight="26.0" prefWidth="146.0" text="Return to Menu" />
          </children>
       </VBox>
-      <TableView layoutX="213.0" layoutY="14.0" prefHeight="366.0" prefWidth="416.0">
-        <columns>
-          <TableColumn prefWidth="67.99993896484375" text="ID" />
-          <TableColumn prefWidth="152.79998779296875" text="Username" />
-            <TableColumn prefWidth="150.39996337890625" text="Password" />
-        </columns>
+      <TableView fx:id="userTable" layoutX="213.0" layoutY="36.0" prefHeight="344.0" prefWidth="416.0">
+         <columns>
+            <TableColumn fx:id="kidColumn" prefWidth="75.0" text="KID" />
+            <TableColumn fx:id="usernameColumn" prefWidth="120.7999267578125" text="Username" />
+            <TableColumn fx:id="passwordColumn" prefWidth="107.99990844726562" text="Password" />
+         </columns>
       </TableView>
       <Button fx:id="createUser" layoutX="75.0" layoutY="289.0" mnemonicParsing="false" onAction="#addUser" text="Create User" visible="false" />
       <Button fx:id="removeUser" layoutX="70.0" layoutY="289.0" mnemonicParsing="false" onAction="#removeUser" text="Remove User" visible="false" />
@@ -34,5 +34,7 @@
       <TextField fx:id="newField1" layoutX="39.0" layoutY="187.0" promptText="New username" visible="false" />
       <ChoiceBox fx:id="CompanyTypeChoice" layoutX="39.0" layoutY="253.0" prefWidth="150.0" visible="false" />
       <Label fx:id="insertionStatus" layoutX="24.0" layoutY="324.0" prefHeight="18.0" prefWidth="180.0" />
+      <ChoiceBox fx:id="CompanyTableChoice" layoutX="213.0" layoutY="10.0" prefWidth="150.0" />
+      <Button layoutX="364.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseTable" text="Show Table" />
    </children>
 </AnchorPane>
