@@ -16,10 +16,19 @@
 
     <dependencies>
         <dependency>
+<<<<<<< HEAD
+=======
+            <groupId>com.google.zxing</groupId>
+            <artifactId>core</artifactId>
+            <version>3.5.1</version>
+        </dependency>
+        <dependency>
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
             <groupId>com.github.sarxos</groupId>
             <artifactId>webcam-capture</artifactId>
             <version>0.3.12</version>
         </dependency>
+<<<<<<< HEAD
         <dependency>
             <groupId>com.google.zxing</groupId>
             <artifactId>core</artifactId>
@@ -32,6 +41,11 @@
             <version>3.4.0</version>
         </dependency>
         <dependency>
+=======
+
+
+        <dependency>
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
             <groupId>io.github.cdimascio</groupId>
             <artifactId>java-dotenv</artifactId>
             <version>5.2.2</version>

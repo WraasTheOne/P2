@@ -1,16 +1,24 @@
 package com.example.mobileapp;
 
+<<<<<<< HEAD
 
+=======
+import com.google.zxing.*;
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
+<<<<<<< HEAD
 
+=======
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.WriterException;
+<<<<<<< HEAD
 //import com.google.zxing.client.j2se.matrixtoimagewriter;
 
 import com.google.zxing.common.BitMatrix;
@@ -30,6 +38,19 @@ public class QrGen {
 //MultiFormatWriter is a factory class that finds the appropriate Writer subclass for the BarcodeFormat requested and encodes the barcode with the supplied contents.
         BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);
         MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));
+=======
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
+public class QrGen {
+    public static String[] ranNames = {"Anabella", "Brenda", "Madelynn", "Paxton", "Zavier", "Kenneth", "Claire", "Isabela", "Jovanni", "Aliana", "Ronan", "Gwendolyn", "Marilyn", "Lia", "Cassandra", "Hayden", "Mira", "Jennifer", "Shamar", "Jaydon", "Conrad"};
+    public static String[] CountryCode = {"DK", "US", "UK", "SE", "NO", "JP", "MX"};
+
+    public static void generateQRcode(String data, String path, String charset, Map map, int h, int w) throws WriterException, IOException {
+//the BitMatrix class represents the 2D matrix of bits
+//MultiFormatWriter is a factory class that finds the appropriate Writer subclass for the BarcodeFormat requested and encodes the barcode with the supplied contents.
+        BitMatrix matrix = new MultiFormatWriter().encode(new String(data.getBytes(charset), charset), BarcodeFormat.QR_CODE, w, h);
+        //MatrixToImageWriter.writeToFile(matrix, path.substring(path.lastIndexOf('.') + 1), new File(path));
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
     }
 //main() method
 
@@ -55,9 +76,16 @@ public class QrGen {
         generateQRcode(String.valueOf(idGen), path, charset, hashMap, 400, 400);//increase or decrease height and width accodingly
         //prints if the QR code is generated
         //
+<<<<<<< HEAD
         getDbMysql.insertDb(idGen, currentName, currentCode, age);
         System.out.println("QR Code created successfully.");
     }*/
+=======
+        //getDbMysql.insertDb(idGen, currentName, currentCode, age);
+        System.out.println("QR Code created successfully.");
+    }
+
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 
 }
 

@@ -35,7 +35,11 @@ public class BigBagController{
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
         typeChoicebox.getItems().addAll(HashTable.getMaterialType());
         BigBags bb = new BigBags();
+<<<<<<< HEAD
 
+=======
+        //bb.
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 
     }
 

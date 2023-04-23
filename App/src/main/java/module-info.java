@@ -8,9 +8,17 @@ module com.example.app {
     requires java.sql;
     requires java.dotenv;
     requires java.desktop;
+<<<<<<< HEAD
     requires com.google.zxing;
     //requires core;
+=======
+    requires webcam.capture;
+    requires AbsoluteLayout.RELEASE170;
+    requires com.google.zxing;
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 
+    // Add this requires statement for the unnamed module
+    requires java.base;
 
     opens com.example.app to javafx.fxml;
     exports com.example.app;

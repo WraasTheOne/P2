@@ -42,8 +42,12 @@ public class ChangeProcessController {
     @FXML
     public void changeProcess(){
         int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
+<<<<<<< HEAD
         BigBags.setBID(1);
         BigBags.setNUVProcess(newProcess);
+=======
+        //DBUtil.setColumnValueInt("bigbags","NUVProces",newProcess, BigBags.getBID(),);
+>>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
     }
 
 
