@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="644.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.controllers.UserManagementController">
+   <children>
+      <VBox layoutX="14.0" layoutY="14.0" prefHeight="200.0" prefWidth="100.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#showAddUser" prefHeight="26.0" prefWidth="102.0" text="Add User" />
+            <Separator orientation="VERTICAL" prefHeight="10.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#showRemoveUser" prefHeight="26.0" prefWidth="150.0" text="Remove User" />
+            <Separator orientation="VERTICAL" prefHeight="41.0" prefWidth="0.0" />
+            <Button mnemonicParsing="false" onAction="#returnToMainMenu" prefHeight="26.0" prefWidth="146.0" text="Return to Menu" />
+         </children>
+      </VBox>
+      <TableView fx:id="userTable" layoutX="213.0" layoutY="36.0" prefHeight="344.0" prefWidth="416.0">
+         <columns>
+            <TableColumn fx:id="kidColumn" prefWidth="75.0" text="KID" />
+            <TableColumn fx:id="usernameColumn" prefWidth="120.7999267578125" text="Username" />
+            <TableColumn fx:id="passwordColumn" prefWidth="107.99990844726562" text="Password" />
+         </columns>
+      </TableView>
+      <Button fx:id="createUser" layoutX="75.0" layoutY="289.0" mnemonicParsing="false" onAction="#addUser" text="Create User" visible="false" />
+      <Button fx:id="removeUser" layoutX="70.0" layoutY="289.0" mnemonicParsing="false" onAction="#removeUser" text="Remove User" visible="false" />
+      <TextField fx:id="newField2" layoutX="39.0" layoutY="221.0" promptText="New password" visible="false" />
+      <TextField fx:id="newField1" layoutX="39.0" layoutY="187.0" promptText="New username" visible="false" />
+      <ChoiceBox fx:id="CompanyTypeChoice" layoutX="39.0" layoutY="253.0" prefWidth="150.0" visible="false" />
+      <Label fx:id="insertionStatus" layoutX="24.0" layoutY="324.0" prefHeight="18.0" prefWidth="180.0" />
+      <ChoiceBox fx:id="CompanyTableChoice" layoutX="213.0" layoutY="10.0" prefWidth="150.0" />
+      <Button layoutX="364.0" layoutY="10.0" mnemonicParsing="false" onAction="#chooseTable" text="Show Table" />
+   </children>
+</AnchorPane>
