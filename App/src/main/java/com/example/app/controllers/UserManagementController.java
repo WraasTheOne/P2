@@ -39,6 +39,8 @@ public class UserManagementController implements Initializable
     @FXML
     Label insertionStatus = null;
     @FXML
+    Label currentTableView = null;
+    @FXML
     private ChoiceBox<String> CompanyTypeChoice;
     @FXML
     private ChoiceBox<String> CompanyTableChoice;
@@ -58,17 +60,27 @@ public class UserManagementController implements Initializable
             passwordColumn.setCellValueFactory(new PropertyValueFactory<TableData, String>("password"));
 
             userTable.setItems(getDataForTable("kooperation"));
-
+            currentTableView.setText("Table: kooperation");
         }
         catch (SQLException e)
         {
             System.out.println(e);
+            currentTableView.setText("Table: Something went wrong");
         }
     }
     @FXML
-    private void chooseTable() throws SQLException
+    private void chooseTableView()
     {
-        userTable.setItems(getDataForTable(CompanyTableChoice.getValue()));
+        try
+        {
+            userTable.setItems(getDataForTable(CompanyTableChoice.getValue()));
+            currentTableView.setText("Table: " + CompanyTableChoice.getValue());
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            currentTableView.setText("Table: Please choose an option");
+        }
     }
 
     private ObservableList<TableData> getDataForTable(String company) throws SQLException
@@ -112,7 +124,7 @@ public class UserManagementController implements Initializable
     @FXML
     public void addUser() throws SQLException
     {
-        if(newField1.getText().equals("") || newField2.getText().equals(""))
+        if(newField1.getText().equals("") || newField2.getText().equals("") || CompanyTypeChoice.getValue() == null)
         {
             insertionStatus.setText("Please fill all the fields");
         }

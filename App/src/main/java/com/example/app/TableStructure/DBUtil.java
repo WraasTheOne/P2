@@ -166,6 +166,7 @@ public class DBUtil {
             {
                 System.out.println(set.getInt("BID"));
                 DBUtil.setColumnValueInt("bigbags","ownerId", 0, "BID", set.getInt("BID"));
+                DBUtil.setColumnValueStr("bigbags", "BrugerSenop", "Admin", "BID", set.getInt("BID"));
             }
             System.out.println("OwnerID defaulted");
 
