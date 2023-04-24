@@ -27,11 +27,11 @@ public class BigBag {
         BigBags.BrugerSenop = BrugerSenop;
     }*/
 
-    public static int getBID() {
+    public int getBID() {
         return BID;
     }
 
-    public static void setBID(int BID1) {
+    public void setBID(int BID1) {
         BID = BID1;
     }
 
@@ -39,7 +39,7 @@ public class BigBag {
         return OwnerId;
     }
 
-    public static void setOwnerId(int OwnerId) {
+    public void setOwnerId(int OwnerId) {
         OwnerId = OwnerId;
         DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, BID);
         setTidSenOp();
@@ -49,7 +49,7 @@ public class BigBag {
         return NUVProcess;
     }
 
-    public static void setNUVProcess(int NUVProcess) {
+    public void setNUVProcess(int NUVProcess) {
 
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
         //setTidSenOp();
@@ -71,7 +71,7 @@ public class BigBag {
         return TidSenOp;
     }
 
-    public static void setTidSenOp() {
+    public void setTidSenOp() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = date.format(formatter);
