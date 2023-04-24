@@ -17,6 +17,8 @@ public class Kooperation extends User implements bigbagInterface{
         int tidProcess = DBUtil.getsingleValue("bigbags",bigbag.getBID());
         int newProcess = HashTable.getProcessHashValue(procesChangeTo);
         DBUtil.copyColumnValue("bigbags",tidProcess,bigbag.getBID());
+        DBUtil.setColumnValueInt("Bigbags","NuvProcess",newProcess,"BID",bigbag.getBID());
+        DBUtil.setColumnValueStr("Bigbags","brugersenop",User.getName(),"BID",bigbag.getBID());
         DBUtil.updateTimeForBigbag(bigbag.getBID());
     }
 

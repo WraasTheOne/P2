@@ -60,8 +60,7 @@ public class BigBagViewController {
 
         Tableview.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-                BigBag selectedItem = Tableview.getSelectionModel().getSelectedItem();
-                ChangeProcessController.bigBag = selectedItem;
+                ChangeProcessController.bigBag = Tableview.getSelectionModel().getSelectedItem();
                 ViewSwitch.switchView(View.ChangeProcess);
             }
         });

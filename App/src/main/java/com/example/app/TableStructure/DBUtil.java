@@ -92,7 +92,7 @@ public class DBUtil {
     }
 
     public static void copyColumnValue(String tableName, int NUVProcess,int BigBagID){
-        String sql = "UPDATE  " + tableName + " SET TidligProcess = " + NUVProcess+" where BID = " + BigBagID;
+        String sql = "UPDATE  " + tableName + " SET TidligProcess = " + NUVProcess + " where BID = " + BigBagID;
         try(PreparedStatement statement = getConnection().prepareStatement(sql)) {
 
             statement.executeUpdate();
