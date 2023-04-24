@@ -1,17 +1,12 @@
 package com.example.app.controllers;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ResourceBundle;
 
 import com.example.app.TableStructure.*;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextField;
 
 public class BigBagController{
     @FXML
@@ -34,7 +29,7 @@ public class BigBagController{
         locationChoicebox.getItems().addAll(HashTable.getLocationNames());
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
         typeChoicebox.getItems().addAll(HashTable.getMaterialType());
-        BigBags bb = new BigBags();
+        BigBag bb = new BigBag();
 
 
     }

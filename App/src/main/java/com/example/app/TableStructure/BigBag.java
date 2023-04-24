@@ -3,7 +3,7 @@ import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
-public class BigBags {
+public class BigBag {
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
