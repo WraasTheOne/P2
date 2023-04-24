@@ -3,6 +3,8 @@ package com.example.app.TableStructure;
 
 
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -196,6 +198,23 @@ public class DBUtil {
         }
 
 
+    }
+
+    public static ObservableList<BigBag> getDataForTable(String Table, int id) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + Table + " Where OwnerId = ?";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        pstmt.setInt(1,id);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
+
+
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
+        }
+
+        return data;
     }
 
 

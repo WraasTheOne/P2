@@ -41,7 +41,7 @@ public class LoginPageController {
             if (!infoStatus) {
                 System.out.println("not correct");
             } else {
-                ViewSwitch.switchView(View.LoggedIn);
+                ViewSwitch.switchView(View.BigbagView);
                 System.out.println(User.getName());
             }
         }else{

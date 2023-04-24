@@ -21,9 +21,9 @@ public class Admin extends User implements bigbagInterface{
         int newProcess = HashTable.getProcessHashValue(procesChangeTo);
         DBUtil.copyColumnValue("bigbags",tidProcess,1);
         DBUtil.updateTimeForBigbag(1);
-        BigBag.setBID(1);
-        System.out.println(BigBag.getBID());
-        BigBag.setNUVProcess(newProcess);
+        //BigBag.setBID(1);
+        //System.out.println(BigBag.getBID());
+        //BigBag.setNUVProcess(newProcess);
     }
 
 }

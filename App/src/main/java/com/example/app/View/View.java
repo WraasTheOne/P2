@@ -11,6 +11,8 @@ public enum View {
 
     WalleCube("CreateWalleCube.fxml"),
 
+    BigbagView("BigBagView.fxml"),
+
     ChangeProcess("ChangeProcess.fxml");
 
     private String fileName;

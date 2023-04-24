@@ -7,25 +7,36 @@ public class BigBag {
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
-    private static int BID;
-    private static int OwnerId;
-    private static int NUVProcess;
-    private static String TidligProcess;
-    private static String TidSenOp;
-    private static String Type;
-    private static int Location;
-    private static String BrugerSenop;
+    private  int BID;
+    private  int OwnerId;
+    private  int NUVProcess;
+    private  int TidligProcess;
+    private  String TidSenOp;
+    private  String Type;
+    private  int Location;
+    private  String BrugerSenop;
 
-   /* public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
-        BigBags.BID = BID;
-        BigBags.OwnerId = OwnerId;
-        BigBags.NUVProcess = NUVProcess;
-        BigBags.TidligProcess = TidligProcess;
-        BigBags.TidSenOp = TidSenOp;
-        BigBags.Type = Type;
-        BigBags.Location = Location;
-        BigBags.BrugerSenop = BrugerSenop;
-    }*/
+    private int WalleID;
+
+    public BigBag(){}
+
+
+   public BigBag(int BID, int OwnerId, int NUVProcess, int TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop, int WalleId) {
+        this.BID = BID;
+        this.OwnerId = OwnerId;
+        this.NUVProcess = NUVProcess;
+        this.TidligProcess = TidligProcess;
+        this.TidSenOp = TidSenOp;
+        this.Type = Type;
+        this.Location = Location;
+        this.BrugerSenop = BrugerSenop;
+        this.WalleID = WalleId;
+    }
+
+    public int getWalleID(){
+        return WalleID;
+    }
+
 
     public int getBID() {
         return BID;
@@ -56,13 +67,13 @@ public class BigBag {
 
     }
 
-    public String getTidligProcess() {
+    public int getTidligProcess() {
         return TidligProcess;
     }
 
-    public void setTidligProcess(String TidligProcess) {
+    public void setTidligProcess(int TidligProcess) {
         this.TidligProcess = TidligProcess;
-        DBUtil.setColumnValueStr(dbTable, "TidligProcess", TidligProcess, dbId, BID);
+        DBUtil.setColumnValueInt(dbTable, "TidligProcess", TidligProcess, dbId, BID);
         setTidSenOp();
     }
 
