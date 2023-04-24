@@ -3,6 +3,8 @@ package com.example.app.controllers;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.User;
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -56,6 +58,14 @@ public class BigBagViewController {
         BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("BrugerSenop"));
         WalleIDCoulmn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
 
+        Tableview.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                BigBag selectedItem = Tableview.getSelectionModel().getSelectedItem();
+                ChangeProcessController.bigBag = selectedItem;
+                ViewSwitch.switchView(View.ChangeProcess);
+            }
+        });
+
         try{
             Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
         }catch (SQLException e){
@@ -63,10 +73,12 @@ public class BigBagViewController {
 
         }
 
-
-
     }
 
+    @FXML
+    protected void goBack() throws IOException{
+        ViewSwitch.switchView(View.LoggedIn);
+    }
 
 
 

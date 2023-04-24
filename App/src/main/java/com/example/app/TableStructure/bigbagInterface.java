@@ -4,6 +4,6 @@ public interface bigbagInterface {
 
     void createBigbag(String proces, String location, String type);
 
-    void changeProcess(String procesChangeTo);
+    void changeProcess(String procesChangeTo, BigBag bigbag);
 
 }

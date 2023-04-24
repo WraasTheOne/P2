@@ -16,7 +16,7 @@ public class Admin extends User implements bigbagInterface{
     }
 
     @Override
-    public void changeProcess(String procesChangeTo) {
+    public void changeProcess(String procesChangeTo, BigBag bigBag) {
         int tidProcess = DBUtil.getsingleValue("bigbags",1);
         int newProcess = HashTable.getProcessHashValue(procesChangeTo);
         DBUtil.copyColumnValue("bigbags",tidProcess,1);

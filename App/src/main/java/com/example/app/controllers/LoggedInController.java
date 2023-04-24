@@ -10,6 +10,7 @@ import javafx.scene.control.*;
 import java.io.IOException;
 
 public class LoggedInController {
+    public Button BigbagOverviewButton;
     @FXML
     private Button Button1;
 
@@ -46,20 +47,9 @@ public class LoggedInController {
         ViewSwitch.switchView(View.ChangeProcess);
     }
 
-
     @FXML
-    protected void showChart() throws IOException {
-        XYChart.Series series1 = new XYChart.Series();
-        series1.setName("test");
-        series1.getData().add(new XYChart.Data<>("Test1", 17));
-        series1.getData().add(new XYChart.Data<>("Test2", 10));
-
-        XYChart.Series series2 = new XYChart.Series();
-        series2.setName("test");
-        series2.getData().add(new XYChart.Data<>("Test1", 130));
-        series2.getData().add(new XYChart.Data<>("Test2", 75));
-
-        chart.getData().setAll(series1, series2);
+    protected void goToBigbagOverview()throws IOException{
+        ViewSwitch.switchView(View.BigbagView);
     }
 
     public void initialize(){

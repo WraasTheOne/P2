@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class ChangeProcessController {
 
+    public static BigBag bigBag;
+
     @FXML
     private ChoiceBox<String> changeProcessChoicebox;
 
@@ -29,7 +31,7 @@ public class ChangeProcessController {
     public void changeProcess() throws IOException{
 
         Kooperation kooperation = new Kooperation();
-        kooperation.changeProcess(changeProcessChoicebox.getValue());
+        kooperation.changeProcess(changeProcessChoicebox.getValue(),bigBag);
 
     }
 

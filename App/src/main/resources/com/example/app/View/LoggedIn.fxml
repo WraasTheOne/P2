@@ -24,7 +24,9 @@
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="3.0" />
                   <Button fx:id="Button5" mnemonicParsing="false" onAction="#goToCreateWalleCube" prefHeight="26.0" prefWidth="129.0" text="Create WalleCube" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-                  <Button fx:id="button6" mnemonicParsing="false" prefHeight="26.0" prefWidth="204.0" text="Change proces" onAction="#goToChangeProces"/>
+                  <Button fx:id="button6" mnemonicParsing="false" onAction="#goToChangeProces" prefHeight="26.0" prefWidth="204.0" text="Change proces" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+                  <Button fx:id="BigbagOverviewButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="347.0" text="Bigbag overview" onAction="#goToBigbagOverview"/>
                </children>
             </VBox>
          </left>
@@ -44,7 +46,7 @@
          <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">
             <children>
                <Separator prefHeight="0.0" prefWidth="278.0" />
-               <Button fx:id="Button3" mnemonicParsing="false" onAction="#showChart" text="Button" />
+               <Button fx:id="Button3" mnemonicParsing="false" text="Button" />
             </children>
          </HBox>
       </BorderPane>
