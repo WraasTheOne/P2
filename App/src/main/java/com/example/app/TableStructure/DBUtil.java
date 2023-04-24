@@ -1,6 +1,8 @@
 package com.example.app.TableStructure;
 
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -98,93 +100,35 @@ public class DBUtil {
         }
     }
 
-    public static String insertUser(String newUsername, String newPassword, String userType)
+    public static ObservableList<TableData> getDataForTable(String company) throws SQLException
     {
-        try
-        {
-            String sqlInsertUser = "INSERT INTO " + userType + " (name, Password) VALUES (?, ?)";
+        String sqlAccounts = "SELECT * FROM " + company;
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<TableData> data = FXCollections.observableArrayList();
+        String idType = null;
 
-            //Check if the user exists, if not, we continue creating the user
-            if(DBUtil.findUser(newUsername, newPassword, userType))
-            {
-                System.out.println("User already exists");
-                return "User already exists";
-            }
-            else
-            {
-                //User creation
-                PreparedStatement pstmt = getConnection().prepareStatement(sqlInsertUser);
-                pstmt.setString(1, newUsername);
-                pstmt.setString(2, newPassword);
-                pstmt.executeUpdate();
-                return "User created!";
-            }
-        }
-        catch (SQLException e)
+        switch (company)
         {
-            System.out.println(e);
-            return "Something went wrong";
+            case "kooperation":
+                idType = "KID";
+                break;
+            case "centercoop":
+                idType = "CID";
+                break;
+            case "admin":
+                idType = "AID";
+                break;
         }
 
+        while(set.next())
+        {
+            data.add(new TableData(set.getInt(idType), set.getString("Name"), set.getString("Password")));
+        }
+
+        return data;
     }
-    public static String removeUser(String username, String userType)
-    {
-        try
-        {
-            String sqlFindUser = "SELECT * FROM " + userType + " WHERE Name = ?";
-            String sqlFindRelatedBigBags = "SELECT * FROM bigbags WHERE ownerId = ?";
-            String typeOfUserID = null;
 
-            //We find the user to then extract the ID
-            PreparedStatement pstmt = getConnection().prepareStatement(sqlFindUser);
-            pstmt.setString(1, username);
-
-            ResultSet set = pstmt.executeQuery();
-            set.next();
-
-            switch(userType)
-            {
-                case "kooperation":
-                    typeOfUserID = "KID";
-                    break;
-                case "centercoop":
-                    typeOfUserID = "CID";
-                    break;
-                case "admin":
-                    typeOfUserID = "AID";
-                    break;
-            }
-
-            int idOfUser = set.getInt(typeOfUserID);
-
-            //We find the big bags related to the user and default all of them
-            pstmt = getConnection().prepareStatement(sqlFindRelatedBigBags);
-            pstmt.setInt(1, idOfUser);
-            set = pstmt.executeQuery();
-
-            while(set.next())
-            {
-                System.out.println(set.getInt("BID"));
-                DBUtil.setColumnValueInt("bigbags","ownerId", 0, "BID", set.getInt("BID"));
-                DBUtil.setColumnValueStr("bigbags", "BrugerSenop", "Admin", "BID", set.getInt("BID"));
-            }
-            System.out.println("OwnerID defaulted");
-
-            //We remove the user
-            String sqlRemoveUser = "DELETE FROM " + userType + " WHERE (" + typeOfUserID + " = ?)";
-            pstmt = getConnection().prepareStatement(sqlRemoveUser);
-            pstmt.setInt(1, idOfUser);
-            pstmt.executeUpdate();
-
-            return "User removed";
-        }
-        catch (SQLException e)
-        {
-            System.out.println(e);
-            return "Something went wrong";
-        }
-
-    }
 
 }
 
