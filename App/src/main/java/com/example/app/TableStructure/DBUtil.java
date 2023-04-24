@@ -29,9 +29,28 @@ public class DBUtil {
 
         return conn;
     }
+
+    public static void updateTimeForBigbag(int BID){
+
+        String sql = "UPDATE Bigbags set tidsenop = current_timestamp() where BID = ?";
+
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
+            pstmt.setInt(1,BID);
+            pstmt.executeUpdate();
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+
+    }
+
+
+
     public static void setColumnValueInt(String tableName, String columName, int value, String id, int obId) {
 
         String sql = "UPDATE " + tableName + " SET " + columName + " = ? WHERE " + id + " = ?";
+
+        System.out.println("UPDATE " + tableName + " SET " + columName + " = ? WHERE " + id + " = ? " + value +  " " + obId);
         try (
                 PreparedStatement pstmt = getConnection().prepareStatement(sql)
         ) {
@@ -52,6 +71,31 @@ public class DBUtil {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+    }
+
+    public static int getsingleValue(String tableName, int BigBagID){
+        String sql = "SELECT NUVProcess from bigbags where BID = "+BigBagID;
+
+        try {
+            PreparedStatement statement = getConnection().prepareStatement(sql);
+            ResultSet resultat = statement.executeQuery();
+
+            resultat.next();
+            System.out.println("Nuvprocess fra "+BigBagID+" er lig med "+resultat.getInt(1));
+            return resultat.getInt(1);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void copyColumnValue(String tableName, int NUVProcess,int BigBagID){
+        String sql = "UPDATE  " + tableName + " SET TidligProcess = " + NUVProcess+" where BID = " + BigBagID;
+        try(PreparedStatement statement = getConnection().prepareStatement(sql)) {
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -95,6 +139,60 @@ public class DBUtil {
             pstmt.executeUpdate();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+        }
+
+    }
+
+    public static void insertWalleCube(String Type, int CenterId){
+
+        String sql = "Insert into Wallecubes (Type, CenterId)  Values (?,?)";
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
+            pstmt.setString(1,Type);
+            pstmt.setInt(2,CenterId);
+            pstmt.executeUpdate();
+
+        }catch (SQLException e){
+            System.out.println(e);
+        }
+
+    }
+
+    public static int getIntCoulmnHighestData(String tablename, String column){
+        int returnvalue = 0;
+        String sql = "Select " + column + " from " + tablename;
+
+        try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
+            ResultSet rs = pstmt.executeQuery();
+            while (rs.next()){
+                returnvalue = rs.getInt(column);
+            }
+            System.out.println(returnvalue);
+            return returnvalue;
+        }catch (SQLException e){
+            System.out.println(e);
+            return 0;
+        }
+
+
+    }
+
+
+
+    /*
+     *  Ved godt at den ikke skal ligge her -k
+     *
+     */
+
+    public static void allProcesses(int OwnerID, int processID){
+
+        String sql = "select * from bigbags where OwnerId = "+OwnerID;
+        // alternativt "select NUVProcess, BID from bigbags where OwnerID = "+OwnerID;
+        try {
+            PreparedStatement pstmt = getConnection().prepareStatement(sql);
+
+            pstmt.executeQuery();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
 
 

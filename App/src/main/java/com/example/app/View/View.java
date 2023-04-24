@@ -9,6 +9,8 @@ public enum View {
     LOGIN("Login.fxml"),
     BigBag("BigBag.fxml"),
 
+    WalleCube("CreateWalleCube.fxml"),
+
     ChangeProcess("ChangeProcess.fxml");
 
     private String fileName;

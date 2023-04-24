@@ -36,6 +36,16 @@ public class LoggedInController {
         ViewSwitch.switchView(View.BigBag);
     }
 
+    @FXML
+    protected void goToCreateWalleCube() throws IOException{
+        ViewSwitch.switchView(View.WalleCube);
+    }
+
+    @FXML
+    protected void goToChangeProces() throws IOException{
+        ViewSwitch.switchView(View.ChangeProcess);
+    }
+
 
     @FXML
     protected void showChart() throws IOException {

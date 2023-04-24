@@ -10,7 +10,6 @@ public class HashTable {
 
     private static final HashMap<String, String> userType = new HashMap<>();
 
-
     private static final String[] procesNames  = {"Collection", "Stacking","Sorting","Label","Storage CORPS","Centercorp Delivery","Compress and weighing","Label compressed weight","Storage centerCORP","Selling"};
 
     private static final int[] procesIndex = {1,2,3,4,5,6,7,8,9,10};
@@ -22,6 +21,8 @@ public class HashTable {
     private static final String[] userTypeLong  = {"kooperation", "admin","centercoop"};
 
     private static final String[] userTypeShort  = {"KID", "AID","CID"};
+
+    private static final String[] materialType = {"Plastic","Metal", "Cardboard"};
 
 
 
@@ -64,6 +65,9 @@ public class HashTable {
         return procesNames;
     }
 
+    public static String[] getMaterialType(){
+        return materialType;
 
+    }
 
 }
