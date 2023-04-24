@@ -1,4 +1,4 @@
-module com.example.app {
+module com.example {
     requires javafx.controls;
     requires javafx.fxml;
 
@@ -10,10 +10,11 @@ module com.example.app {
     requires java.desktop;
     requires webcam.capture;
     requires AbsoluteLayout.RELEASE170;
-    requires com.google.zxing;
 
     // Add this requires statement for the unnamed module
     requires java.base;
+    requires core;
+    //requires javase;
 
     opens com.example.app to javafx.fxml;
     exports com.example.app;
@@ -23,4 +24,6 @@ module com.example.app {
     opens com.example.app.View to javafx.fxml;
     exports com.example.app.controllers;
     opens com.example.app.controllers to javafx.fxml;
+
+
 }

@@ -1,4 +1,7 @@
 package com.example.app.TableStructure;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -7,14 +10,14 @@ public class BigBags {
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
-    private static int BID;
-    private static int OwnerId;
-    private static int NUVProcess;
-    private static String TidligProcess;
-    private static String TidSenOp;
-    private static String Type;
-    private static int Location;
-    private static String BrugerSenop;
+    private  int BID;
+    private  int OwnerId;
+    private  int NUVProcess;
+    private  String TidligProcess;
+    private  String TidSenOp;
+    private  String Type;
+    private  int Location;
+    private  String BrugerSenop;
 
    /* public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
         BigBags.BID = BID;
@@ -27,9 +30,6 @@ public class BigBags {
         BigBags.BrugerSenop = BrugerSenop;
     }*/
 
-    public static int getBID() {
-        return BID;
-    }
 
     public void setBID(int BID) {
         this.BID = BID;
@@ -114,6 +114,31 @@ public class BigBags {
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, this.BID);
         setTidSenOp();
 
+    }
+    public static void getBigbag(int currentId, BigBags bigBags) {
+
+        String currntString = "null_vardi";
+
+        try {
+            System.out.println("Connected to the database!");
+
+            String query = "SELECT * FROM bigbags WHERE BID = ?";
+            PreparedStatement statement =  DBUtil.getConnection().prepareStatement(query);
+            statement.setInt(1, (int) currentId);
+            ResultSet result = statement.executeQuery();
+            while (result.next()) {
+                bigBags.OwnerId = result.getInt("OwnerId");
+                bigBags.NUVProcess = result.getInt("NUVProcess");
+                bigBags.BID = result.getInt("BID");
+                bigBags.Type = result.getString("Type");
+
+                currntString = "OwnerId: " + bigBags.OwnerId + ", NUVProcess: " + bigBags.NUVProcess + ", BID: " + bigBags.BID+ ", Type: " + bigBags.Type;
+                System.out.println(currntString);
+            }
+
+
+        } catch (SQLException ex) {
+        }
     }
 
 }

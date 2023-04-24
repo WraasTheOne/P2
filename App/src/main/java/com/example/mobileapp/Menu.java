@@ -1,30 +1,27 @@
 package com.example.mobileapp;
 
+import com.example.app.TableStructure.BigBags;
 import com.github.sarxos.webcam.*;
 import com.github.sarxos.webcam.WebcamResolution;
-import com.github.sarxos.webcam.ds.cgt.WebcamReadBufferTask;
-import com.google.zxing.Binarizer;
-import com.google.zxing.BinaryBitmap;
-import com.google.zxing.LuminanceSource;
-import com.google.zxing.MultiFormatReader;
-import com.google.zxing.NotFoundException;
-import com.google.zxing.Result;
-
+import com.google.zxing.*;
 import com.google.zxing.BinaryBitmap;
 import com.google.zxing.LuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
+import com.google.zxing.RGBLuminanceSource; // import RGBLuminanceSource
+
 import java.awt.image.BufferedImage;
+
 import com.google.zxing.common.HybridBinarizer;
 import java.awt.Dimension;
 import java.awt.image.BufferedImage;
-import java.nio.Buffer;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
-import org.w3c.dom.events.MutationEvent;
-//sander is using vim
+
 
 public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -47,12 +44,19 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         jPanel1 = new javax.swing.JPanel();
         result_freld = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
-        CurrentState = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
+        jTextField3 = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Ilive = new javax.swing.JButton();
-        jTextField3 = new javax.swing.JTextField();
+        Ilive1 = new javax.swing.JButton();
+        Ilive2 = new javax.swing.JButton();
+        Ilive3 = new javax.swing.JButton();
+        Ilive4 = new javax.swing.JButton();
+        Ilive5 = new javax.swing.JButton();
+        Ilive6 = new javax.swing.JButton();
+        Ilive7 = new javax.swing.JButton();
 
         jButton1.setText("jButton1");
 
@@ -68,37 +72,77 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 result_freldActionPerformed(evt);
             }
         });
-        jPanel1.add(result_freld, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 370, 500, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 390, 500, 20));
+        jPanel1.add(result_freld, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 500, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 670, 20));
 
-        CurrentState.setText("Rresult");
-        CurrentState.setBorder(null);
-        jPanel1.add(CurrentState, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 50, -1, -1));
+        jLabel1.setText("Proces");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(null));
+        jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 470, 330));
+        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 500, 360));
 
-        jButton2.setText("Himlen");
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 90, -1, -1));
+        jTextField3.setText("Rresult");
+        jTextField3.setBorder(null);
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
-        jButton4.setText("tod");
+        jButton2.setText("Collection");
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 180, -1));
+
+        jButton4.setText("Stacking");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 130, -1, -1));
+        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 180, -1));
 
-        Ilive.setText("I live");
-        jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 170, -1, -1));
+        Ilive.setText("Selling");
+        Ilive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                IliveActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 180, -1));
 
-        jTextField3.setText("Rresult");
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 350, -1, -1));
+        Ilive1.setText("Sorting");
+        jPanel1.add(Ilive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 180, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 570, 410));
+        Ilive2.setText("Label");
+        jPanel1.add(Ilive2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 180, -1));
+
+        Ilive3.setText("Storage CORPS");
+        jPanel1.add(Ilive3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 180, -1));
+
+        Ilive4.setText("Centercorp Delivery");
+        Ilive4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ilive4ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Ilive4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 180, -1));
+
+        Ilive5.setText("Compress and weighing");
+        jPanel1.add(Ilive5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 180, -1));
+
+        Ilive6.setText("Label compressed weight");
+        Ilive6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ilive6ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Ilive6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 180, -1));
+
+        Ilive7.setText("Storage centerCORP");
+        Ilive7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Ilive7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(Ilive7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 180, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
 
         pack();
     }// </editor-fold>
@@ -108,6 +152,25 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     }
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+
+        System.out.println("javacramera.Menu.jButton4ActionPerformed()");
+
+    }
+
+    private void Ilive4ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void IliveActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void Ilive6ActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void Ilive7ActionPerformed(java.awt.event.ActionEvent evt) {
         // TODO add your handling code here:
     }
 
@@ -133,11 +196,18 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     }
 
     // Variables declaration - do not modify
-    private javax.swing.JTextField CurrentState;
     private javax.swing.JButton Ilive;
+    private javax.swing.JButton Ilive1;
+    private javax.swing.JButton Ilive2;
+    private javax.swing.JButton Ilive3;
+    private javax.swing.JButton Ilive4;
+    private javax.swing.JButton Ilive5;
+    private javax.swing.JButton Ilive6;
+    private javax.swing.JButton Ilive7;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
@@ -154,7 +224,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
 
-        jPanel2.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 330));
+        jPanel2.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
 
         executor.execute(this);
 
@@ -179,12 +249,48 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                     continue;
                 }
 
+            }try {
+                String decodedText = readQRCode(imge);
+                System.out.println("Decoded QR code: " + decodedText);
+                String split = decodedText.replaceAll("[^\\d]", "");
+                int qrId = Integer.parseInt(split);
+                com.example.app.TableStructure.BigBags MyBig = new BigBags();
+                com.example.app.TableStructure.BigBags.getBigbag(qrId, MyBig);
+                result_freld.setText();
+
+
+                // Do something with the decoded text
+            } catch (NotFoundException e) {
+                // QR code not found in the image
+            } catch (Exception e) {
+                // Other exceptions
+                //e.printStackTrace();
             }
-            //LuminanceSource source = new BufferedImageLuminanceSource(imge);
-            //BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+        }while (true);
 
-        } while (true);
+    }
 
+
+    public String readQRCode(BufferedImage image) throws NotFoundException {
+        // Convert the BufferedImage to RGBLuminanceSource
+        int[] pixels = new int[image.getWidth() * image.getHeight()];
+        image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
+        RGBLuminanceSource source = new RGBLuminanceSource(image.getWidth(), image.getHeight(), pixels);
+
+        BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
+        Reader reader = new QRCodeReader();
+        Result result;
+        try {
+            Map<DecodeHintType, Object> hints = new HashMap<>();
+            hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
+            result = reader.decode(bitmap, hints);
+            return result.getText();
+        } catch (NotFoundException e) {
+            throw e;
+        } catch (Exception e) {
+            //e.printStackTrace();
+            throw new RuntimeException("Error decoding QR code", e);
+        }
     }
 
     @Override
