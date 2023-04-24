@@ -6,18 +6,24 @@ import com.example.app.TableStructure.User;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.function.Predicate;
 
 public class BigBagViewController {
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
+    @FXML
+    public TextField searchField;
     @FXML
     TableView<BigBag> Tableview;
     @FXML
@@ -65,12 +71,25 @@ public class BigBagViewController {
             }
         });
 
+
+
         try{
-            Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
+            Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);
 
         }
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                // If the search field is empty, show all rows in the table
+                Tableview.setItems(dataForTable);
+            } else {
+                // Filter the data by the entered search text
+                Tableview.setItems(dataForTable.filtered(bigbag -> bigbag.getBID() == Integer.parseInt(newValue)));
+            }
+        });
 
     }
 
@@ -79,6 +98,13 @@ public class BigBagViewController {
         ViewSwitch.switchView(View.LoggedIn);
     }
 
+    @FXML
+    protected void refresh() throws IOException, SQLException {
+        searchField.clear();
+        Tableview.getItems().clear();
+        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+
+    }
 
 
 
