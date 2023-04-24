@@ -1,24 +1,16 @@
 package com.example.mobileapp;
 
-<<<<<<< HEAD
 
-=======
 import com.google.zxing.*;
->>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-<<<<<<< HEAD
-
-=======
->>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.NotFoundException;
 import com.google.zxing.WriterException;
-<<<<<<< HEAD
 //import com.google.zxing.client.j2se.matrixtoimagewriter;
 
 import com.google.zxing.common.BitMatrix;
@@ -77,15 +69,11 @@ public class QrGen {
         //prints if the QR code is generated
         //
 <<<<<<< HEAD
+        System.out.println("QR Code created successfully.");
+
         getDbMysql.insertDb(idGen, currentName, currentCode, age);
         System.out.println("QR Code created successfully.");
     }*/
-=======
+
         //getDbMysql.insertDb(idGen, currentName, currentCode, age);
-        System.out.println("QR Code created successfully.");
     }
-
->>>>>>> afe37c0e76ca4e683db0c45b41fd473fa8c9d117
-
-}
-

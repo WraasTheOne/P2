@@ -5,7 +5,6 @@ import com.github.sarxos.webcam.*;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.google.zxing.*;
 import com.google.zxing.BinaryBitmap;
-import com.google.zxing.LuminanceSource;
 import com.google.zxing.Reader;
 import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
@@ -13,9 +12,7 @@ import com.google.zxing.RGBLuminanceSource; // import RGBLuminanceSource
 
 import java.awt.image.BufferedImage;
 
-import com.google.zxing.common.HybridBinarizer;
 import java.awt.Dimension;
-import java.awt.image.BufferedImage;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.Executor;
@@ -27,6 +24,8 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
     private WebcamPanel panel = null;
     private Webcam webcam = null;
+
+    private BigBags currntBigBag = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
     private final Executor executor = Executors.newSingleThreadExecutor(this);
@@ -88,12 +87,18 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
 
         jButton2.setText("Collection");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt, 1);
+            }
+        });
+
         jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 180, -1));
 
         jButton4.setText("Stacking");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                changePro(evt,2);
             }
         });
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 180, -1));
@@ -101,35 +106,55 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         Ilive.setText("Selling");
         Ilive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                IliveActionPerformed(evt);
+                changePro(evt,10);
             }
         });
         jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 180, -1));
 
         Ilive1.setText("Sorting");
+        Ilive1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt,3);
+            }
+        });
         jPanel1.add(Ilive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 180, -1));
 
         Ilive2.setText("Label");
+        Ilive2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt,4);
+            }
+        });
         jPanel1.add(Ilive2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 180, -1));
 
         Ilive3.setText("Storage CORPS");
+        Ilive3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt,5);
+            }
+        });
         jPanel1.add(Ilive3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 180, -1));
 
         Ilive4.setText("Centercorp Delivery");
         Ilive4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ilive4ActionPerformed(evt);
+                changePro(evt, 6);
             }
         });
         jPanel1.add(Ilive4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 180, -1));
 
         Ilive5.setText("Compress and weighing");
+        Ilive5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt,7);
+            }
+        });
         jPanel1.add(Ilive5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 180, -1));
 
         Ilive6.setText("Label compressed weight");
         Ilive6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ilive6ActionPerformed(evt);
+                changePro(evt, 8);
             }
         });
         jPanel1.add(Ilive6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 180, -1));
@@ -137,7 +162,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         Ilive7.setText("Storage centerCORP");
         Ilive7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Ilive7ActionPerformed(evt);
+                changePro(evt, 9);
             }
         });
         jPanel1.add(Ilive7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 180, -1));
@@ -162,8 +187,13 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         // TODO add your handling code here:
     }
 
-    private void IliveActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+    private void changePro(java.awt.event.ActionEvent evt, int intOfPro) {
+       if (currntBigBag != null){
+           currntBigBag.setNUVProcess(intOfPro);
+       }
+       else {
+           System.out.println("nahej det må du ikke");
+       }
     }
 
     private void Ilive6ActionPerformed(java.awt.event.ActionEvent evt) {
@@ -254,9 +284,9 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 System.out.println("Decoded QR code: " + decodedText);
                 String split = decodedText.replaceAll("[^\\d]", "");
                 int qrId = Integer.parseInt(split);
-                com.example.app.TableStructure.BigBags MyBig = new BigBags();
-                com.example.app.TableStructure.BigBags.getBigbag(qrId, MyBig);
-                //result_freld.setText();
+                //com.example.app.TableStructure.BigBags MyBig = new BigBags();
+                currntBigBag = new BigBags(qrId);
+                result_freld.setText("OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
 
 
                 // Do something with the decoded text

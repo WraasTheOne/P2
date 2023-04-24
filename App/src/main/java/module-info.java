@@ -13,7 +13,7 @@ module com.example {
 
     // Add this requires statement for the unnamed module
     requires java.base;
-    requires core;
+    requires com.google.zxing;
     //requires javase;
 
     opens com.example.app to javafx.fxml;

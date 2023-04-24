@@ -10,37 +10,43 @@ public class BigBags {
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
-    private  int BID;
-    private  int OwnerId;
-    private  int NUVProcess;
-    private  String TidligProcess;
-    private  String TidSenOp;
-    private  String Type;
-    private  int Location;
-    private  String BrugerSenop;
+    public  int BID;
+    public  int OwnerId;
+    public  int NUVProcess;
+    public  String TidligProcess;
+    public  String TidSenOp;
+    public  String Type;
+    public  int Location;
+    public String BrugerSenop;
 
-   /* public static void BigBags(int BID, int OwnerId, int NUVProcess, String TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop) {
-        BigBags.BID = BID;
-        BigBags.OwnerId = OwnerId;
-        BigBags.NUVProcess = NUVProcess;
-        BigBags.TidligProcess = TidligProcess;
-        BigBags.TidSenOp = TidSenOp;
-        BigBags.Type = Type;
-        BigBags.Location = Location;
-        BigBags.BrugerSenop = BrugerSenop;
-    }*/
+   public BigBags(int BID) throws SQLException {
+        this.BID = BID;
 
+       String query = "SELECT * FROM bigbags WHERE BID = ?";
+       PreparedStatement statement =  DBUtil.getConnection().prepareStatement(query);
+       statement.setInt(1, (int) this.BID);
+       ResultSet result = statement.executeQuery();
+       while (result.next()) {
+           assert false;
+           this.OwnerId = result.getInt("OwnerId");
+           this.NUVProcess = result.getInt("NUVProcess");
+           this.BID = result.getInt("BID");
+           this.Type = result.getString("Type");
 
-    public static void setBID(int BID1) {
-        BID = BID1;
+       }
+
+    }
+
+      public static void setBID(int BID1) {
+        //BID = BID1;
     }
 
     public int getOwnerId() {
         return OwnerId;
     }
 
-    public static void setOwnerId(int OwnerId) {
-        OwnerId = OwnerId;
+    public void setOwnerId(int OwnerId) {
+        this.OwnerId = OwnerId;
         DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, BID);
         setTidSenOp();
     }
@@ -49,8 +55,8 @@ public class BigBags {
         return NUVProcess;
     }
 
-    public static void setNUVProcess(int NUVProcess) {
-
+    public void setNUVProcess(int NUVProcess) {
+        this.NUVProcess = NUVProcess;
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
         //setTidSenOp();
 
@@ -71,14 +77,14 @@ public class BigBags {
         return TidSenOp;
     }
 
-    public static void setTidSenOp() {
+    public void setTidSenOp() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = date.format(formatter);
 
-        TidSenOp = formattedDate;
+        //TidSenOp = formattedDate;
 
-        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, BID);
+        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, this.BID);
     }
 
     public String getType() {
@@ -112,8 +118,8 @@ public class BigBags {
         setTidSenOp();
 
     }
-    public static void getBigbag(int currentId, BigBags bigBags) {
-
+    public BigBags getBigbag(int currentId) {
+        BigBags bigBags = null;
         String currntString = "null_vardi";
 
         try {
@@ -124,6 +130,7 @@ public class BigBags {
             statement.setInt(1, (int) currentId);
             ResultSet result = statement.executeQuery();
             while (result.next()) {
+                assert false;
                 bigBags.OwnerId = result.getInt("OwnerId");
                 bigBags.NUVProcess = result.getInt("NUVProcess");
                 bigBags.BID = result.getInt("BID");
@@ -131,12 +138,16 @@ public class BigBags {
 
                 currntString = "OwnerId: " + bigBags.OwnerId + ", NUVProcess: " + bigBags.NUVProcess + ", BID: " + bigBags.BID+ ", Type: " + bigBags.Type;
                 System.out.println(currntString);
+                return bigBags;
             }
 
 
         } catch (SQLException ex) {
         }
+        return null;
+
     }
+
 
 }
 
