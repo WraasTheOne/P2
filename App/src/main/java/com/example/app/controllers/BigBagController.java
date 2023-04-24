@@ -43,12 +43,8 @@ public class BigBagController{
 
     @FXML
     public void createBigbag() throws IOException{
-
-        Kooperation.createBigbag(processChoicebox.getValue(),locationChoicebox.getValue(),typeChoicebox.getValue());
-
-
-
-
+        Kooperation kooperation = new Kooperation();
+        kooperation.createBigbag(processChoicebox.getValue(),locationChoicebox.getValue(),typeChoicebox.getValue());
 
     }
 

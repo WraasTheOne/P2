@@ -3,6 +3,7 @@ package com.example.app.controllers;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.HashTable;
+import com.example.app.TableStructure.Kooperation;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 
@@ -25,23 +26,14 @@ public class ChangeProcessController {
 
     }
     @FXML
-    public void changeProcessButton() throws IOException{
+    public void changeProcess() throws IOException{
 
-        int tidProcess = DBUtil.getsingleValue("bigbags",1);
-        int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
-        DBUtil.copyColumnValue("bigbags",tidProcess,1);
-        DBUtil.updateTimeForBigbag(1);
-        BigBag.setBID(1);
-        System.out.println(BigBag.getBID());
-        BigBag.setNUVProcess(newProcess);
+        Kooperation kooperation = new Kooperation();
+        kooperation.changeProcess(changeProcessChoicebox.getValue());
+
     }
 
-    @FXML
-    public void changeProcess(){
-        int newProcess = HashTable.getProcessHashValue(changeProcessChoicebox.getValue());
-        BigBag.setBID(1);
-        BigBag.setNUVProcess(newProcess);
-    }
+
 
 
 
