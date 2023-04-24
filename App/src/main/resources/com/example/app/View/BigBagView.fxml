@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="527.0" prefWidth="854.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TableView fx:id="Tableview" layoutX="137.0" layoutY="109.0" prefHeight="403.0" prefWidth="708.0">
+        <columns>
+          <TableColumn prefWidth="44.93922424316406" text="BID" />
+          <TableColumn prefWidth="64.98333740234375" text="OwnerID" />
+            <TableColumn prefWidth="72.86933898925781" text="NUVProces" />
+            <TableColumn prefWidth="97.8419189453125" text="TidligProces" />
+            <TableColumn prefWidth="93.65805053710938" text="TidSenOp" />
+            <TableColumn prefWidth="91.2628173828125" text="Type" />
+            <TableColumn prefWidth="76.73712158203125" text="Location" />
+            <TableColumn prefWidth="120.9300537109375" text="BrugerSenOp" />
+            <TableColumn prefWidth="44.18548583984375" text="WalleId" />
+        </columns>
+      </TableView>
+      <Button fx:id="backButton" layoutX="35.0" layoutY="26.0" mnemonicParsing="false" text="Back" />
+   </children>
+</AnchorPane>
