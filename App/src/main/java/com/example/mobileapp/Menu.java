@@ -24,6 +24,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ThreadFactory;
 import org.w3c.dom.events.MutationEvent;
+//sander is using vim
 
 public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory {
 
@@ -181,7 +182,6 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
             //LuminanceSource source = new BufferedImageLuminanceSource(imge);
             //BinaryBitmap bitmap = new BinaryBitmap(new HybridBinarizer(source));
-
 
         } while (true);
 
