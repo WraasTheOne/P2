@@ -5,8 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class DBUtil {
 
@@ -357,7 +355,7 @@ public class DBUtil {
     }
 
 
-    public static void incrementTableInt(String table,String columnName,String primaryKey,int id ){
+    public static void incrementColumnInt(String table, String columnName, String primaryKey, int id ){
 
         String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" + 1" + " WHERE " + primaryKey+ "="+id;
 
@@ -369,7 +367,7 @@ public class DBUtil {
         }
     }
 
-    public static void decrementTableInt(String table,String columnName,String primaryKey,int id ){
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ){
 
         String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - 1" + " WHERE " + primaryKey+ "="+id;
 

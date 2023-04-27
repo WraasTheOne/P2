@@ -21,8 +21,8 @@ public class Kooperation extends User implements bigbagInterface{
         DBUtil.copyColumnValue("bigbags",tidProcess,bigbag.getBID());
         DBUtil.setColumnValueInt("Bigbags","NuvProcess",newProcess,"BID",bigbag.getBID());
         DBUtil.setColumnValueStr("Bigbags","brugersenop",User.getName(),"BID",bigbag.getBID());
-        DBUtil.incrementTableInt("proces","AntalIPro","PID",newProcess);
-        DBUtil.decrementTableInt("proces","AntalIPro","PID",tidProcess);
+        DBUtil.incrementColumnInt("proces","AntalIPro","PID",newProcess);
+        DBUtil.decrementColumnInt("proces","AntalIPro","PID",tidProcess);
         DBUtil.updateTimeForBigbag(bigbag.getBID());
     }
 
@@ -32,8 +32,8 @@ public class Kooperation extends User implements bigbagInterface{
         int newLocation = HashTable.getLocationHashValue(locationChangeTo);
         DBUtil.setColumnValueInt("Bigbags","Location",newLocation,"BID",bigBag.getBID());
         DBUtil.updateTimeForBigbag(bigBag.getBID());
-        DBUtil.decrementTableInt("location","AntalILoca","LID",tidligereLokation);
-        DBUtil.incrementTableInt("location","AntalILoca","LID",newLocation);
+        DBUtil.decrementColumnInt("location","AntalILoca","LID",tidligereLokation);
+        DBUtil.incrementColumnInt("location","AntalILoca","LID",newLocation);
     }
 
     @Override
