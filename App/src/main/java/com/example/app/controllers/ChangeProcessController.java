@@ -28,6 +28,7 @@ public class ChangeProcessController {
         changeProcessChoicebox.getItems().addAll(HashTable.getProcesNames());
         changeLocationChoicebox.getItems().addAll(HashTable.getLocationNames());
         changeMaterialChoicebox.getItems().addAll(HashTable.getMaterialType());
+        changeProcessChoicebox.getSelectionModel().select(bigBag.getNUVProcess()-1);
     }
 
     //This is a function to print the qr code.

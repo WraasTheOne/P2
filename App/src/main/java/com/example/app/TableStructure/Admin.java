@@ -1,4 +1,11 @@
 package com.example.app.TableStructure;
+
+
+
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
 public class Admin extends User implements bigbagInterface{
 
     public Admin(int AID, String name, String password) {
@@ -39,5 +46,23 @@ public class Admin extends User implements bigbagInterface{
         DBUtil.setColumnValueStr("Bigbags","Type",newMaterial,"BID",bigBag.getBID());
         DBUtil.updateTimeForBigbag(bigBag.getBID());
     }
+
+    public static String insertUser(String newUsername, String newPassword, String userType)
+    {
+
+        String Status = DBUtil.addUser(newUsername,newPassword,userType);
+
+        return Status;
+
+    }
+
+    public static String removeUser(String username, String userType)
+    {
+       String status = DBUtil.removeUser(username,userType);
+       return status;
+
+    }
+
+
 
 }
