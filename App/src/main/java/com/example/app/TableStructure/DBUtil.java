@@ -5,8 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class DBUtil {
 
@@ -399,6 +397,29 @@ public class DBUtil {
     }
 
 
+    public static void incrementColumnInt(String table, String columnName, String primaryKey, int id ){
+
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" + 1" + " WHERE " + primaryKey+ "="+id;
+
+        try {
+            PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ){
+
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - 1" + " WHERE " + primaryKey+ "="+id;
+
+        try {
+            PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
 
