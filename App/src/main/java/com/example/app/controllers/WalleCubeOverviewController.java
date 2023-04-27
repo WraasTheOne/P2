@@ -44,7 +44,6 @@ public class WalleCubeOverviewController {
         Tableview.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
 
-                ViewSwitch.switchView(View.ChangeProcess);
             }
         });
 
@@ -55,6 +54,16 @@ public class WalleCubeOverviewController {
             System.out.println(e);
 
         }
+
+        searchField.textProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue.isEmpty()) {
+                // If the search field is empty, show all rows in the table
+                Tableview.setItems(dataForTable);
+            } else {
+                // Filter the data by the entered search text
+                Tableview.setItems(dataForTable.filtered(Wallecube -> Wallecube.getWID() == Integer.parseInt(newValue)));
+            }
+        });
 
 
 
@@ -67,6 +76,11 @@ public class WalleCubeOverviewController {
         Tableview.getItems().clear();
         Tableview.setItems(DBUtil.getDataForTableWalle("Wallecubes", User.getID()));
 
+    }
+
+    @FXML
+    protected void goBack() throws IOException{
+        ViewSwitch.switchView(View.LoggedInCenterCoop);
     }
 
 }

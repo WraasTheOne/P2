@@ -8,8 +8,8 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="812.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.controllers.WalleCubeOverviewController">
    <children>
-      <Button fx:id="backButton" layoutX="46.0" layoutY="34.0" mnemonicParsing="false" text="Back" />
-      <Button fx:id="refreshButton" layoutX="46.0" layoutY="96.0" mnemonicParsing="false" text="Refresh" />
+      <Button fx:id="backButton" layoutX="46.0" layoutY="34.0" mnemonicParsing="false" text="Back" onAction="#goBack"/>
+      <Button fx:id="refreshButton" layoutX="46.0" layoutY="96.0" mnemonicParsing="false" text="Refresh" onAction="#refresh"/>
       <TextField fx:id="searchField" layoutX="237.0" layoutY="35.0" promptText="Search by id" />
       <TableView fx:id="Tableview" layoutX="194.0" layoutY="96.0" prefHeight="390.0" prefWidth="583.0">
         <columns>
