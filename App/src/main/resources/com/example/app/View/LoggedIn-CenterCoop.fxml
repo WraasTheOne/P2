@@ -21,6 +21,8 @@
                   <Button fx:id="Button2" mnemonicParsing="false" prefHeight="5.0" prefWidth="100.0" text="Sold" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button fx:id="createBigBag" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="5.0" prefWidth="100.0" text="Create Big Bag" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
+                  <Button fx:id="WallecubeButton" mnemonicParsing="false" prefHeight="26.0" prefWidth="163.0" text="walleCube" onAction="#goToWalleOverview"/>
                </children>
             </VBox>
          </left>
@@ -40,7 +42,7 @@
          <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">
             <children>
                <Separator prefHeight="0.0" prefWidth="278.0" />
-               <Button fx:id="Button3" mnemonicParsing="false" onAction="#showChart" text="Button" />
+               <Button fx:id="Button3" mnemonicParsing="false"text="Button" />
             </children>
          </HBox>
       </BorderPane>

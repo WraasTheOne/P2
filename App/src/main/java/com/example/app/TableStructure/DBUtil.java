@@ -339,6 +339,23 @@ public class DBUtil {
     }
 
 
+    public static ObservableList<WalleCube> getDataForTableWalle(String Table, int id) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + Table + " Where centerid = ?";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        pstmt.setInt(1,id);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<WalleCube> data = FXCollections.observableArrayList();
+
+
+        while(set.next())
+        {
+            data.add(new WalleCube(set.getInt("WID"),set.getString("Type"),set.getInt("centerid")));
+        }
+
+        return data;
+    }
+
 
 
 }

@@ -8,7 +8,11 @@
    <children>
       <ChoiceBox fx:id="changeProcessChoicebox" layoutX="217.0" layoutY="86.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="150.0" />
       <Button layoutX="385.0" layoutY="86.0" mnemonicParsing="false" onAction="#changeProcess" prefHeight="26.0" prefWidth="150.0" text="Change process" />
-      <Button layoutX="215.0" layoutY="200.0" mnemonicParsing="false" onAction="#printQR" prefHeight="26.0" prefWidth="150.0" text="Print QR code" />
+      <Button layoutX="217.0" layoutY="310.0" mnemonicParsing="false" onAction="#printQR" prefHeight="26.0" prefWidth="150.0" text="Print QR code" />
       <Button layoutX="21.0" layoutY="14.0" mnemonicParsing="false" onAction="#back" prefHeight="26.0" prefWidth="79.0" text="Back" />
+      <ChoiceBox fx:id="changeLocationChoicebox" layoutX="217.0" layoutY="139.0" prefWidth="150.0" />
+      <Button layoutX="385.0" layoutY="139.0"  onAction="#changeLocation" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change location" />
+      <ChoiceBox  fx:id="changeMaterialChoicebox" layoutX="217.0" layoutY="194.0" prefWidth="150.0" />
+      <Button layoutX="385.0" layoutY="194.0" onAction="#changeMaterial" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change material" />
    </children>
 </AnchorPane>

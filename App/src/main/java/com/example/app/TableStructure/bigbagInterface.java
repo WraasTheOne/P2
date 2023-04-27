@@ -6,4 +6,9 @@ public interface bigbagInterface {
 
     void changeProcess(String procesChangeTo, BigBag bigbag);
 
+    void changeLocation(String locationChangeTo,BigBag bigbag);
+
+
+    void changeMaterial(String materialChangeTo, BigBag bigBag);
+
 }

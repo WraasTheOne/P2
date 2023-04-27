@@ -17,6 +17,7 @@ import java.sql.SQLException;
 
 public class LoggedInController {
     public Button BigbagOverviewButton;
+    public Button WallecubeButton;
     @FXML
     private Button Button2;
     @FXML
@@ -83,10 +84,7 @@ public class LoggedInController {
 
     }
 
-    @FXML
-    protected void goToChangeProces() throws IOException{
-        ViewSwitch.switchView(View.ChangeProcess);
-    }
+
 
     @FXML
     protected void goToBigbagOverview()throws IOException{
@@ -138,6 +136,11 @@ public class LoggedInController {
             }
         });
 
+    }
+
+    @FXML
+    public void goToWalleOverview() throws IOException{
+        ViewSwitch.switchView(View.WalleCubeOverview);
     }
 
 

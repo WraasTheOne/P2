@@ -18,10 +18,16 @@ public class ChangeProcessController {
     @FXML
     private ChoiceBox<String> changeProcessChoicebox;
 
+    @FXML
+    private ChoiceBox<String> changeLocationChoicebox;
 
+    @FXML
+    private ChoiceBox<String> changeMaterialChoicebox;
 
     public void initialize(){
         changeProcessChoicebox.getItems().addAll(HashTable.getProcesNames());
+        changeLocationChoicebox.getItems().addAll(HashTable.getLocationNames());
+        changeMaterialChoicebox.getItems().addAll(HashTable.getMaterialType());
         changeProcessChoicebox.getSelectionModel().select(bigBag.getNUVProcess()-1);
     }
 
@@ -36,8 +42,20 @@ public class ChangeProcessController {
         Kooperation kooperation = new Kooperation();
         kooperation.changeProcess(changeProcessChoicebox.getValue(),bigBag);
 
-
     }
+
+   @FXML
+   public void changeLocation() throws IOException{
+        Kooperation kooperation = new Kooperation();
+        kooperation.changeLocation(changeLocationChoicebox.getValue(),bigBag);
+   }
+
+   @FXML
+   public void changeMaterial() throws IOException{
+        Kooperation kooperation = new Kooperation();
+        kooperation.changeMaterial(changeMaterialChoicebox.getValue(),bigBag);
+
+   }
 
 @FXML
     public void back() throws IOException{
