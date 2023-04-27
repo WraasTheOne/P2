@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController {
-    @FXML
+
     public PasswordField pasField;
     @FXML
     private ChoiceBox<String> CompanyTypeChoice;
@@ -41,13 +41,28 @@ public class LoginPageController {
             if (!infoStatus) {
                 System.out.println("not correct");
             } else {
-                ViewSwitch.switchView(View.LoggedIn);
+
+                switch(CompanyTypeChoice.getValue())
+                {
+                    case "kooperation":
+                        ViewSwitch.switchView(View.LoggedIn);
+                        break;
+
+                    case "centercoop":
+                        ViewSwitch.switchView(View.LoggedInCenterCoop);
+                        break;
+
+                    case "admin":
+                        ViewSwitch.switchView(View.LoggedInAdmin);
+                        break;
+                }
+
                 System.out.println(User.getName());
             }
         }else{
             System.out.println("du har ikke indtastet noget");
         }
 
-
     }
+
 }

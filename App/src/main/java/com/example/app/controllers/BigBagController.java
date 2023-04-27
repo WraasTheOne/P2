@@ -20,9 +20,6 @@ public class BigBagController{
 
 
 
-    private final String[] locations ={"Location 1","Location 2","Location 3"};
-
-    private final String[] processes = {"proces 1","proces 2"};
 
 
     public void initialize(){
@@ -34,7 +31,6 @@ public class BigBagController{
 
     }
 
-
     @FXML
     public void back() throws IOException{
         ViewSwitch.switchView(View.LoggedIn);
@@ -43,8 +39,21 @@ public class BigBagController{
 
     @FXML
     public void createBigbag() throws IOException{
+
         Kooperation kooperation = new Kooperation();
         kooperation.createBigbag(processChoicebox.getValue(),locationChoicebox.getValue(),typeChoicebox.getValue());
+
+        System.out.println(processChoicebox.getValue());
+        int processId = HashTable.getProcessHashValue(processChoicebox.getValue());
+        int locationId = HashTable.getLocationHashValue(locationChoicebox.getValue());
+
+        System.out.println(processId + " " + locationId);
+        DBUtil.insertBigbag(User.getID(),processId,typeChoicebox.getValue(),locationId,User.getName());
+    }
+
+    public void createUser()
+    {
+
 
     }
 

@@ -32,7 +32,6 @@ public class HelloApplication extends Application {
         stage.setTitle("P2 - app");
         stage.show();
 
-
     }
 
     public static void main(String[] args) {
