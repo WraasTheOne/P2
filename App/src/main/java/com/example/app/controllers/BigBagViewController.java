@@ -19,7 +19,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.function.Predicate;
 
-public class BigBagViewController {
+public class BigBagViewController{
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML

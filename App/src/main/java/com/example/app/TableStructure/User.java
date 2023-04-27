@@ -1,6 +1,6 @@
 package com.example.app.TableStructure;
 
-public class User {
+public abstract class User {
 
     protected static int ID;
 
