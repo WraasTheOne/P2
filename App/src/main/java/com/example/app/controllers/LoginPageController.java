@@ -27,6 +27,9 @@ public class LoginPageController {
     public TextField textField;
 
     @FXML
+    private Label statusText;
+
+    @FXML
     public void initialize()
     {
         CompanyTypeChoice.getItems().addAll(tables);
@@ -41,6 +44,9 @@ public class LoginPageController {
             Boolean infoStatus = DBUtil.findUser(textField.getText(), pasField.getText(), CompanyTypeChoice.getValue());
             if (!infoStatus) {
                 System.out.println("not correct");
+                statusText.setTextFill(Color.RED);
+                statusText.setText("Incorrect username or password");
+
             } else {
 
                 switch(CompanyTypeChoice.getValue())
@@ -62,6 +68,8 @@ public class LoginPageController {
             }
         }else{
             System.out.println("du har ikke indtastet noget");
+            statusText.setTextFill(Color.BLACK);
+            statusText.setText("Please fill all the fields");
         }
 
     }
