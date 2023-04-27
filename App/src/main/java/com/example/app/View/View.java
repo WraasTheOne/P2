@@ -3,7 +3,7 @@ package com.example.app.View;
 public enum View {
     HELLO("hello-view.fxml"),
     LoggedIn("LoggedIn.fxml"),
-    LoggedInCenterCoop("LoggedIn-CenterCoop.fxml"),
+    LoggedInCenterCoop("LoggedIn-CenterCoop1.fxml"),
     LoggedInAdmin("LoggedIn-Admin.fxml"),
     Signup("signUp.fxml"),
 

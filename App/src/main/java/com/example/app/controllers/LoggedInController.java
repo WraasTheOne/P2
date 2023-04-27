@@ -22,7 +22,7 @@ public class LoggedInController {
     private Button Button2;
     @FXML
     private Label userLabel;
-//----------------------------------------------
+
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML
@@ -99,7 +99,7 @@ public class LoggedInController {
 
     public void initialize(){
 
-        userLabel.setText(User.getName());
+
 
         BIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("BID"));
         OwnerIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("OwnerId"));
@@ -135,6 +135,7 @@ public class LoggedInController {
                 Tableview.setItems(dataForTable.filtered(bigbag -> bigbag.getBID() == Integer.parseInt(newValue)));
             }
         });
+
 
     }
 
