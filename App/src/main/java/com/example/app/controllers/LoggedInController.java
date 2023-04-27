@@ -139,6 +139,14 @@ public class LoggedInController {
     }
 
     @FXML
+    protected void refresh() throws IOException, SQLException {
+        //searchField.clear();
+        //Tableview.getItems().clear();
+        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+
+    }
+
+    @FXML
     public void goToWalleOverview() throws IOException{
         ViewSwitch.switchView(View.WalleCubeOverview);
     }

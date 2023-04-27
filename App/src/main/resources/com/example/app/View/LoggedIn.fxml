@@ -17,11 +17,8 @@
          <left>
             <VBox id="vbox" prefHeight="361.0" prefWidth="124.0" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="Button1" mnemonicParsing="false" prefHeight="26.0" prefWidth="170.0" text="Home" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="Button2" mnemonicParsing="false" prefHeight="26.0" prefWidth="130.0" text="Sold" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="Button4" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="26.0" prefWidth="131.0" text="Create Big Bag" />
+                  <Button fx:id="createBigBag" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="23.0" prefWidth="162.0" text="Create Big Bag" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="3.0" />
                   <Button fx:id="Button5" mnemonicParsing="false" onAction="#goToCreateWalleCube" prefHeight="26.0" prefWidth="129.0" text="Create WalleCube" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
@@ -30,12 +27,8 @@
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
                   <Button fx:id="BigbagOverviewButton" mnemonicParsing="false" onAction="#goToBigbagOverview" prefHeight="26.0" prefWidth="347.0" text="Bigbag overview" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="createBigBag" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="23.0" prefWidth="162.0" text="Create Big Bag" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="170.0" text="Log Out" />
-
-                  <Button fx:id="BigbagOverviewButton" mnemonicParsing="false" onAction="#goToBigbagOverview" prefHeight="26.0" prefWidth="347.0" text="Bigbag overview" />
-                  <Button fx:id="createBigBag" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="5.0" prefWidth="100.0" text="Create Big Bag" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
 
                </children>
             </VBox>
@@ -59,6 +52,8 @@
                      <children>
                         <Separator prefHeight="0.0" prefWidth="0.0" />
                         <TextField fx:id="searchField" prefHeight="26.0" prefWidth="121.0" promptText="Search" />
+                        <Separator prefHeight="22.0" prefWidth="0.0" />
+                        <Button mnemonicParsing="false" onAction="#refresh" text="Refresh" />
                      </children>
                   </HBox>
                   <TableView fx:id="Tableview" prefHeight="430.0" prefWidth="611.0">
