@@ -6,13 +6,13 @@ public class WalleCube {
 
     private  String type;
 
-    private  int centerid;
+    private  int CenterId;
 
 
-    public WalleCube(int WID, String type, int centercoopId){
+    public WalleCube(int WID, String type, int centerid){
         this.WID = WID;
         this.type = type;
-        this.centerid = centercoopId;
+        this.CenterId = centerid;
     }
 
     public int getWID() {
@@ -31,12 +31,12 @@ public class WalleCube {
         this.type = type;
     }
 
-    public int getCenterid() {
-        return centerid;
+    public int getCenterId() {
+        return CenterId;
     }
 
-    public void setCentercoopId(int centercoopId) {
-        this.centerid = centercoopId;
+    public void setCenterId(int centercoopId) {
+        this.CenterId = centercoopId;
     }
 
 

@@ -350,7 +350,7 @@ public class DBUtil {
 
         while(set.next())
         {
-            data.add(new WalleCube(set.getInt("WID"),set.getString("Type"),set.getInt("centerid")));
+            data.add(new WalleCube(set.getInt("WID"),set.getString("Type"),set.getInt("CenterId")));
         }
 
         return data;
