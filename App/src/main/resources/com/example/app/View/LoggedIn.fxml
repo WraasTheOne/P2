@@ -35,8 +35,8 @@
          <top>
             <HBox id="hbox" prefHeight="39.0" prefWidth="318.0" styleClass="hBox" BorderPane.alignment="CENTER">
                <children>
-                  <Separator prefHeight="39.0" prefWidth="28.0" />
-                  <Label fx:id="userLabel" prefHeight="18.0" prefWidth="91.0" text="Name" textFill="WHITE" />
+                  <Separator prefHeight="39.0" prefWidth="4.0" />
+                  <Label fx:id="userLabel" prefHeight="134.0" prefWidth="102.0" text="Name" textAlignment="CENTER" textFill="WHITE" />
                </children></HBox>
          </top>
          <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">

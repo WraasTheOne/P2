@@ -56,13 +56,6 @@ public class WalleCubeOverviewController {
 
         }
 
-
-
-
-
-
-
-
     }
 
 }
