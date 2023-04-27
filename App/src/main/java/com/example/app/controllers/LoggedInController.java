@@ -11,6 +11,7 @@ import java.io.IOException;
 
 public class LoggedInController {
     public Button BigbagOverviewButton;
+    public Button WallecubeButton;
     @FXML
     private Button Button1;
 
@@ -82,6 +83,11 @@ public class LoggedInController {
         series2.getData().add(new XYChart.Data<>("Test2", 75));
 
         chart.getData().setAll(series1, series2);
+    }
+
+    @FXML
+    public void goToWalleOverview() throws IOException{
+        ViewSwitch.switchView(View.WalleCubeOverview);
     }
 
 
