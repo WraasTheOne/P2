@@ -26,4 +26,18 @@ public class Admin extends User implements bigbagInterface{
         //BigBag.setNUVProcess(newProcess);
     }
 
+    @Override
+    public void changeLocation(String locationChangeTo, BigBag bigBag){
+        int newLocation = HashTable.getLocationHashValue(locationChangeTo);
+        DBUtil.setColumnValueInt("Bigbags","Location",newLocation,"BID",bigBag.getBID());
+        DBUtil.updateTimeForBigbag(bigBag.getBID());
+    }
+
+    @Override
+    public void changeMaterial(String materialChangeTo, BigBag bigBag){
+        String newMaterial = materialChangeTo;
+        DBUtil.setColumnValueStr("Bigbags","Type",newMaterial,"BID",bigBag.getBID());
+        DBUtil.updateTimeForBigbag(bigBag.getBID());
+    }
+
 }
