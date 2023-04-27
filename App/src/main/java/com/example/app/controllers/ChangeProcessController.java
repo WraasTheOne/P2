@@ -8,6 +8,7 @@ import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.Label;
 
 import java.io.IOException;
 
@@ -24,6 +25,18 @@ public class ChangeProcessController {
     @FXML
     private ChoiceBox<String> changeMaterialChoicebox;
 
+    @FXML
+    private Label currentProcess;
+
+    @FXML
+    private Label bigbagID;
+
+    @FXML
+    private Label currentLocation;
+
+    @FXML
+    private Label currentMaterial;
+
     public void initialize(){
         changeProcessChoicebox.getItems().addAll(HashTable.getProcesNames());
         changeLocationChoicebox.getItems().addAll(HashTable.getLocationNames());
@@ -31,6 +44,10 @@ public class ChangeProcessController {
         changeProcessChoicebox.getSelectionModel().select(bigBag.getNUVProcess()-1);
         changeLocationChoicebox.getSelectionModel().select(bigBag.getLocation()-1);
         changeMaterialChoicebox.getSelectionModel().select(bigBag.getType());
+        currentProcess.setText("Current Process: " + changeProcessChoicebox.getValue());
+        currentLocation.setText("Curren Location: " + changeLocationChoicebox.getValue());
+        currentMaterial.setText("Current Material: " + bigBag.getType());
+        bigbagID.setText("Current bigbag ID: "+ bigBag.getBID());
     }
 
     //This is a function to print the qr code.
