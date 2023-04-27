@@ -22,6 +22,7 @@ public class ChangeProcessController {
 
     public void initialize(){
         changeProcessChoicebox.getItems().addAll(HashTable.getProcesNames());
+        changeProcessChoicebox.getSelectionModel().select(bigBag.getNUVProcess()-1);
     }
 
     //This is a function to print the qr code.
@@ -34,6 +35,7 @@ public class ChangeProcessController {
 
         Kooperation kooperation = new Kooperation();
         kooperation.changeProcess(changeProcessChoicebox.getValue(),bigBag);
+
 
     }
 

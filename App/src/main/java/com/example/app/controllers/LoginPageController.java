@@ -30,6 +30,7 @@ public class LoginPageController {
     public void initialize()
     {
         CompanyTypeChoice.getItems().addAll(tables);
+        CompanyTypeChoice.getSelectionModel().select(0);
     }
 
     @FXML
