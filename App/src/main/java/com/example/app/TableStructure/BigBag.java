@@ -21,7 +21,7 @@ public class BigBag{
     public BigBag(){}
 
 
-   public BigBag(int BID, int OwnerId, int NUVProcess, int TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop, int WalleId) {
+   public BigBag(int BID, int OwnerId, int NUVProcess, int TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop, int WalleID) {
         this.BID = BID;
         this.OwnerId = OwnerId;
         this.NUVProcess = NUVProcess;
@@ -30,7 +30,7 @@ public class BigBag{
         this.Type = Type;
         this.Location = Location;
         this.BrugerSenop = BrugerSenop;
-        this.WalleID = WalleId;
+        this.WalleID = WalleID;
     }
 
     public int getWalleID(){

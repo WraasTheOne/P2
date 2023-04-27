@@ -20,6 +20,9 @@ import java.sql.SQLException;
 import java.util.function.Predicate;
 
 public class BigBagViewController{
+
+    //Maybe we should delete this
+
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML

@@ -11,7 +11,6 @@ public enum View {
     LOGIN("Login.fxml"),
     BigBag("BigBag.fxml"),
 
-
     WalleCube("CreateWalleCube.fxml"),
 
     BigbagView("BigBagView.fxml"),
