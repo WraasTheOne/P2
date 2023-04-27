@@ -18,6 +18,8 @@ public enum View {
 
     ChangeProcess("ChangeProcess.fxml"),
 
+    WalleCubeOverview("WalleCubeOverview.fxml"),
+
     USERMANAGEMENT("UserManagement.fxml");
 
 
