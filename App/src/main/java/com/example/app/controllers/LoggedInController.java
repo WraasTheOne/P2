@@ -44,7 +44,7 @@ public class LoggedInController {
     protected void goToCreateWalleCube() throws IOException{
         ViewSwitch.switchView(View.WalleCube);
     }
-
+    @FXML
     protected void goToUserManagement() throws IOException
     {
         ViewSwitch.switchView(View.USERMANAGEMENT);
