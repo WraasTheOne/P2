@@ -18,7 +18,10 @@ public class LoggedInController {
     private Button Button2;
 
     @FXML
-    private Button Button3;
+    private Button createBigBag;
+
+    @FXML
+    private Button users;
     @FXML
     private BarChart<String, Integer> chart;
     @FXML
@@ -40,6 +43,21 @@ public class LoggedInController {
     @FXML
     protected void goToCreateWalleCube() throws IOException{
         ViewSwitch.switchView(View.WalleCube);
+    }
+
+    protected void goToUserManagement() throws IOException
+    {
+        ViewSwitch.switchView(View.USERMANAGEMENT);
+    }
+
+    @FXML
+    protected void buttonCliked() throws IOException {
+        System.out.println("HEJ");
+        //Label1.setText("Welcome to JavaFX Application!");
+        //Button1.setText("hej");
+        //Button2.setText("ad");
+        ViewSwitch.switchView(View.HELLO);
+
     }
 
     @FXML
