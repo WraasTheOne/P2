@@ -13,6 +13,6 @@
       <ChoiceBox fx:id="changeLocationChoicebox" layoutX="217.0" layoutY="139.0" prefWidth="150.0" />
       <Button layoutX="385.0" layoutY="139.0"  onAction="#changeLocation" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change location" />
       <ChoiceBox  fx:id="changeMaterialChoicebox" layoutX="217.0" layoutY="194.0" prefWidth="150.0" />
-      <Button layoutX="385.0" layoutY="194.0" onAction="#changeMaterial" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Changer material" />
+      <Button layoutX="385.0" layoutY="194.0" onAction="#changeMaterial" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Change material" />
    </children>
 </AnchorPane>
