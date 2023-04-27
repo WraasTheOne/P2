@@ -61,10 +61,7 @@ public class LoggedInController {
 
     }
 
-    @FXML
-    protected void goToChangeProces() throws IOException{
-        ViewSwitch.switchView(View.ChangeProcess);
-    }
+
 
     @FXML
     protected void goToBigbagOverview()throws IOException{
