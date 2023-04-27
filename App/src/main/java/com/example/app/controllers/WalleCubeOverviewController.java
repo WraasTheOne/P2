@@ -57,11 +57,14 @@ public class WalleCubeOverviewController {
         }
 
 
+    }
 
 
-
-
-
+    @FXML
+    protected void refresh() throws IOException, SQLException {
+        searchField.clear();
+        Tableview.getItems().clear();
+        Tableview.setItems(DBUtil.getDataForTableWalle("Wallecubes", User.getID()));
 
     }
 
