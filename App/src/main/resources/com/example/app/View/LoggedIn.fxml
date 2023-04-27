@@ -22,7 +22,6 @@
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="3.0" />
                   <Button fx:id="Button5" mnemonicParsing="false" onAction="#goToCreateWalleCube" prefHeight="26.0" prefWidth="129.0" text="Create WalleCube" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-
                   <Button fx:id="button6" mnemonicParsing="false" prefHeight="26.0" prefWidth="204.0" text="Change proces" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="0.0" />
                   <Button fx:id="BigbagOverviewButton" mnemonicParsing="false" onAction="#goToBigbagOverview" prefHeight="26.0" prefWidth="347.0" text="Bigbag overview" />
