@@ -58,7 +58,7 @@ public class LoginPageController {
                         break;
                 }
 
-                System.out.println(User.getName());
+                User.setName(textField.getText());
             }
         }else{
             System.out.println("du har ikke indtastet noget");
