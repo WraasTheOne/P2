@@ -112,6 +112,8 @@ public class DBUtil {
                 System.out.println(com.example.app.TableStructure.User.getID());
                 com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
                 com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+                com.example.app.TableStructure.User.setUsertype(table);
+                //Privat variabel for type user?
                 return true;
             }
             else {
@@ -243,6 +245,46 @@ public class DBUtil {
         }
 
         return data;
+    }
+
+    public static ObservableList<BigBag> getAllBigBags() throws SQLException
+    {
+        String sqlGetBigBags = "SELECT * FROM bigbags";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetBigBags);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
+                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
+                    set.getString("Tidsenop"),set.getString("type"),
+                    set.getInt("Location"),set.getString("brugersenop"),
+                    set.getInt("Walleid")));
+        }
+
+        return data;
+
+    }
+
+    public static ObservableList<WalleCube> getAllWalleCubes() throws SQLException
+    {
+        String sqlGetBigBags = "SELECT * FROM wallecubes";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetBigBags);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
+                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
+                    set.getString("Tidsenop"),set.getString("type"),
+                    set.getInt("Location"),set.getString("brugersenop"),
+                    set.getInt("Walleid")));
+        }
+
+        return data;
+
     }
 
 

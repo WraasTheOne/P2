@@ -49,7 +49,17 @@ public class WalleCubeOverviewController {
         });
 
         try{
-            dataForTable = DBUtil.getDataForTableWalle("Wallecubes", User.getID());
+
+            if(User.getUsertype().equals("admin"))
+            {
+                dataForTable = DBUtil.getAllWalleCubes();
+
+            }
+            else
+            {
+                dataForTable = DBUtil.getDataForTableWalle("Wallecubes", User.getID());
+            }
+
             Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);

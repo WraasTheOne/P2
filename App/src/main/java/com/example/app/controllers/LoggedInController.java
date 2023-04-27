@@ -52,12 +52,8 @@ public class LoggedInController {
 
 
     public LoggedInController(){
-
     }
 
-    public void setName(){
-        Button2.setText("hi");
-    }
 
     @FXML
     protected void goToCreateBigBag() throws IOException{
@@ -67,11 +63,6 @@ public class LoggedInController {
     @FXML
     protected void goToCreateWalleCube() throws IOException{
         ViewSwitch.switchView(View.WalleCube);
-    }
-    @FXML
-    protected void goToUserManagement() throws IOException
-    {
-        ViewSwitch.switchView(View.USERMANAGEMENT);
     }
 
     @FXML

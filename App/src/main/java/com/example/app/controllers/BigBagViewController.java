@@ -74,10 +74,16 @@ public class BigBagViewController{
             }
         });
 
-
-
         try{
-            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
+            if(User.getUsertype().equals("admin"))
+            {
+                dataForTable = DBUtil.getAllBigBags();
+            }
+            else
+            {
+                dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
+            }
+
             Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);
