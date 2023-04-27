@@ -4,6 +4,8 @@ import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.HashTable;
 import com.example.app.TableStructure.Kooperation;
+import com.example.app.View.View;
+import com.example.app.View.ViewSwitch;
 import javafx.fxml.FXML;
 import javafx.scene.control.ChoiceBox;
 
@@ -34,6 +36,11 @@ public class ChangeProcessController {
         kooperation.changeProcess(changeProcessChoicebox.getValue(),bigBag);
 
     }
+
+@FXML
+    public void back() throws IOException{
+    ViewSwitch.switchView(View.LoggedIn);
+}
 
 
 
