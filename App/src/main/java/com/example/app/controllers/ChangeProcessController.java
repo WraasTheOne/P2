@@ -39,7 +39,7 @@ public class ChangeProcessController {
 
 @FXML
     public void back() throws IOException{
-    ViewSwitch.switchView(View.LoggedIn);
+    ViewSwitch.switchView(View.BigbagView);
 }
 
 
