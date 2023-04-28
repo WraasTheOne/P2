@@ -21,8 +21,6 @@ import java.util.function.Predicate;
 
 public class BigBagViewController{
 
-    //Maybe we should delete this
-
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML
@@ -85,9 +83,9 @@ public class BigBagViewController{
             }
 
             Tableview.setItems(dataForTable);
-        }catch (SQLException e){
+        }
+        catch (SQLException e) {
             System.out.println(e);
-
         }
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
