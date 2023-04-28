@@ -110,6 +110,8 @@ public class DBUtil {
                 System.out.println(com.example.app.TableStructure.User.getID());
                 com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
                 com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+                com.example.app.TableStructure.User.setUsertype(table);
+                //Privat variabel for type user?
                 return true;
             }
             else {
@@ -234,7 +236,6 @@ public class DBUtil {
         ResultSet set = pstmt.executeQuery();
         ObservableList<BigBag> data = FXCollections.observableArrayList();
 
-
         while(set.next())
         {
             data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
@@ -243,6 +244,46 @@ public class DBUtil {
         return data;
     }
 
+    public static ObservableList<BigBag> getAllBigBags() throws SQLException
+    {
+        String sqlGetBigBags = "SELECT * FROM bigbags";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetBigBags);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
+                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
+                    set.getString("Tidsenop"),set.getString("type"),
+                    set.getInt("Location"),set.getString("brugersenop"),
+                    set.getInt("Walleid")));
+        }
+
+        return data;
+
+    }
+
+    public static ObservableList<WalleCube> getAllWalleCubes() throws SQLException
+    {
+        //Thinking of perhaps making a "getAllData" method instead of having
+        //all big bags and wallecubes be found separately
+
+        String sqlGetWalleCubes = "SELECT * FROM wallecubes";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetWalleCubes);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<WalleCube> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new WalleCube(set.getInt("WID"),
+                                   set.getString("type"),
+                                   set.getInt("CenterId")));
+        }
+
+        return data;
+
+    }
 
     public static String addUser(String newUsername, String newPassword, String userType){
 
@@ -272,11 +313,7 @@ public class DBUtil {
             return "Something went wrong";
         }
 
-
     }
-
-
-
 
     public static String removeUser(String username, String userType){
 

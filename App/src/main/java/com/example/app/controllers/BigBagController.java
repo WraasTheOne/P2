@@ -18,24 +18,17 @@ public class BigBagController{
     @FXML
     private ChoiceBox<String> locationChoicebox;
 
-
-
-
-
     public void initialize(){
         locationChoicebox.getItems().addAll(HashTable.getLocationNames());
         processChoicebox.getItems().addAll(HashTable.getProcesNames());
         typeChoicebox.getItems().addAll(HashTable.getMaterialType());
         BigBag bb = new BigBag();
-
-
     }
 
     @FXML
     public void back() throws IOException{
         ViewSwitch.switchView(View.LoggedIn);
     }
-
 
     @FXML
     public void createBigbag() throws IOException{
@@ -49,12 +42,6 @@ public class BigBagController{
 
         System.out.println(processId + " " + locationId);
         DBUtil.insertBigbag(User.getID(),processId,typeChoicebox.getValue(),locationId,User.getName());
-    }
-
-    public void createUser()
-    {
-
-
     }
 
 }

@@ -21,8 +21,6 @@ import java.util.function.Predicate;
 
 public class BigBagViewController{
 
-    //Maybe we should delete this
-
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML
@@ -74,14 +72,20 @@ public class BigBagViewController{
             }
         });
 
-
-
         try{
-            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
-            Tableview.setItems(dataForTable);
-        }catch (SQLException e){
-            System.out.println(e);
+            if(User.getUsertype().equals("admin"))
+            {
+                dataForTable = DBUtil.getAllBigBags();
+            }
+            else
+            {
+                dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
+            }
 
+            Tableview.setItems(dataForTable);
+        }
+        catch (SQLException e) {
+            System.out.println(e);
         }
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -98,7 +102,20 @@ public class BigBagViewController{
 
     @FXML
     protected void goBack() throws IOException{
-        ViewSwitch.switchView(View.LoggedIn);
+
+        switch(User.getUsertype())
+        {
+            case "kooperation":
+                ViewSwitch.switchView(View.LoggedIn);
+                break;
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
+
     }
 
     @FXML

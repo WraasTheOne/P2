@@ -48,7 +48,17 @@ public class WalleCubeOverviewController {
         });
 
         try{
-            dataForTable = DBUtil.getDataForTableWalle("Wallecubes", User.getID());
+
+            if(User.getUsertype().equals("admin"))
+            {
+                dataForTable = DBUtil.getAllWalleCubes();
+
+            }
+            else
+            {
+                dataForTable = DBUtil.getDataForTableWalle("Wallecubes", User.getID());
+            }
+
             Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);
@@ -80,7 +90,17 @@ public class WalleCubeOverviewController {
 
     @FXML
     protected void goBack() throws IOException{
-        ViewSwitch.switchView(View.LoggedInCenterCoop);
+
+        switch(User.getUsertype())
+        {
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
+
     }
 
 }
