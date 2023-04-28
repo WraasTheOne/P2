@@ -9,6 +9,7 @@ module com.example.app {
     requires java.dotenv;
     requires java.desktop;
     requires com.google.zxing;
+    requires javafx.swing;
     //requires core;
 
 
