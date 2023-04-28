@@ -42,9 +42,6 @@ public class LoggedInCenterController {
 
         }
 
-
-
-
         @FXML
         protected void logOut()
         {
@@ -53,16 +50,13 @@ public class LoggedInCenterController {
 
         public void initialize(){
 
-
         }
-
 
         @FXML
         public void goToWalleOverview() throws IOException{
             ViewSwitch.switchView(View.WalleCubeOverview);
         }
 
-
-    }
+}
 
 

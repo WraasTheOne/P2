@@ -125,13 +125,10 @@ public class DBUtil {
 
     }
 
-    public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
+    public static String insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
 
 
         String sql = "INSERT INTO bigbags (OwnerId,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,current_timestamp(),?,?,?)";
-
-
-
 
             try (PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
             pstmt.setInt(1, Ownerid);
@@ -140,10 +137,31 @@ public class DBUtil {
             pstmt.setInt(4,Location);
             pstmt.setString(5,BrugerSenop);
             pstmt.executeUpdate();
+            return "Big Bag created";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return "Something went wrong";
         }
 
+    }
+
+    public static String removeBigBag(int BID)
+    {
+
+        try
+        {//We remove the user
+            String sqlRemoveBigBag = "DELETE FROM bigbags WHERE BID = ?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlRemoveBigBag);
+            pstmt.setInt(1, BID);
+            pstmt.executeUpdate();
+
+            return "Big Bag removed";
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
     }
 
     public static void insertWalleCube(String Type, int CenterId){

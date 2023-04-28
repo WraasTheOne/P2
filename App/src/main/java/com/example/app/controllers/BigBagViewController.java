@@ -1,5 +1,6 @@
 package com.example.app.controllers;
 
+import com.example.app.TableStructure.Admin;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.User;
@@ -8,10 +9,7 @@ import com.example.app.View.ViewSwitch;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyCode;
 
@@ -31,6 +29,18 @@ public class BigBagViewController{
     public Button backButton;
     @FXML
     public Button refreshButton;
+    @FXML
+    public Button addBigBagButton;
+    @FXML
+    public Button removeBigBagButton;
+    @FXML
+    public TextField removeBigBagBIDField;
+    @FXML
+    public Button removeButton;
+
+    @FXML
+    public Label removeBigBagStatus;
+
     @FXML
     public TableColumn<BigBag, Integer> BIDColumn;
     @FXML
@@ -76,6 +86,8 @@ public class BigBagViewController{
             if(User.getUsertype().equals("admin"))
             {
                 dataForTable = DBUtil.getAllBigBags();
+                addBigBagButton.setVisible(true);
+                removeBigBagButton.setVisible(true);
             }
             else
             {
@@ -119,14 +131,46 @@ public class BigBagViewController{
     }
 
     @FXML
-    protected void refresh() throws IOException, SQLException {
-        searchField.clear();
-        Tableview.getItems().clear();
-        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+    protected void goToCreateBigBag() throws IOException{
+        ViewSwitch.switchView(View.BigBag);
+    }
+
+    @FXML
+    protected void showRemoveBigBag()
+    {
+        removeButton.setVisible(true);
+        removeBigBagBIDField.setVisible(true);
+    }
+
+    @FXML
+    protected void removeBigBag() throws IOException, SQLException{
+
+        if(removeBigBagBIDField.getText().equals(""))
+        {
+            removeBigBagStatus.setText("Please enter a BID");
+        }
+        else
+        {
+            removeBigBagStatus.setText(Admin.removeBigBag(Integer.parseInt(removeBigBagBIDField.getText())));
+            refresh();
+        }
 
     }
 
+    @FXML
+    protected void refresh() throws IOException, SQLException {
+        searchField.clear();
+        Tableview.getItems().clear();
 
+        if(User.getUsertype().equals("admin"))
+        {
+            Tableview.setItems(DBUtil.getAllBigBags());
+        }
+        else
+        {
+            Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+        }
 
+    }
 
 }

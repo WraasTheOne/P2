@@ -15,11 +15,16 @@ public class Admin extends User implements bigbagInterface{
     }
 
     @Override
-    public void createBigbag(String proces, String location, String type) {
+    public String createBigbag(int userID,String proces, String location, String type) {
         int processId = HashTable.getProcessHashValue(proces);
         int locationId = HashTable.getLocationHashValue(location);
 
-        DBUtil.insertBigbag(User.getID(),processId,type,locationId,User.getName());
+        return DBUtil.insertBigbag(userID, processId, type, locationId, User.getName());
+    }
+
+    public static String removeBigBag(int BID)
+    {
+        return DBUtil.removeBigBag(BID);
     }
 
     @Override

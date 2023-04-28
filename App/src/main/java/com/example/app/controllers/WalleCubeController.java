@@ -37,7 +37,6 @@ public class WalleCubeController {
         ViewSwitch.switchView(View.LoggedIn);
     }
 
-
     @FXML
     protected void createWalleCube() throws IOException {
         CenterCoop.createBigbag(WalleCubeTypeChoicebox.getValue(),WalleCubeTextField.getText());
