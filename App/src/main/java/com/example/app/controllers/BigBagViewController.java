@@ -104,7 +104,20 @@ public class BigBagViewController{
 
     @FXML
     protected void goBack() throws IOException{
-        ViewSwitch.switchView(View.LoggedIn);
+
+        switch(User.getUsertype())
+        {
+            case "kooperation":
+                ViewSwitch.switchView(View.LoggedIn);
+                break;
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
+
     }
 
     @FXML

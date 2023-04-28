@@ -90,7 +90,17 @@ public class WalleCubeOverviewController {
 
     @FXML
     protected void goBack() throws IOException{
-        ViewSwitch.switchView(View.LoggedInCenterCoop);
+
+        switch(User.getUsertype())
+        {
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
+
     }
 
 }

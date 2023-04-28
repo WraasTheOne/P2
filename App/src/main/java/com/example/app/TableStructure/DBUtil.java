@@ -236,7 +236,6 @@ public class DBUtil {
         ResultSet set = pstmt.executeQuery();
         ObservableList<BigBag> data = FXCollections.observableArrayList();
 
-
         while(set.next())
         {
             data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
@@ -267,24 +266,24 @@ public class DBUtil {
 
     public static ObservableList<WalleCube> getAllWalleCubes() throws SQLException
     {
-        String sqlGetBigBags = "SELECT * FROM wallecubes";
-        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetBigBags);
+        //Thinking of perhaps making a "getAllData" method instead of having
+        //all big bags and wallecubes be found separately
+
+        String sqlGetWalleCubes = "SELECT * FROM wallecubes";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetWalleCubes);
         ResultSet set = pstmt.executeQuery();
-        ObservableList<BigBag> data = FXCollections.observableArrayList();
+        ObservableList<WalleCube> data = FXCollections.observableArrayList();
 
         while(set.next())
         {
-            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
-                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
-                    set.getString("Tidsenop"),set.getString("type"),
-                    set.getInt("Location"),set.getString("brugersenop"),
-                    set.getInt("Walleid")));
+            data.add(new WalleCube(set.getInt("WID"),
+                                   set.getString("type"),
+                                   set.getInt("CenterId")));
         }
 
         return data;
 
     }
-
 
     public static String addUser(String newUsername, String newPassword, String userType){
 
@@ -314,11 +313,7 @@ public class DBUtil {
             return "Something went wrong";
         }
 
-
     }
-
-
-
 
     public static String removeUser(String username, String userType){
 

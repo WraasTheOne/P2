@@ -19,7 +19,13 @@
             <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
                <children>
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button fx:id="users" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Users" />
+                  <Button fx:id="users2" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Users" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button fx:id="goToBigBags" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Big Bags (WIP)" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button fx:id="goToWalleCubes" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Walle Cubes (WIP)" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Logs (WIP)" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button fx:id="users1" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="100.0" text="Log Out" />
                </children>
@@ -52,7 +58,7 @@
                         <Label fx:id="currentTableView" prefHeight="26.0" prefWidth="135.0" text="Table:" />
                      </children>
                   </HBox>
-                  <TableView fx:id="userTable" prefHeight="390.0" prefWidth="510.0">
+                  <TableView fx:id="userTable" prefHeight="389.0" prefWidth="510.0">
                      <columns>
                         <TableColumn fx:id="kidColumn" prefWidth="75.0" text="ID" />
                         <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />

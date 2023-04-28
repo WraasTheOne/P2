@@ -64,6 +64,7 @@ public class LoginPageController {
                         break;
                 }
 
+                System.out.println(User.getUsertype());
                 User.setName(textField.getText());
             }
         }else{
