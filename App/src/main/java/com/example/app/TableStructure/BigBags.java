@@ -118,35 +118,6 @@ public class BigBags {
         setTidSenOp();
 
     }
-    public BigBags getBigbag(int currentId) {
-        BigBags bigBags = null;
-        String currntString = "null_vardi";
-
-        try {
-            System.out.println("Connected to the database!");
-
-            String query = "SELECT * FROM bigbags WHERE BID = ?";
-            PreparedStatement statement =  DBUtil.getConnection().prepareStatement(query);
-            statement.setInt(1, (int) currentId);
-            ResultSet result = statement.executeQuery();
-            while (result.next()) {
-                assert false;
-                bigBags.OwnerId = result.getInt("OwnerId");
-                bigBags.NUVProcess = result.getInt("NUVProcess");
-                bigBags.BID = result.getInt("BID");
-                bigBags.Type = result.getString("Type");
-
-                currntString = "OwnerId: " + bigBags.OwnerId + ", NUVProcess: " + bigBags.NUVProcess + ", BID: " + bigBags.BID+ ", Type: " + bigBags.Type;
-                System.out.println(currntString);
-                return bigBags;
-            }
-
-
-        } catch (SQLException ex) {
-        }
-        return null;
-
-    }
 
 
 }

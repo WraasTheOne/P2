@@ -286,7 +286,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 int qrId = Integer.parseInt(split);
                 //com.example.app.TableStructure.BigBags MyBig = new BigBags();
                 currntBigBag = new BigBags(qrId);
-                result_freld.setText("OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
+                result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
 
 
                 // Do something with the decoded text
