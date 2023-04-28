@@ -110,7 +110,7 @@ public class LoggedInController {
         });
 
         try{
-            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID());
+            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid");
             Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);
@@ -134,7 +134,7 @@ public class LoggedInController {
     protected void refresh() throws IOException, SQLException {
         //searchField.clear();
         //Tableview.getItems().clear();
-        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID()));
+        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid"));
 
     }
 

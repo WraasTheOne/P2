@@ -19,6 +19,8 @@ import java.sql.SQLException;
 
 public class WalleCubeOverviewController {
 
+
+
     @FXML
     public Button backButton;
     @FXML
@@ -43,7 +45,8 @@ public class WalleCubeOverviewController {
 
         Tableview.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
-
+                BigbagFromWalleCubeOverviewController.walleCube = Tableview.getSelectionModel().getSelectedItem();
+                ViewSwitch.switchView(View.BigbagFromWalleCube);
             }
         });
 

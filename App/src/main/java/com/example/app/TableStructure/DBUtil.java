@@ -228,9 +228,9 @@ public class DBUtil {
 
     }
 
-    public static ObservableList<BigBag> getDataForTable(String Table, int id) throws SQLException
+    public static ObservableList<BigBag> getDataForTable(String Table, int id, String column) throws SQLException
     {
-        String sqlAccounts = "SELECT * FROM " + Table + " Where OwnerId = ?";
+        String sqlAccounts = "SELECT * FROM " + Table + " Where " + column+" = ?";
         PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
         pstmt.setInt(1,id);
         ResultSet set = pstmt.executeQuery();
