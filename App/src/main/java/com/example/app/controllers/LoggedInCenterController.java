@@ -16,8 +16,9 @@ import java.sql.SQLException;
 public class LoggedInCenterController {
 
 
+    public Button WallecubeButton;
 
-        @FXML
+    @FXML
         protected void goToCreateBigBag() throws IOException {
             ViewSwitch.switchView(View.BigBag);
         }
@@ -32,14 +33,10 @@ public class LoggedInCenterController {
             ViewSwitch.switchView(View.USERMANAGEMENT);
         }
 
-        @FXML
-        protected void buttonCliked() throws IOException {
-            System.out.println("HEJ");
-            //Label1.setText("Welcome to JavaFX Application!");
-            //Button1.setText("hej");
-            //Button2.setText("ad");
-            ViewSwitch.switchView(View.HELLO);
 
+        @FXML
+        protected void createWalleCube()throws IOException{
+            ViewSwitch.switchView(View.WalleCube);
         }
 
         @FXML

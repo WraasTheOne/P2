@@ -34,7 +34,7 @@ public class WalleCubeController {
 
     @FXML
     protected void back() throws IOException {
-        ViewSwitch.switchView(View.LoggedIn);
+        ViewSwitch.switchView(View.LoggedInCenterCoop);
     }
 
     @FXML

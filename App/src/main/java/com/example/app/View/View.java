@@ -19,6 +19,8 @@ public enum View {
 
     WalleCubeOverview("WalleCubeOverview.fxml"),
 
+    BigbagFromWalleCube("BigbagFromWallecube.fxml"),
+
     USERMANAGEMENT("UserManagement.fxml");
 
 

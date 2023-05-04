@@ -246,9 +246,9 @@ public class DBUtil {
 
     }
 
-    public static ObservableList<BigBag> getDataForTable(String Table, int id) throws SQLException
+    public static ObservableList<BigBag> getDataForTable(String Table, int id, String column) throws SQLException
     {
-        String sqlAccounts = "SELECT * FROM " + Table + " Where OwnerId = ?";
+        String sqlAccounts = "SELECT * FROM " + Table + " Where " + column + " = ?";
         PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
         pstmt.setInt(1,id);
         ResultSet set = pstmt.executeQuery();
@@ -422,9 +422,9 @@ public class DBUtil {
         }
     }
 
-    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ){
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int amount){
 
-        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - 1" + " WHERE " + primaryKey+ "="+id;
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - amount" + " WHERE " + primaryKey+ "="+id;
 
         try {
             PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql);
