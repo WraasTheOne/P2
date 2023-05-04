@@ -5,7 +5,7 @@ import java.sql.SQLException;
 
 public class CenterCoop extends User{
 
-        public static void createBigbag(String type, String BIDS) {
+        public static void createWallecube(String type, String BIDS) {
             int numberOfBigbags = 0;
 
             String[] BIDSArray = BIDS.split(",");

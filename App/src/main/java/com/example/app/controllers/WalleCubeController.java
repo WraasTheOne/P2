@@ -39,7 +39,7 @@ public class WalleCubeController {
 
     @FXML
     protected void createWalleCube() throws IOException {
-        CenterCoop.createBigbag(WalleCubeTypeChoicebox.getValue(),WalleCubeTextField.getText());
+        CenterCoop.createWallecube(WalleCubeTypeChoicebox.getValue(),WalleCubeTextField.getText());
 
     }
 }
