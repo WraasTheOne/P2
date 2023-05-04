@@ -143,7 +143,7 @@ public class DBUtil {
 
     }
 
-    public static void insertWalleCube(String Type, int CenterId){
+    public static void insertWalleCube(String Type, int      CenterId){
 
         String sql = "Insert into Wallecubes (Type, CenterId)  Values (?,?)";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
