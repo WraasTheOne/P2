@@ -392,24 +392,24 @@ public class DBUtil {
     }
 
 
-    public static void incrementColumnInt(String table, String columnName, String primaryKey, int id ){
+    public static void incrementColumnInt(String table, String columnName, String primaryKey, int id, int incrementAmount ){
 
-        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" + 1" + " WHERE " + primaryKey+ "="+id;
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName + " + " + incrementAmount + " WHERE " + primaryKey+ "="+id;
 
-        try {
-            PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql);
+        try (PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql)){
+
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int amount){
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int decrementAmount ){
 
-        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - amount" + " WHERE " + primaryKey+ "="+id;
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - "+ decrementAmount + " WHERE " + primaryKey+ "="+id;
 
-        try {
-            PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql);
+        try (PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql)){
+
             statement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
