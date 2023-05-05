@@ -13,8 +13,9 @@
       <ChoiceBox fx:id="WalleCubeTypeChoicebox" layoutX="122.0" layoutY="126.0" prefWidth="150.0" />
       <Text layoutX="18.0" layoutY="143.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type" wrappingWidth="81.0" />
       <Text layoutX="18.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bigbag id's" wrappingWidth="81.0" />
-      <TextField fx:id="WalleCubeTextField" layoutX="122.0" layoutY="79.0" prefHeight="26.0" prefWidth="150.0" />
+      <TextField fx:id="WalleCubeTextField" layoutX="122.0" layoutY="79.0" prefHeight="26.0" prefWidth="150.0" promptText="Big Bag ID" />
       <Button fx:id="CreateWalleCubeButton" layoutX="143.0" layoutY="175.0" mnemonicParsing="false" onAction="#createWalleCube" text="Create Wallecube" />
       <Label layoutX="166.0" layoutY="218.0" text="Placeholder" />
+      <TextField fx:id="cidField" layoutX="122.0" layoutY="45.0" prefHeight="26.0" prefWidth="150.0" promptText="CenterID" />
    </children>
 </AnchorPane>

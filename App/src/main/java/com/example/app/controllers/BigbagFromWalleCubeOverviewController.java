@@ -65,13 +65,10 @@ public class BigbagFromWalleCubeOverviewController {
         BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("BrugerSenop"));
         WalleIDCoulmn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
 
+        dataForTable = DBUtil.getDataForTable("Bigbags", walleCube.getWID(),"walleid");
 
 
-
-                dataForTable = DBUtil.getDataForTable("Bigbags", walleCube.getWID(),"walleid");
-
-
-            Tableview.setItems(dataForTable);
+        Tableview.setItems(dataForTable);
 
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -111,7 +108,4 @@ public class BigbagFromWalleCubeOverviewController {
         Tableview.setItems(DBUtil.getDataForTable("Bigbags", walleCube.getWID(),"walleid"));
 
     }
-
-
-
 }

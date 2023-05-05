@@ -1,22 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="812.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.controllers.WalleCubeOverviewController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="521.0" prefWidth="469.0" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.controllers.WalleCubeOverviewController">
    <children>
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="23.0" prefWidth="94.0" text="Back" />
-      <Button fx:id="refreshButton" layoutX="294.0" layoutY="60.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
-      <TextField fx:id="searchField" layoutX="132.0" layoutY="59.0" promptText="Search by id" />
-      <TableView fx:id="Tableview" layoutX="132.0" layoutY="95.0" prefHeight="390.0" prefWidth="583.0">
+      <Button fx:id="refreshButton" layoutX="304.0" layoutY="61.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+      <TextField fx:id="searchField" layoutX="142.0" layoutY="60.0" promptText="Search by id" />
+      <TableView fx:id="Tableview" layoutX="142.0" layoutY="95.0" prefHeight="390.0" prefWidth="294.0">
         <columns>
           <TableColumn fx:id="WIDColumn" prefWidth="106.54484558105469" text="WID" />
           <TableColumn fx:id="TypeColumn" prefWidth="110.22940063476562" text="Type" />
             <TableColumn fx:id="CenterIdCoulmn" prefWidth="75.0" text="CenterId" />
         </columns>
       </TableView>
+      <Button layoutX="14.0" layoutY="95.0" mnemonicParsing="false" onAction="#goToCreateWalleCube" text="Create Walle Cube" />
+      <Button layoutX="14.0" layoutY="130.0" mnemonicParsing="false" onAction="#showRemoveWalleCube" prefHeight="23.0" prefWidth="122.0" text="Remove Walle Cube" />
+      <TextField fx:id="removeField" layoutX="18.0" layoutY="182.0" prefHeight="26.0" prefWidth="106.0" promptText="WID" visible="false" />
+      <Button fx:id="removeButton" layoutX="18.0" layoutY="217.0" mnemonicParsing="false" onAction="#removeWalleCube" text="Remove" visible="false" />
+      <Label fx:id="statusText" layoutX="20.0" layoutY="252.0" />
    </children>
 </AnchorPane>

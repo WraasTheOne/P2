@@ -12,8 +12,6 @@ public class Kooperation extends User implements bigbagInterface{
     }
 
 
-
-
     @Override
     public void changeProcess(String procesChangeTo, BigBag bigbag) {
         int tidProcess = DBUtil.getsingleValue("bigbags",bigbag.getBID());

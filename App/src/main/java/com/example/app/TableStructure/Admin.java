@@ -69,14 +69,37 @@ public class Admin extends User implements bigbagInterface, WalleCubeInterface{
     }
 
     @Override
-    public String createWalleCube()
+    public String createWalleCube(String type, String BIDS, int CID)
     {
+        int numberOfBigbags = 0;
+
+        String[] BIDSArray = BIDS.split(",");
+        int[] BID = new int[BIDSArray.length];
+        for (int i = 0; i < BIDSArray.length; i++) {
+            BID[i] = Integer.parseInt(BIDSArray[i]);
+            System.out.println(BID[i]);
+            numberOfBigbags = i +1;
+        }
+
+        DBUtil.insertWalleCube(type, CID);
+        int WID = DBUtil.getIntCoulmnHighestData("wallecubes","WID");
+
+        for (int i = 0; i < BID.length; i++){
+            DBUtil.setColumnValueInt("bigbags","walleid",WID,"BID",BID[i]);
+            DBUtil.updateTimeForBigbag(BID[i]);
+        }
+
+        DBUtil.decrementColumnInt("proces","antalipro","pid",9,numberOfBigbags);
+        DBUtil.decrementColumnInt("location","antaliloca","lid",9,numberOfBigbags);
+
         return "";
+
     }
     @Override
-    public String removeWalleCube()
+    public String removeWalleCube(int WID)
     {
-        return "";
+        return DBUtil.removeWalleCube(WID);
+
     }
 
     @Override

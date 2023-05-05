@@ -147,9 +147,9 @@ public class DBUtil {
 
     public static String removeBigBag(int BID)
     {
-
         try
-        {//We remove the user
+        {
+            //We remove the user
             String sqlRemoveBigBag = "DELETE FROM bigbags WHERE BID = ?";
             PreparedStatement pstmt = getConnection().prepareStatement(sqlRemoveBigBag);
             pstmt.setInt(1, BID);
@@ -175,7 +175,25 @@ public class DBUtil {
         }catch (SQLException e){
             System.out.println(e);
         }
+    }
 
+    public static String removeWalleCube(int WID)
+    {
+        try
+        {
+            //We remove the user
+            String sqlRemoveBigBag = "DELETE FROM wallecubes WHERE WID = ?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlRemoveBigBag);
+            pstmt.setInt(1, WID);
+            pstmt.executeUpdate();
+
+            return "Walle cube removed";
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
     }
 
     public static int getIntCoulmnHighestData(String tablename, String column){
@@ -193,8 +211,6 @@ public class DBUtil {
             System.out.println(e);
             return 0;
         }
-
-
     }
 
     public static ObservableList<TableData> getDataForTable(String company) throws SQLException
@@ -422,7 +438,7 @@ public class DBUtil {
         }
     }
 
-    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int decrementAmount ){
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int decrementAmount){
 
         String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - "+ decrementAmount + " WHERE " + primaryKey+ "="+id;
 

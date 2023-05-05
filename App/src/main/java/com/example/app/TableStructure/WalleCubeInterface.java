@@ -2,9 +2,9 @@ package com.example.app.TableStructure;
 
 public interface WalleCubeInterface
 {
-    String createWalleCube();
+    String createWalleCube(String type, String BIDS, int CID);
 
-    String removeWalleCube();
+    String removeWalleCube(int WID);
 
     String changeCubeMaterial();
 

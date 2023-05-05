@@ -21,11 +21,11 @@
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button fx:id="users2" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Users" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button mnemonicParsing="false" onAction="#goToBigBags" prefHeight="0.0" prefWidth="100.0" text="Big Bags (WIP)" />
+                  <Button mnemonicParsing="false" onAction="#goToBigBags" prefHeight="0.0" prefWidth="100.0" text="Big Bags" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button mnemonicParsing="false" onAction="#goToWalleCubes" prefHeight="0.0" prefWidth="100.0" text="Walle Cubes (WIP)" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
-                  <Button mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Logs (NA)" />
+                  <Button disable="true" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Logs" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button fx:id="users1" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="100.0" text="Log Out" />
                </children>
