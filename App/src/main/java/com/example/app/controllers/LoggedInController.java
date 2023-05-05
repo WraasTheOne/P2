@@ -24,8 +24,6 @@ public class LoggedInController {
     private Label userLabel;
 
     @FXML
-    public TableColumn<BigBag, Integer> WalleIDCoulmn;
-    @FXML
     public TextField searchField;
     @FXML
     TableView<BigBag> Tableview;
@@ -51,35 +49,11 @@ public class LoggedInController {
     private ObservableList<BigBag> dataForTable;
 
 
-    public LoggedInController(){
-    }
-
+    public LoggedInController(){}
 
     @FXML
     protected void goToCreateBigBag() throws IOException{
         ViewSwitch.switchView(View.BigBag);
-    }
-
-    @FXML
-    protected void goToCreateWalleCube() throws IOException{
-        ViewSwitch.switchView(View.WalleCube);
-    }
-
-    @FXML
-    protected void buttonCliked() throws IOException {
-        System.out.println("HEJ");
-        //Label1.setText("Welcome to JavaFX Application!");
-        //Button1.setText("hej");
-        //Button2.setText("ad");
-        ViewSwitch.switchView(View.HELLO);
-
-    }
-
-
-
-    @FXML
-    protected void goToBigbagOverview()throws IOException{
-        ViewSwitch.switchView(View.BigbagView);
     }
 
     @FXML
@@ -137,11 +111,5 @@ public class LoggedInController {
         Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid"));
 
     }
-
-    @FXML
-    public void goToWalleOverview() throws IOException{
-        ViewSwitch.switchView(View.WalleCubeOverview);
-    }
-
 
 }

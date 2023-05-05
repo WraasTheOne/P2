@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Admin extends User implements bigbagInterface{
+public class Admin extends User implements bigbagInterface, WalleCubeInterface{
 
     public Admin(int AID, String name, String password) {
         ID = AID;
@@ -68,6 +68,21 @@ public class Admin extends User implements bigbagInterface{
 
     }
 
+    @Override
+    public String createWalleCube()
+    {
+        return "";
+    }
+    @Override
+    public String removeWalleCube()
+    {
+        return "";
+    }
 
+    @Override
+    public String changeCubeMaterial()
+    {
+        return "";
+    }
 
 }

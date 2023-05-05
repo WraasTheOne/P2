@@ -17,7 +17,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 import java.util.function.Predicate;
 
-public class BigBagViewController {
+public class BigBagViewController{
 
     @FXML
     public TableColumn<BigBag, Integer> WalleIDCoulmn;
@@ -82,17 +82,13 @@ public class BigBagViewController {
             }
         });
 
-        try {
-            if (User.getUsertype().equals("admin")) {
-                dataForTable = DBUtil.getAllBigBags();
-                addBigBagButton.setVisible(true);
-                removeBigBagButton.setVisible(true);
-            } else {
-                dataForTable = DBUtil.getDataForTable("Bigbags", User.getID(), "ownerid");
-            }
-
+        try{
+            dataForTable = DBUtil.getAllBigBags();
+            addBigBagButton.setVisible(true);
+            removeBigBagButton.setVisible(true);
             Tableview.setItems(dataForTable);
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -109,9 +105,10 @@ public class BigBagViewController {
     }
 
     @FXML
-    protected void goBack() throws IOException {
+    protected void goBack() throws IOException{
 
-        switch (User.getUsertype()) {
+        switch(User.getUsertype())
+        {
             case "kooperation":
                 ViewSwitch.switchView(View.LoggedIn);
                 break;
@@ -126,39 +123,33 @@ public class BigBagViewController {
     }
 
     @FXML
-    protected void goToCreateBigBag() throws IOException {
+    protected void goToCreateBigBag() throws IOException{
         ViewSwitch.switchView(View.BigBag);
     }
 
     @FXML
-    protected void showRemoveBigBag() {
+    protected void showRemoveBigBag()
+    {
         removeButton.setVisible(true);
         removeBigBagBIDField.setVisible(true);
     }
-
     @FXML
     protected void refresh() throws IOException, SQLException {
         searchField.clear();
         Tableview.getItems().clear();
-
-        if (User.getUsertype().equals("admin")) {
-            Tableview.setItems(DBUtil.getAllBigBags());
-        } else {
-            Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(), "BID"));
-        }
-
+        Tableview.setItems(DBUtil.getAllBigBags());
     }
-
     @FXML
-    protected void removeBigBag() throws IOException, SQLException {
+    protected void removeBigBag() throws IOException, SQLException{
 
-        if (removeBigBagBIDField.getText().equals("")) {
+        if(removeBigBagBIDField.getText().equals(""))
+        {
             removeBigBagStatus.setText("Please enter a BID");
-        } else {
+        }
+        else
+        {
             removeBigBagStatus.setText(Admin.removeBigBag(Integer.parseInt(removeBigBagBIDField.getText())));
             refresh();
         }
-
-
     }
 }

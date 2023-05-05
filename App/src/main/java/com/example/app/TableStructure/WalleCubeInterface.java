@@ -6,8 +6,8 @@ public interface WalleCubeInterface
 
     String removeWalleCube();
 
-    String changeCubeType();
+    String changeCubeMaterial();
 
-    String changeCenterID();
+    //String changeCenterID();
 
 }

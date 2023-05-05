@@ -25,8 +25,8 @@
       <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goBack" prefHeight="23.0" prefWidth="102.0" text="Back" />
       <Button fx:id="refreshButton" layoutX="443.0" layoutY="71.0" mnemonicParsing="false" onAction="#refresh" text="Refresh" />
       <TextField fx:id="searchField" layoutX="137.0" layoutY="70.0" prefHeight="26.0" prefWidth="291.0" promptText="Search" />
-      <Button fx:id="addBigBagButton" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="23.0" prefWidth="102.0" text="Add Big Bag" visible="false" />
-      <Button fx:id="removeBigBagButton" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#showRemoveBigBag" text="Remove Big Bag" visible="false" />
+      <Button fx:id="addBigBagButton" layoutX="14.0" layoutY="71.0" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="23.0" prefWidth="102.0" text="Add Big Bag" />
+      <Button fx:id="removeBigBagButton" layoutX="14.0" layoutY="104.0" mnemonicParsing="false" onAction="#showRemoveBigBag" text="Remove Big Bag" />
       <TextField fx:id="removeBigBagBIDField" layoutX="14.0" layoutY="179.0" prefHeight="26.0" prefWidth="102.0" promptText="Enter BID" visible="false" />
       <Button fx:id="removeButton" layoutX="14.0" layoutY="215.0" mnemonicParsing="false" onAction="#removeBigBag" prefHeight="23.0" prefWidth="102.0" text="Remove" visible="false" />
       <Label fx:id="removeBigBagStatus" layoutX="51.0" layoutY="250.0" />

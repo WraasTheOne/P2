@@ -19,10 +19,6 @@
                <children>
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button fx:id="createBigBag" mnemonicParsing="false" onAction="#goToCreateBigBag" prefHeight="23.0" prefWidth="162.0" text="Create Big Bag" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="3.0" />
-                  <Button fx:id="Button5" mnemonicParsing="false" onAction="#goToCreateWalleCube" prefHeight="26.0" prefWidth="129.0" text="Create WalleCube" />
-                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="6.0" />
-                  <Button fx:id="BigbagOverviewButton" mnemonicParsing="false" onAction="#goToBigbagOverview" prefHeight="26.0" prefWidth="347.0" text="Bigbag overview" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
                   <Button mnemonicParsing="false" onAction="#logOut" prefHeight="26.0" prefWidth="170.0" text="Log Out" />
                   <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
