@@ -32,6 +32,7 @@ public class BigBags {
            this.NUVProcess = result.getInt("NUVProcess");
            this.BID = result.getInt("BID");
            this.Type = result.getString("Type");
+           this.Location = result.getInt("Location");
 
        }
 
@@ -58,7 +59,7 @@ public class BigBags {
     public void setNUVProcess(int NUVProcess) {
         this.NUVProcess = NUVProcess;
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
-        //setTidSenOp();
+        setTidSenOp();
 
     }
 

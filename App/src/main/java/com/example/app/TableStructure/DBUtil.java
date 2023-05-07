@@ -101,7 +101,6 @@ public class DBUtil {
 
     public static Boolean findUser(String username, String password, String table)
     {
-
         String sql = "SELECT * FROM " + table + " WHERE Name = ? AND Password = ?";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
             pstmt.setString(1,username);
@@ -109,10 +108,12 @@ public class DBUtil {
             ResultSet resultSet = pstmt.executeQuery();
 
             if (resultSet.next()){
-                com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
-                System.out.println(com.example.app.TableStructure.User.getID());
-                com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
-                com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+             //   com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
+                //System.out.println(com.example.app.TableStructure.User.getID());
+                //com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
+              //  com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+               // com.example.app.TableStructure.User.setUsertype(table);
+                //Privat variabel for type user?
                 return true;
             }
             else {
