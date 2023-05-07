@@ -1,6 +1,7 @@
 package com.example.mobileapp;
 
-import com.example.app.TableStructure.BigBags;
+//import com.example.app.TableStructure.BigBags;
+import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.HashTable;
 import com.example.app.TableStructure.Kooperation;
@@ -31,7 +32,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     private WebcamPanel panel = null;
     private Webcam webcam = null;
 
-    private BigBags currntBigBag = null;
+    private BigBag currntBigBag = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
     private final Executor executor = Executors.newSingleThreadExecutor(this);
@@ -403,7 +404,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 String split = decodedText.replaceAll("[^\\d]", "");
                 int qrId = Integer.parseInt(split);
                 //com.example.app.TableStructure.BigBags MyBig = new BigBags();
-                currntBigBag = new BigBags(qrId);
+                currntBigBag = new BigBag(qrId);
                 SetResutFreld(currntBigBag);
                 //result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
 
@@ -420,7 +421,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     }
 
 
-    public void SetResutFreld(BigBags currntBigBag){
+    public void SetResutFreld(BigBag currntBigBag){
         result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type + ", Location: " + currntBigBag.Location);
 
     }

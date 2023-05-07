@@ -272,7 +272,7 @@ public class DBUtil {
 
         while(set.next())
         {
-            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
+            //data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
         }
 
         return data;
@@ -287,11 +287,11 @@ public class DBUtil {
 
         while(set.next())
         {
-            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
-                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
-                    set.getString("Tidsenop"),set.getString("type"),
-                    set.getInt("Location"),set.getString("brugersenop"),
-                    set.getInt("Walleid")));
+           // data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
+           //         set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
+           //         set.getString("Tidsenop"),set.getString("type"),
+           //         set.getInt("Location"),set.getString("brugersenop"),
+           //         set.getInt("Walleid")));
         }
 
         return data;

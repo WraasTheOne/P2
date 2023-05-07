@@ -1,4 +1,7 @@
 package com.example.app.TableStructure;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
@@ -7,30 +10,40 @@ public class BigBag{
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
-    private  int BID;
-    private  int OwnerId;
-    private  int NUVProcess;
-    private  int TidligProcess;
-    private  String TidSenOp;
-    private  String Type;
-    private  int Location;
-    private  String BrugerSenop;
+    public  int BID;
+    public  int OwnerId;
+    public  int NUVProcess;
+    public  int TidligProcess;
+    public  String TidSenOp;
+    public  String Type;
+    public  int Location;
+    public  String BrugerSenop;
 
     private int WalleID;
 
-    public BigBag(){}
+
+    public BigBag(){
+
+    }
 
 
-   public BigBag(int BID, int OwnerId, int NUVProcess, int TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop, int WalleID) {
+    public BigBag(int BID) throws SQLException, SQLException {
         this.BID = BID;
-        this.OwnerId = OwnerId;
-        this.NUVProcess = NUVProcess;
-        this.TidligProcess = TidligProcess;
-        this.TidSenOp = TidSenOp;
-        this.Type = Type;
-        this.Location = Location;
-        this.BrugerSenop = BrugerSenop;
-        this.WalleID = WalleID;
+
+        String query = "SELECT * FROM bigbags WHERE BID = ?";
+        PreparedStatement statement =  DBUtil.getConnection().prepareStatement(query);
+        statement.setInt(1, (int) this.BID);
+        ResultSet result = statement.executeQuery();
+        while (result.next()) {
+            assert false;
+            this.OwnerId = result.getInt("OwnerId");
+            this.NUVProcess = result.getInt("NUVProcess");
+            this.BID = result.getInt("BID");
+            this.Type = result.getString("Type");
+            this.Location = result.getInt("Location");
+
+        }
+
     }
 
     public int getWalleID(){
