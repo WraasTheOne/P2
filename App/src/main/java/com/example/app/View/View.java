@@ -3,6 +3,8 @@ package com.example.app.View;
 public enum View {
     HELLO("hello-view.fxml"),
     LoggedIn("LoggedIn.fxml"),
+    LoggedInCenterCoop("LoggedIn-CenterCoop1.fxml"),
+    LoggedInAdmin("LoggedIn-Admin.fxml"),
     Signup("signUp.fxml"),
 
     Tabelview("Tabelview.fxml"),
@@ -11,7 +13,16 @@ public enum View {
 
     WalleCube("CreateWalleCube.fxml"),
 
-    ChangeProcess("ChangeProcess.fxml");
+    BigbagView("BigBagView.fxml"),
+
+    ChangeProcess("ChangeProcess.fxml"),
+
+    WalleCubeOverview("WalleCubeOverview.fxml"),
+
+    BigbagFromWalleCube("BigbagFromWallecube.fxml"),
+
+    USERMANAGEMENT("UserManagement.fxml");
+
 
     private String fileName;
 

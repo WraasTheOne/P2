@@ -2,13 +2,18 @@ package com.example.app.TableStructure;
 
 public class WalleCube {
 
-    private static int WID;
+    private  int WID;
 
-    private static String type;
+    private  String type;
 
-    private static int centercoopId;
+    private  int CenterId;
 
 
+    public WalleCube(int WID, String type, int centerid){
+        this.WID = WID;
+        this.type = type;
+        this.CenterId = centerid;
+    }
 
     public int getWID() {
         return WID;
@@ -26,12 +31,12 @@ public class WalleCube {
         this.type = type;
     }
 
-    public int getCentercoopId() {
-        return centercoopId;
+    public int getCenterId() {
+        return CenterId;
     }
 
-    public void setCentercoopId(int centercoopId) {
-        this.centercoopId = centercoopId;
+    public void setCenterId(int centercoopId) {
+        this.CenterId = centercoopId;
     }
 
 

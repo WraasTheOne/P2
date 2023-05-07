@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../stylesheet.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.app.controllers.LoggedInAdminController">
+   <children>
+      <BorderPane layoutX="-1.0" prefHeight="400.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <left>
+            <VBox id="vbox" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button fx:id="users2" mnemonicParsing="false" onAction="#goToUserManagement" prefHeight="0.0" prefWidth="100.0" text="Users" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button mnemonicParsing="false" onAction="#goToBigBags" prefHeight="0.0" prefWidth="100.0" text="Big Bags" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button mnemonicParsing="false" onAction="#goToWalleCubes" prefHeight="0.0" prefWidth="100.0" text="Walle Cubes (WIP)" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button disable="true" mnemonicParsing="false" prefHeight="0.0" prefWidth="100.0" text="Logs" />
+                  <Separator orientation="VERTICAL" prefHeight="0.0" prefWidth="12.0" />
+                  <Button fx:id="users1" mnemonicParsing="false" onAction="#logOut" prefHeight="0.0" prefWidth="100.0" text="Log Out" />
+               </children>
+            </VBox>
+         </left>
+         <top>
+            <HBox id="hbox" prefHeight="39.0" prefWidth="318.0" styleClass="hBox" BorderPane.alignment="CENTER">
+               <children>
+                  <Separator prefHeight="135.0" prefWidth="32.0" />
+                  <Label contentDisplay="TOP" prefHeight="39.0" prefWidth="35.0" text="Admin" textFill="WHITE" />
+               </children></HBox>
+         </top>
+         <HBox id="hbox" layoutY="399.0" prefHeight="51.0" prefWidth="610.0">
+            <children>
+               <Separator prefHeight="0.0" prefWidth="278.0" />
+            </children>
+         </HBox>
+         <center>
+            <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <Separator prefHeight="35.0" prefWidth="0.0" />
+                        <TextField fx:id="searchField" prefHeight="26.0" prefWidth="122.0" promptText="Search" />
+                        <Separator prefHeight="35.0" prefWidth="0.0" />
+                        <ChoiceBox fx:id="CompanyTableChoice" prefWidth="150.0" />
+                        <Separator prefHeight="35.0" prefWidth="0.0" />
+                        <Button mnemonicParsing="false" onAction="#refresh" text="Refresh" />
+                        <Separator prefHeight="35.0" prefWidth="0.0" />
+                        <Label fx:id="currentTableView" prefHeight="26.0" prefWidth="135.0" text="Table:" />
+                     </children>
+                  </HBox>
+                  <TableView fx:id="userTable" prefHeight="389.0" prefWidth="510.0">
+                     <columns>
+                        <TableColumn fx:id="kidColumn" prefWidth="75.0" text="ID" />
+                        <TableColumn fx:id="usernameColumn" prefWidth="75.0" text="Username" />
+                        <TableColumn fx:id="passwordColumn" prefWidth="75.0" text="Password" />
+                     </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
+      </BorderPane>
+
+   </children>
+</AnchorPane>

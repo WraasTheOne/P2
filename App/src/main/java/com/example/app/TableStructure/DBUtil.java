@@ -1,12 +1,10 @@
 package com.example.app.TableStructure;
 
-
-
 import io.github.cdimascio.dotenv.Dotenv;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.*;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public class DBUtil {
 
@@ -90,7 +88,7 @@ public class DBUtil {
     }
 
     public static void copyColumnValue(String tableName, int NUVProcess,int BigBagID){
-        String sql = "UPDATE  " + tableName + " SET TidligProcess = " + NUVProcess+" where BID = " + BigBagID;
+        String sql = "UPDATE  " + tableName + " SET TidligProcess = " + NUVProcess + " where BID = " + BigBagID;
         try(PreparedStatement statement = getConnection().prepareStatement(sql)) {
 
             statement.executeUpdate();
@@ -108,11 +106,11 @@ public class DBUtil {
             ResultSet resultSet = pstmt.executeQuery();
 
             if (resultSet.next()){
-             //   com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
-                //System.out.println(com.example.app.TableStructure.User.getID());
-                //com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
-              //  com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
-               // com.example.app.TableStructure.User.setUsertype(table);
+                com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
+                System.out.println(com.example.app.TableStructure.User.getID());
+                com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
+                com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
+                com.example.app.TableStructure.User.setUsertype(table);
                 //Privat variabel for type user?
                 return true;
             }
@@ -127,7 +125,8 @@ public class DBUtil {
 
     }
 
-    public static void insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
+    public static String insertBigbag(int Ownerid, int NUVProcess, String type, int Location, String BrugerSenop) {
+
 
         String sql = "INSERT INTO bigbags (OwnerId,NUVProcess,TidSenOp,Type,Location,BrugerSenop) VALUES (?,?,current_timestamp(),?,?,?)";
 
@@ -138,13 +137,34 @@ public class DBUtil {
             pstmt.setInt(4,Location);
             pstmt.setString(5,BrugerSenop);
             pstmt.executeUpdate();
+            return "Big Bag created";
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return "Something went wrong";
         }
 
     }
 
-    public static void insertWalleCube(String Type, int      CenterId){
+    public static String removeBigBag(int BID)
+    {
+        try
+        {
+            //We remove the user
+            String sqlRemoveBigBag = "DELETE FROM bigbags WHERE BID = ?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlRemoveBigBag);
+            pstmt.setInt(1, BID);
+            pstmt.executeUpdate();
+
+            return "Big Bag removed";
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
+    }
+
+    public static void insertWalleCube(String Type, int CenterId){
 
         String sql = "Insert into Wallecubes (Type, CenterId)  Values (?,?)";
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)) {
@@ -155,7 +175,25 @@ public class DBUtil {
         }catch (SQLException e){
             System.out.println(e);
         }
+    }
 
+    public static String removeWalleCube(int WID)
+    {
+        try
+        {
+            //We remove the user
+            String sqlRemoveBigBag = "DELETE FROM wallecubes WHERE WID = ?";
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlRemoveBigBag);
+            pstmt.setInt(1, WID);
+            pstmt.executeUpdate();
+
+            return "Walle cube removed";
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
     }
 
     public static int getIntCoulmnHighestData(String tablename, String column){
@@ -173,11 +211,36 @@ public class DBUtil {
             System.out.println(e);
             return 0;
         }
-
-
     }
 
+    public static ObservableList<TableData> getDataForTable(String company) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + company;
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<TableData> data = FXCollections.observableArrayList();
+        String idType = null;
 
+        switch (company)
+        {
+            case "kooperation":
+                idType = "KID";
+                break;
+            case "centercoop":
+                idType = "CID";
+                break;
+            case "admin":
+                idType = "AID";
+                break;
+        }
+
+        while(set.next())
+        {
+            data.add(new TableData(set.getInt(idType), set.getString("Name"), set.getString("Password")));
+        }
+
+        return data;
+    }
 
     /*
      *  Ved godt at den ikke skal ligge her -k
@@ -199,9 +262,193 @@ public class DBUtil {
 
     }
 
+    public static ObservableList<BigBag> getDataForTable(String Table, int id, String column) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + Table + " Where " + column + " = ?";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        pstmt.setInt(1,id);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
 
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"), set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),set.getString("Tidsenop"),set.getString("type"),set.getInt("Location"),set.getString("brugersenop"),set.getInt("Walleid")));
+        }
+
+        return data;
+    }
+
+    public static ObservableList<BigBag> getAllBigBags() throws SQLException
+    {
+        String sqlGetBigBags = "SELECT * FROM bigbags";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetBigBags);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<BigBag> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new BigBag(set.getInt("BID"), set.getInt("OwnerId"),
+                    set.getInt("Nuvprocess"),set.getInt("Tidligprocess"),
+                    set.getString("Tidsenop"),set.getString("type"),
+                    set.getInt("Location"),set.getString("brugersenop"),
+                    set.getInt("Walleid")));
+        }
+
+        return data;
+
+    }
+
+    public static ObservableList<WalleCube> getAllWalleCubes() throws SQLException
+    {
+        //Thinking of perhaps making a "getAllData" method instead of having
+        //all big bags and wallecubes be found separately
+
+        String sqlGetWalleCubes = "SELECT * FROM wallecubes";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlGetWalleCubes);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<WalleCube> data = FXCollections.observableArrayList();
+
+        while(set.next())
+        {
+            data.add(new WalleCube(set.getInt("WID"),
+                                   set.getString("type"),
+                                   set.getInt("CenterId")));
+        }
+
+        return data;
+
+    }
+
+    public static String addUser(String newUsername, String newPassword, String userType){
+
+        try
+        {
+            String sqlInsertUser = "INSERT INTO " + userType + " (name, Password) VALUES (?, ?)";
+
+            //Check if the user exists, if not, we continue creating the user
+            if(DBUtil.findUser(newUsername, newPassword, userType))
+            {
+                System.out.println("User already exists");
+                return "User already exists";
+            }
+            else
+            {
+                //User creation
+                PreparedStatement pstmt = getConnection().prepareStatement(sqlInsertUser);
+                pstmt.setString(1, newUsername);
+                pstmt.setString(2, newPassword);
+                pstmt.executeUpdate();
+                return "User created!";
+            }
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
+
+    }
+
+    public static String removeUser(String username, String userType){
+
+        try
+        {
+            String sqlFindUser = "SELECT * FROM " + userType + " WHERE Name = ?";
+            String sqlFindRelatedBigBags = "SELECT * FROM bigbags WHERE ownerId = ?";
+            String typeOfUserID = null;
+
+            //We find the user to then extract the ID
+            PreparedStatement pstmt = getConnection().prepareStatement(sqlFindUser);
+            pstmt.setString(1, username);
+
+            ResultSet set = pstmt.executeQuery();
+            set.next();
+
+            switch(userType)
+            {
+                case "kooperation":
+                    typeOfUserID = "KID";
+                    break;
+                case "centercoop":
+                    typeOfUserID = "CID";
+                    break;
+                case "admin":
+                    typeOfUserID = "AID";
+                    break;
+            }
+
+            int idOfUser = set.getInt(typeOfUserID);
+
+            //We find the big bags related to the user and default all of them
+            pstmt = getConnection().prepareStatement(sqlFindRelatedBigBags);
+            pstmt.setInt(1, idOfUser);
+            set = pstmt.executeQuery();
+
+            while(set.next())
+            {
+                System.out.println(set.getInt("BID"));
+                DBUtil.setColumnValueInt("bigbags","ownerId", 0, "BID", set.getInt("BID"));
+                DBUtil.setColumnValueStr("bigbags", "BrugerSenop", "Admin", "BID", set.getInt("BID"));
+            }
+            System.out.println("OwnerID defaulted");
+
+            //We remove the user
+            String sqlRemoveUser = "DELETE FROM " + userType + " WHERE (" + typeOfUserID + " = ?)";
+            pstmt = getConnection().prepareStatement(sqlRemoveUser);
+            pstmt.setInt(1, idOfUser);
+            pstmt.executeUpdate();
+
+            return "User removed";
+        }
+        catch (SQLException e)
+        {
+            System.out.println(e);
+            return "Something went wrong";
+        }
+    }
+
+
+    public static ObservableList<WalleCube> getDataForTableWalle(String Table, int id) throws SQLException
+    {
+        String sqlAccounts = "SELECT * FROM " + Table + " Where centerid = ?";
+        PreparedStatement pstmt = DBUtil.getConnection().prepareStatement(sqlAccounts);
+        pstmt.setInt(1,id);
+        ResultSet set = pstmt.executeQuery();
+        ObservableList<WalleCube> data = FXCollections.observableArrayList();
+
+
+        while(set.next())
+        {
+            data.add(new WalleCube(set.getInt("WID"),set.getString("Type"),set.getInt("CenterId")));
+        }
+
+        return data;
+    }
+
+
+    public static void incrementColumnInt(String table, String columnName, String primaryKey, int id, int incrementAmount ){
+
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName + " + " + incrementAmount + " WHERE " + primaryKey+ "="+id;
+
+        try (PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql)){
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public static void decrementColumnInt(String table, String columnName, String primaryKey, int id ,int decrementAmount){
+
+        String sql = "UPDATE " + table + " SET " + columnName + " = " + columnName+" - "+ decrementAmount + " WHERE " + primaryKey+ "="+id;
+
+        try (PreparedStatement statement = DBUtil.getConnection().prepareStatement(sql)){
+
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
 }
-
-
 

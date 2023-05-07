@@ -17,7 +17,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class LoginPageController {
-    @FXML
+
     public PasswordField pasField;
     @FXML
     private ChoiceBox<String> CompanyTypeChoice;
@@ -27,9 +27,13 @@ public class LoginPageController {
     public TextField textField;
 
     @FXML
+    private Label statusText;
+
+    @FXML
     public void initialize()
     {
         CompanyTypeChoice.getItems().addAll(tables);
+        CompanyTypeChoice.getSelectionModel().select(0);
     }
 
     @FXML
@@ -40,14 +44,35 @@ public class LoginPageController {
             Boolean infoStatus = DBUtil.findUser(textField.getText(), pasField.getText(), CompanyTypeChoice.getValue());
             if (!infoStatus) {
                 System.out.println("not correct");
+                statusText.setTextFill(Color.RED);
+                statusText.setText("Incorrect username or password");
+
             } else {
-                ViewSwitch.switchView(View.LoggedIn);
-                System.out.println(User.getName());
+
+                switch(CompanyTypeChoice.getValue())
+                {
+                    case "kooperation":
+                        ViewSwitch.switchView(View.LoggedIn);
+                        break;
+
+                    case "centercoop":
+                        ViewSwitch.switchView(View.LoggedInCenterCoop);
+                        break;
+
+                    case "admin":
+                        ViewSwitch.switchView(View.LoggedInAdmin);
+                        break;
+                }
+
+                System.out.println(User.getUsertype());
+                User.setName(textField.getText());
             }
         }else{
             System.out.println("du har ikke indtastet noget");
+            statusText.setTextFill(Color.BLACK);
+            statusText.setText("Please fill all the fields");
         }
 
-
     }
+
 }

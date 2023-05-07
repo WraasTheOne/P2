@@ -1,45 +1,49 @@
 package com.example.app.TableStructure;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.time.*;
 import java.time.format.DateTimeFormatter;
 
 
-public class BigBags {
+public class BigBag{
 
     private static final String dbTable = "bigbags";
     private static final String dbId = "BID";
-    public  int BID;
-    public  int OwnerId;
-    public  int NUVProcess;
-    public  String TidligProcess;
-    public  String TidSenOp;
-    public  String Type;
-    public  int Location;
-    public String BrugerSenop;
+    private  int BID;
+    private  int OwnerId;
+    private  int NUVProcess;
+    private  int TidligProcess;
+    private  String TidSenOp;
+    private  String Type;
+    private  int Location;
+    private  String BrugerSenop;
 
-   public BigBags(int BID) throws SQLException {
+    private int WalleID;
+
+    public BigBag(){}
+
+
+   public BigBag(int BID, int OwnerId, int NUVProcess, int TidligProcess, String TidSenOp, String Type, int Location, String BrugerSenop, int WalleID) {
         this.BID = BID;
-
-       String query = "SELECT * FROM bigbags WHERE BID = ?";
-       PreparedStatement statement =  DBUtil.getConnection().prepareStatement(query);
-       statement.setInt(1, (int) this.BID);
-       ResultSet result = statement.executeQuery();
-       while (result.next()) {
-           assert false;
-           this.OwnerId = result.getInt("OwnerId");
-           this.NUVProcess = result.getInt("NUVProcess");
-           this.BID = result.getInt("BID");
-           this.Type = result.getString("Type");
-           this.Location = result.getInt("Location");
-
-       }
-
+        this.OwnerId = OwnerId;
+        this.NUVProcess = NUVProcess;
+        this.TidligProcess = TidligProcess;
+        this.TidSenOp = TidSenOp;
+        this.Type = Type;
+        this.Location = Location;
+        this.BrugerSenop = BrugerSenop;
+        this.WalleID = WalleID;
     }
 
-      public static void setBID(int BID1) {
-        //BID = BID1;
+    public int getWalleID(){
+        return WalleID;
+    }
+
+
+    public int getBID() {
+        return BID;
+    }
+
+    public void setBID(int BID1) {
+        BID = BID1;
     }
 
     public int getOwnerId() {
@@ -47,7 +51,7 @@ public class BigBags {
     }
 
     public void setOwnerId(int OwnerId) {
-        this.OwnerId = OwnerId;
+        OwnerId = OwnerId;
         DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, BID);
         setTidSenOp();
     }
@@ -57,19 +61,19 @@ public class BigBags {
     }
 
     public void setNUVProcess(int NUVProcess) {
-        this.NUVProcess = NUVProcess;
+
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
-        setTidSenOp();
+        //setTidSenOp();
 
     }
 
-    public String getTidligProcess() {
+    public int getTidligProcess() {
         return TidligProcess;
     }
 
-    public void setTidligProcess(String TidligProcess) {
+    public void setTidligProcess(int TidligProcess) {
         this.TidligProcess = TidligProcess;
-        DBUtil.setColumnValueStr(dbTable, "TidligProcess", TidligProcess, dbId, BID);
+        DBUtil.setColumnValueInt(dbTable, "TidligProcess", TidligProcess, dbId, BID);
         setTidSenOp();
     }
 
@@ -83,9 +87,9 @@ public class BigBags {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         String formattedDate = date.format(formatter);
 
-        //TidSenOp = formattedDate;
+        TidSenOp = formattedDate;
 
-        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, this.BID);
+        DBUtil.setColumnValueStr(dbTable, "TidSenOp", formattedDate, dbId, BID);
     }
 
     public String getType() {
@@ -119,7 +123,6 @@ public class BigBags {
         setTidSenOp();
 
     }
-
 
 }
 
