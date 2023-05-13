@@ -66,15 +66,15 @@ public class LoggedInController {
 
 
 
-        BIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("BID"));
-        OwnerIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("OwnerId"));
-        NUVProcesColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("NUVProcess"));
-        TidligProcesColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("TidligProcess"));
-        TidSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("TidSenOp"));
-        TypeColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("Type"));
-        LocationColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("Location"));
-        BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("BrugerSenop"));
-        WalleIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
+        BIDColumn.setCellValueFactory(new PropertyValueFactory<>("BID"));
+        OwnerIDColumn.setCellValueFactory(new PropertyValueFactory<>("OwnerId"));
+        NUVProcesColumn.setCellValueFactory(new PropertyValueFactory<>("NUVProcess"));
+        TidligProcesColumn.setCellValueFactory(new PropertyValueFactory<>("TidligProcess"));
+        TidSenOpColumn.setCellValueFactory(new PropertyValueFactory<>("TidSenOp"));
+        TypeColumn.setCellValueFactory(new PropertyValueFactory<>("Type"));
+        LocationColumn.setCellValueFactory(new PropertyValueFactory<>("Location"));
+        BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<>("BrugerSenop"));
+        WalleIDColumn.setCellValueFactory(new PropertyValueFactory<>("WalleID"));
 
         Tableview.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -85,6 +85,7 @@ public class LoggedInController {
 
         try{
             dataForTable = DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid");
+            System.out.println();
             Tableview.setItems(dataForTable);
         }catch (SQLException e){
             System.out.println(e);
@@ -106,10 +107,10 @@ public class LoggedInController {
 
     @FXML
     protected void refresh() throws IOException, SQLException {
-        //searchField.clear();
-        //Tableview.getItems().clear();
+        searchField.clear();
+        Tableview.getItems().clear();
         Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid"));
 
     }
 
-}
+ }

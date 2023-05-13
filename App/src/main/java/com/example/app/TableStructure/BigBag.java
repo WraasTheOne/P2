@@ -22,6 +22,18 @@ public class BigBag{
     private int WalleID;
 
 
+    public BigBag(int BID, int ownerId, int NUVProcess, int tidligProcess, String tidSenOp, String type, int location, String brugerSenop, int walleID) {
+        this.BID = BID;
+        OwnerId = ownerId;
+        this.NUVProcess = NUVProcess;
+        TidligProcess = tidligProcess;
+        TidSenOp = tidSenOp;
+        Type = type;
+        Location = location;
+        BrugerSenop = brugerSenop;
+        WalleID = walleID;
+    }
+
     public BigBag(){
 
     }
@@ -64,7 +76,7 @@ public class BigBag{
     }
 
     public void setOwnerId(int OwnerId) {
-        OwnerId = OwnerId;
+        this.OwnerId = OwnerId;
         DBUtil.setColumnValueInt(dbTable, "OwnerId", OwnerId, dbId, BID);
         setTidSenOp();
     }
