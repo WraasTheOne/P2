@@ -15,11 +15,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Popup;
 import java.awt.image.BufferedImage;
+import java.awt.image.RenderedImage;
+import java.io.File;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.Objects;
 
 import javafx.embed.swing.SwingFXUtils;
 import javafx.stage.Stage;
+
+import javax.imageio.ImageIO;
 
 
 public class ChangeProcessController {
@@ -87,6 +92,18 @@ public class ChangeProcessController {
 
         stage = new Stage();
         stage.setScene(scene);
+        //alexnader og onedrive kun på min pc:
+        String currentUser = System.getProperty("user.name");
+        if (Objects.equals(currentUser, "alexa")) {
+            Image image = imageView.getImage();
+            File file = new File("C:/Users/alexa/OneDrive/pjocektor/test.png");
+            BufferedImage bImage = SwingFXUtils.fromFXImage(image, null);
+            try {
+                ImageIO.write(bImage, "png", file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
         stage.setOnCloseRequest(
                 e -> {
                     e.consume();
