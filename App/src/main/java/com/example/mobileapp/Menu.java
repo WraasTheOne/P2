@@ -77,28 +77,28 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         jButton1.setText("jButton1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().setLayout(new AbsLay());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel1.setLayout(new AbsLay());
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 500, 360));
+        jPanel2.setLayout(new AbsLay());
+        jPanel1.add(jPanel2, new absCons(10, 10, 500, 360));
 
         result_freld.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         result_freld.setText("");
         result_freld.setBorder(null);
-        jPanel1.add(result_freld, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 500, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 670, 20));
+        jPanel1.add(result_freld, new absCons(40, 390, 500, -1));
+        jPanel1.add(jSeparator1, new absCons(10, 430, 670, 20));
 
         jLabel1.setText("Location");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
+        jPanel1.add(jLabel1, new absCons(780, 50, -1, -1));
 
         jTextField3.setText("Rresult:");
         jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+        jPanel1.add(jTextField3, new absCons(40, 370, -1, -1));
 
         jButton3.setText("Collection");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -107,7 +107,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
         });
         jButton3.setFocusable(false);
-        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 180, -1));
+        jPanel1.add(jButton3, new absCons(520, 80, 180, -1));
 
         jButton4.setText("Stacking");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -116,7 +116,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
         });
 
-        jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 180, -1));
+        jPanel1.add(jButton4, new absCons(520, 110, 180, -1));
 
 
 
@@ -126,7 +126,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt,3);
             }
         });
-        jPanel1.add(Ilive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 180, -1));
+        jPanel1.add(Ilive1, new absCons(520, 140, 180, -1));
 
         Ilive2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Ilive2.setText("Label");
@@ -135,7 +135,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt,4);
             }
         });
-        jPanel1.add(Ilive2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 170, 180, -1));
+        jPanel1.add(Ilive2, new absCons(520, 170, 180, -1));
 
         Ilive3.setText("Storage CORPS");
         Ilive3.addActionListener(new java.awt.event.ActionListener() {
@@ -143,7 +143,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt,5);
             }
         });
-        jPanel1.add(Ilive3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 200, 180, -1));
+        jPanel1.add(Ilive3, new absCons(520, 200, 180, -1));
 
         Ilive4.setText("Centercorp Delivery");
         Ilive4.addActionListener(new java.awt.event.ActionListener() {
@@ -151,7 +151,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt, 6);
             }
         });
-        jPanel1.add(Ilive4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 230, 180, -1));
+        jPanel1.add(Ilive4, new absCons(520, 230, 180, -1));
 
         Ilive5.setText("Compress and weighing");
         Ilive5.addActionListener(new java.awt.event.ActionListener() {
@@ -159,7 +159,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt,7);
             }
         });
-        jPanel1.add(Ilive5, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 260, 180, -1));
+        jPanel1.add(Ilive5, new absCons(520, 260, 180, -1));
 
         Ilive6.setText("Label compressed weight");
         Ilive6.addActionListener(new java.awt.event.ActionListener() {
@@ -167,7 +167,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt, 8);
             }
         });
-        jPanel1.add(Ilive6, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 290, 180, -1));
+        jPanel1.add(Ilive6, new absCons(520, 290, 180, -1));
 
         Ilive7.setText("Storage centerCORP");
         Ilive7.addActionListener(new java.awt.event.ActionListener() {
@@ -175,14 +175,14 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt, 9);
             }
         });
-        jPanel1.add(Ilive7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 180, -1));
+        jPanel1.add(Ilive7, new absCons(520, 320, 180, -1));
         Ilive.setText("Selling");
         Ilive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePro(evt,10);
             }
         });
-        jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 180, -1));
+        jPanel1.add(Ilive, new absCons(520, 350, 180, -1));
         jButton5.setText("Location A");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -190,7 +190,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
         });
 
-        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 180, -1));
+        jPanel1.add(jButton5, new absCons(710, 80, 180, -1));
 
         jButton6.setText("Location B");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -199,7 +199,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
         });
 
-        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 180, -1));
+        jPanel1.add(jButton6, new absCons(710, 110, 180, -1));
 
         Ilive8.setText("Location C");
         Ilive8.addActionListener(new java.awt.event.ActionListener() {
@@ -207,34 +207,34 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changeLoc(evt,3);
             }
         });
-        jPanel1.add(Ilive8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 180, -1));
+        jPanel1.add(Ilive8, new absCons(710, 140, 180, -1));
 
         jLabel2.setText("Proces");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+        jPanel1.add(jLabel2, new absCons(600, 50, -1, -1));
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 460));
+        getContentPane().add(jPanel1, new absCons(0, 0, 910, 460));
 
         jPanel3.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setLayout(new AbsLay());
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User", "Admin", "Centercoop", "Kooperation" }));
-        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 130, 20));
+        jPanel3.add(jComboBox1,new absCons(360, 130, 130, 20));
 
         jLabel4.setText("Select User");
         jLabel4.setToolTipText("");
-        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+        jPanel3.add(jLabel4, new absCons(360, 110, -1, -1));
 
-        jPanel3.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, -1));
+        jPanel3.add(jPasswordField, new absCons(360, 190, 130, -1));
 
         passwordLabel.setText("Password:");
-        jPanel3.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 193, 130, -1));
+        jPanel3.add(passwordLabel, new absCons(310, 193, 130, -1));
 
         username.setText("Username:");
-        jPanel3.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 130, -1));
+        jPanel3.add(username, new absCons(310, 160, 130, -1));
 
 
         jusername.setText("");
-        jPanel3.add(jusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 130, -1));
+        jPanel3.add(jusername, new absCons(360, 160, 130, -1));
 
         jButton2.setText("Login");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -242,9 +242,9 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 LoginButton(evt);
             }
         });
-        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+        jPanel3.add(jButton2, new absCons(500, 190, -1, -1));
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 910, 470));
+        getContentPane().add(jPanel3, new absCons(0, -10, 910, 470));
 
         pack();
     }// </editor-fold>
@@ -297,16 +297,16 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
 
     private void changePro(java.awt.event.ActionEvent evt, int intOfPro) {
-       if (currntBigBag != null){
-           currntBigBag.setNUVProcess(intOfPro);
-           SetResutFreld(currntBigBag);
-           System.out.println(currntBigBag.NUVProcess);
+        if (currntBigBag != null){
+            currntBigBag.setNUVProcess(intOfPro);
+            SetResutFreld(currntBigBag);
+            System.out.println(currntBigBag.NUVProcess);
 
 
-       }
-       else {
-           System.out.println("nahej det må du ikke");
-       }
+        }
+        else {
+            System.out.println("nahej det må du ikke");
+        }
     }
 
 
@@ -372,7 +372,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         panel.setPreferredSize(size);
         panel.setFPSDisplayed(true);
 
-        jPanel2.add(panel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 500, 360));
+        jPanel2.add(panel, new absCons(0, 0, 500, 360));
 
         executor.execute(this);
 

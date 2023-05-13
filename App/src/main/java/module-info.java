@@ -9,7 +9,7 @@ module com.example {
     requires java.dotenv;
     requires java.desktop;
     requires webcam.capture;
-    requires AbsoluteLayout.RELEASE170;
+    //requires AbsoluteLayout.RELEASE170;
 
     // Add this requires statement for the unnamed module
     requires java.base;
