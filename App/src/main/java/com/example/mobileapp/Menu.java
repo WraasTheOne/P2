@@ -291,7 +291,6 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         if (currntBigBag != null){
             currntBigBag.setLocation(intOfLoc);
             SetResutFreld(currntBigBag);
-
         }
         else {
             System.out.println("nahej det må du ikke");
@@ -303,6 +302,8 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
        if (currntBigBag != null){
            currntBigBag.setNUVProcess(intOfPro);
            SetResutFreld(currntBigBag);
+           System.out.println(currntBigBag.NUVProcess);
+
 
        }
        else {
@@ -422,6 +423,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
 
     public void SetResutFreld(BigBag currntBigBag){
+        //System.out.println(currntBigBag);
         result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type + ", Location: " + currntBigBag.Location);
 
     }

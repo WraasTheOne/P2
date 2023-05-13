@@ -74,7 +74,7 @@ public class BigBag{
     }
 
     public void setNUVProcess(int NUVProcess) {
-
+        this.NUVProcess = NUVProcess;
         DBUtil.setColumnValueInt(dbTable, "NUVProcess", NUVProcess, dbId, BID);
         //setTidSenOp();
 
