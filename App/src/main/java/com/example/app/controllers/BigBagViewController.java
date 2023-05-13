@@ -1,32 +1,46 @@
 package com.example.app.controllers;
 
+import com.example.app.TableStructure.Admin;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.User;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.KeyCode;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.function.Predicate;
 
-public class LoggedInController {
-    public Button BigbagOverviewButton;
-    public Button WallecubeButton;
-    @FXML
-    private Button Button2;
-    @FXML
-    private Label userLabel;
+public class BigBagViewController{
 
+    @FXML
+    public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML
     public TextField searchField;
     @FXML
     TableView<BigBag> Tableview;
+    @FXML
+    public Button backButton;
+    @FXML
+    public Button refreshButton;
+    @FXML
+    public Button addBigBagButton;
+    @FXML
+    public Button removeBigBagButton;
+    @FXML
+    public TextField removeBigBagBIDField;
+    @FXML
+    public Button removeButton;
+
+    @FXML
+    public Label removeBigBagStatus;
+
     @FXML
     public TableColumn<BigBag, Integer> BIDColumn;
     @FXML
@@ -48,22 +62,7 @@ public class LoggedInController {
 
     private ObservableList<BigBag> dataForTable;
 
-
-    public LoggedInController(){}
-
-    @FXML
-    protected void goToCreateBigBag() throws IOException{
-        ViewSwitch.switchView(View.BigBag);
-    }
-
-    @FXML
-    protected void logOut()
-    {
-        ViewSwitch.switchView(View.LOGIN);
-    }
-
-    public void initialize(){
-
+    public void initialize() throws SQLException, IOException {
 
 
         BIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("BID"));
@@ -74,7 +73,7 @@ public class LoggedInController {
         TypeColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("Type"));
         LocationColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("Location"));
         BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("BrugerSenop"));
-        WalleIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
+        WalleIDCoulmn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
 
         Tableview.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
@@ -84,11 +83,13 @@ public class LoggedInController {
         });
 
         try{
-            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid");
+            dataForTable = DBUtil.getAllBigBags();
+            addBigBagButton.setVisible(true);
+            removeBigBagButton.setVisible(true);
             Tableview.setItems(dataForTable);
-        }catch (SQLException e){
+        }
+        catch (SQLException e) {
             System.out.println(e);
-
         }
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -101,15 +102,54 @@ public class LoggedInController {
             }
         });
 
+    }
+
+    @FXML
+    protected void goBack() throws IOException{
+
+        switch(User.getUsertype())
+        {
+            case "kooperation":
+                ViewSwitch.switchView(View.LoggedIn);
+                break;
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
 
     }
 
     @FXML
-    protected void refresh() throws IOException, SQLException {
-        //searchField.clear();
-        //Tableview.getItems().clear();
-        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid"));
-
+    protected void goToCreateBigBag() throws IOException{
+        ViewSwitch.switchView(View.BigBag);
     }
 
+    @FXML
+    protected void showRemoveBigBag()
+    {
+        removeButton.setVisible(true);
+        removeBigBagBIDField.setVisible(true);
+    }
+    @FXML
+    protected void refresh() throws IOException, SQLException {
+        searchField.clear();
+        Tableview.getItems().clear();
+        Tableview.setItems(DBUtil.getAllBigBags());
+    }
+    @FXML
+    protected void removeBigBag() throws IOException, SQLException{
+
+        if(removeBigBagBIDField.getText().equals(""))
+        {
+            removeBigBagStatus.setText("Please enter a BID");
+        }
+        else
+        {
+            removeBigBagStatus.setText(Admin.removeBigBag(Integer.parseInt(removeBigBagBIDField.getText())));
+            refresh();
+        }
+    }
 }

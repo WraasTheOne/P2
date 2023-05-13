@@ -1,6 +1,10 @@
 package com.example.mobileapp;
 
-import com.example.app.TableStructure.BigBags;
+//import com.example.app.TableStructure.BigBags;
+import com.example.app.TableStructure.BigBag;
+import com.example.app.TableStructure.DBUtil;
+import com.example.app.TableStructure.HashTable;
+import com.example.app.TableStructure.Kooperation;
 import com.github.sarxos.webcam.*;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.google.zxing.*;
@@ -10,9 +14,12 @@ import com.google.zxing.common.HybridBinarizer;
 import com.google.zxing.qrcode.QRCodeReader;
 import com.google.zxing.RGBLuminanceSource; // import RGBLuminanceSource
 
+import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 import java.awt.Dimension;
+import java.lang.reflect.Array;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
@@ -23,14 +30,14 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     private WebcamPanel panel = null;
     private Webcam webcam = null;
 
-    private BigBags currntBigBag = null;
+    private BigBag currntBigBag = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
     private final Executor executor = Executors.newSingleThreadExecutor(this);
 
     public Menu() {
         initComponents();
-        initWebcam();
+        jPanel1.setVisible(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -39,12 +46,12 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
         jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
+        jPanel2 = new javax.swing.JPanel();
         result_freld = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
         jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         Ilive = new javax.swing.JButton();
         Ilive1 = new javax.swing.JButton();
@@ -54,6 +61,18 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         Ilive5 = new javax.swing.JButton();
         Ilive6 = new javax.swing.JButton();
         Ilive7 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
+        jButton6 = new javax.swing.JButton();
+        Ilive8 = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
+        jComboBox1 = new javax.swing.JComboBox<>();
+        jLabel4 = new javax.swing.JLabel();
+        jPasswordField = new javax.swing.JPasswordField();
+        jusername = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
+        passwordLabel = new javax.swing.JLabel();
+        username = new javax.swing.JLabel();
 
         jButton1.setText("jButton1");
 
@@ -63,35 +82,32 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        result_freld.setBorder(null);
-        result_freld.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                result_freldActionPerformed(evt);
-            }
-        });
-        jPanel1.add(result_freld, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 410, 500, -1));
-        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 430, 670, 20));
-
-        jLabel1.setText("Proces");
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
-
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         jPanel1.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 500, 360));
 
-        jTextField3.setText("Rresult");
-        jTextField3.setBorder(null);
-        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, -1, -1));
+        result_freld.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        result_freld.setText("");
+        result_freld.setBorder(null);
+        jPanel1.add(result_freld, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 390, 500, -1));
+        jPanel1.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 670, 20));
 
-        jButton2.setText("Collection");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jLabel1.setText("Location");
+        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 50, -1, -1));
+
+        jTextField3.setText("Rresult:");
+        jTextField3.setBorder(null);
+        jPanel1.add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 370, -1, -1));
+
+        jButton3.setText("Collection");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 changePro(evt, 1);
             }
         });
-
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 180, -1));
+        jButton3.setFocusable(false);
+        jPanel1.add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 80, 180, -1));
 
         jButton4.setText("Stacking");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -99,15 +115,10 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 changePro(evt,2);
             }
         });
+
         jPanel1.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 110, 180, -1));
 
-        Ilive.setText("Selling");
-        Ilive.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                changePro(evt,10);
-            }
-        });
-        jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 180, -1));
+
 
         Ilive1.setText("Sorting");
         Ilive1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +128,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         });
         jPanel1.add(Ilive1, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 140, 180, -1));
 
+        Ilive2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         Ilive2.setText("Label");
         Ilive2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -164,43 +176,139 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             }
         });
         jPanel1.add(Ilive7, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 320, 180, -1));
+        Ilive.setText("Selling");
+        Ilive.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changePro(evt,10);
+            }
+        });
+        jPanel1.add(Ilive, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 180, -1));
+        jButton5.setText("Location A");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeLoc(evt,1);
+            }
+        });
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 460));
+        jPanel1.add(jButton5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 80, 180, -1));
+
+        jButton6.setText("Location B");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeLoc(evt,2);
+            }
+        });
+
+        jPanel1.add(jButton6, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 110, 180, -1));
+
+        Ilive8.setText("Location C");
+        Ilive8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                changeLoc(evt,3);
+            }
+        });
+        jPanel1.add(Ilive8, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, 180, -1));
+
+        jLabel2.setText("Proces");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 50, -1, -1));
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 910, 460));
+
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select User", "Admin", "Centercoop", "Kooperation" }));
+        jPanel3.add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 130, 130, 20));
+
+        jLabel4.setText("Select User");
+        jLabel4.setToolTipText("");
+        jPanel3.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 110, -1, -1));
+
+        jPanel3.add(jPasswordField, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, 130, -1));
+
+        passwordLabel.setText("Password:");
+        jPanel3.add(passwordLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 193, 130, -1));
+
+        username.setText("Username:");
+        jPanel3.add(username, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 160, 130, -1));
+
+
+        jusername.setText("");
+        jPanel3.add(jusername, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 160, 130, -1));
+
+        jButton2.setText("Login");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LoginButton(evt);
+            }
+        });
+        jPanel3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 190, -1, -1));
+
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 910, 470));
 
         pack();
     }// </editor-fold>
 
-    private void result_freldActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
+
+
+    private void LoginButton(java.awt.event.ActionEvent evt) {
+        HashTable.makeHashTables();
+        String selectedUserType = jComboBox1.getSelectedItem().toString().toLowerCase();
+        String username = jusername.getText();
+        String password = String.valueOf(jPasswordField.getPassword());
+
+        System.out.println(password);
+        switch (selectedUserType) {
+            case "select user" ->
+                    JOptionPane.showMessageDialog(null, "Please select a valid user type", "Error", JOptionPane.ERROR_MESSAGE);
+            case "kooperation" ->
+            {
+
+
+            }
+            case"admin", "centercoop" -> {
+                Boolean userExist = DBUtil.findUser(username, password, selectedUserType);
+                if (Boolean.TRUE.equals(userExist)) {
+                    initWebcam();
+                    jPanel3.setVisible(false);
+                    jPanel1.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Incorrect username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+            default ->
+                    JOptionPane.showMessageDialog(null, "Invalid user type selected", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
     }
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
 
-        System.out.println("javacramera.Menu.jButton4ActionPerformed()");
 
+
+    private void changeLoc(java.awt.event.ActionEvent evt, int intOfLoc) {
+        if (currntBigBag != null){
+            currntBigBag.setLocation(intOfLoc);
+            SetResutFreld(currntBigBag);
+        }
+        else {
+            System.out.println("nahej det må du ikke");
+        }
     }
 
-    private void Ilive4ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
     private void changePro(java.awt.event.ActionEvent evt, int intOfPro) {
        if (currntBigBag != null){
            currntBigBag.setNUVProcess(intOfPro);
+           SetResutFreld(currntBigBag);
+           System.out.println(currntBigBag.NUVProcess);
+
+
        }
        else {
            System.out.println("nahej det må du ikke");
        }
     }
 
-    private void Ilive6ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
-
-    private void Ilive7ActionPerformed(java.awt.event.ActionEvent evt) {
-        // TODO add your handling code here:
-    }
 
     public static void main(String args[]) {
 
@@ -232,13 +340,25 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
     private javax.swing.JButton Ilive5;
     private javax.swing.JButton Ilive6;
     private javax.swing.JButton Ilive7;
+    private javax.swing.JButton Ilive8;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPasswordField jPasswordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JLabel username;
+    private javax.swing.JTextField jusername;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField result_freld;
     // End of variables declaration
@@ -283,8 +403,9 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 String split = decodedText.replaceAll("[^\\d]", "");
                 int qrId = Integer.parseInt(split);
                 //com.example.app.TableStructure.BigBags MyBig = new BigBags();
-                currntBigBag = new BigBags(qrId);
-                result_freld.setText("OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
+                currntBigBag = new BigBag(qrId);
+                SetResutFreld(currntBigBag);
+                //result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
 
 
                 // Do something with the decoded text
@@ -298,6 +419,12 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
     }
 
+
+    public void SetResutFreld(BigBag currntBigBag){
+        //System.out.println(currntBigBag);
+        result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type + ", Location: " + currntBigBag.Location);
+
+    }
 
     public String readQRCode(BufferedImage image) throws NotFoundException {
         // Convert the BufferedImage to RGBLuminanceSource

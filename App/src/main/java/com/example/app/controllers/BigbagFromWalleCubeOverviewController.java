@@ -3,30 +3,34 @@ package com.example.app.controllers;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.User;
+import com.example.app.TableStructure.WalleCube;
 import com.example.app.View.View;
 import com.example.app.View.ViewSwitch;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.chart.BarChart;
-import javafx.scene.chart.XYChart;
-import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.io.IOException;
 import java.sql.SQLException;
 
-public class LoggedInController {
-    public Button BigbagOverviewButton;
-    public Button WallecubeButton;
-    @FXML
-    private Button Button2;
-    @FXML
-    private Label userLabel;
+public class BigbagFromWalleCubeOverviewController {
 
+    public static WalleCube walleCube;
+
+    @FXML
+    public TableColumn<BigBag, Integer> WalleIDCoulmn;
     @FXML
     public TextField searchField;
     @FXML
     TableView<BigBag> Tableview;
+    @FXML
+    public Button backButton;
+    @FXML
+    public Button refreshButton;
     @FXML
     public TableColumn<BigBag, Integer> BIDColumn;
     @FXML
@@ -48,22 +52,7 @@ public class LoggedInController {
 
     private ObservableList<BigBag> dataForTable;
 
-
-    public LoggedInController(){}
-
-    @FXML
-    protected void goToCreateBigBag() throws IOException{
-        ViewSwitch.switchView(View.BigBag);
-    }
-
-    @FXML
-    protected void logOut()
-    {
-        ViewSwitch.switchView(View.LOGIN);
-    }
-
-    public void initialize(){
-
+    public void initialize() throws SQLException, IOException {
 
 
         BIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("BID"));
@@ -74,22 +63,13 @@ public class LoggedInController {
         TypeColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("Type"));
         LocationColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("Location"));
         BrugerSenOpColumn.setCellValueFactory(new PropertyValueFactory<BigBag, String>("BrugerSenop"));
-        WalleIDColumn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
+        WalleIDCoulmn.setCellValueFactory(new PropertyValueFactory<BigBag, Integer>("WalleID"));
 
-        Tableview.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                ChangeProcessController.bigBag = Tableview.getSelectionModel().getSelectedItem();
-                ViewSwitch.switchView(View.ChangeProcess);
-            }
-        });
+        dataForTable = DBUtil.getDataForTable("Bigbags", walleCube.getWID(),"walleid");
 
-        try{
-            dataForTable = DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid");
-            Tableview.setItems(dataForTable);
-        }catch (SQLException e){
-            System.out.println(e);
 
-        }
+        Tableview.setItems(dataForTable);
+
 
         searchField.textProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue.isEmpty()) {
@@ -101,15 +81,31 @@ public class LoggedInController {
             }
         });
 
+    }
+
+    @FXML
+    protected void goBack() throws IOException{
+
+        switch(User.getUsertype())
+        {
+            case "kooperation":
+                ViewSwitch.switchView(View.LoggedIn);
+                break;
+            case "centercoop":
+                ViewSwitch.switchView(View.LoggedInCenterCoop);
+                break;
+            case "admin":
+                ViewSwitch.switchView(View.LoggedInAdmin);
+                break;
+        }
 
     }
 
     @FXML
     protected void refresh() throws IOException, SQLException {
-        //searchField.clear();
-        //Tableview.getItems().clear();
-        Tableview.setItems(DBUtil.getDataForTable("Bigbags", User.getID(),"ownerid"));
+        searchField.clear();
+        Tableview.getItems().clear();
+        Tableview.setItems(DBUtil.getDataForTable("Bigbags", walleCube.getWID(),"walleid"));
 
     }
-
 }

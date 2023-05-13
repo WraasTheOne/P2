@@ -1,6 +1,6 @@
 package com.example.app.TableStructure;
 
-public class User {
+public abstract class User {
 
     protected static int ID;
 
@@ -40,6 +40,7 @@ public class User {
     public static void setUsertype(String usertype) {
         Usertype = usertype;
     }
+
 
     public static void login(){
 
