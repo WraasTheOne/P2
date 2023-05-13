@@ -261,12 +261,12 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         switch (selectedUserType) {
             case "select user" ->
                     JOptionPane.showMessageDialog(null, "Please select a valid user type", "Error", JOptionPane.ERROR_MESSAGE);
-            case "kooperation" ->
+            case "centercoop" ->
             {
 
 
             }
-            case"admin", "centercoop" -> {
+            case"admin", "kooperation" -> {
                 Boolean userExist = DBUtil.findUser(username, password, selectedUserType);
                 if (Boolean.TRUE.equals(userExist)) {
                     initWebcam();
