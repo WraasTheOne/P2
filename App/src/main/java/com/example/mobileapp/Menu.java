@@ -373,7 +373,6 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         panel.setFPSDisplayed(true);
 
         jPanel2.add(panel, new absCons(0, 0, 500, 360));
-
         executor.execute(this);
 
     }
