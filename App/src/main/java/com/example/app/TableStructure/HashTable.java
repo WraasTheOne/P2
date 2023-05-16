@@ -26,17 +26,24 @@ public class HashTable {
 
 
 
-    public static void makeHashTables(){
-        for (int i : procesIndex){
-            processes.put(procesNames[i-1],procesIndex[i-1]);
-        }
-        for (int i : locationIndex){
-            locations.put(locationNames[i-1],locationIndex[i-1]);
-        }
-        for(int i = 0; i < userTypeLong.length; i++){
-            userType.put(userTypeLong[i],userTypeShort[i]);
-        }
+    public static boolean makeHashTables(){
+        boolean status = false;
 
+        try{
+            for (int i : procesIndex){
+                processes.put(procesNames[i-1],procesIndex[i-1]);
+            }
+            for (int i : locationIndex){
+                locations.put(locationNames[i-1],locationIndex[i-1]);
+            }
+            for(int i = 0; i < userTypeLong.length; i++){
+                userType.put(userTypeLong[i],userTypeShort[i]);
+                status = true;
+            }
+        }catch (OutOfMemoryError e){
+            status = false;
+        }
+        return status;
 
     }
 

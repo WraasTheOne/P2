@@ -73,7 +73,7 @@ public class DBUtil {
     }
 
     public static int getsingleValue(String tableName, int BigBagID){
-        String sql = "SELECT NUVProcess from bigbags where BID = "+BigBagID;
+        String sql = "SELECT NUVProcess from " + tableName + " where BID = "+BigBagID;
 
         try {
             PreparedStatement statement = getConnection().prepareStatement(sql);
@@ -107,7 +107,7 @@ public class DBUtil {
 
             if (resultSet.next()){
                 com.example.app.TableStructure.User.setID(resultSet.getInt(HashTable.getUserTypeHashValue(table)));
-                System.out.println(com.example.app.TableStructure.User.getID());
+                System.out.println(com.example.app.TableStructure.User.getID() + resultSet.getString("name"));
                 com.example.app.TableStructure.User.setName(resultSet.getString("Name"));
                 com.example.app.TableStructure.User.setPassword(resultSet.getString("Password"));
                 com.example.app.TableStructure.User.setUsertype(table);
