@@ -197,13 +197,18 @@ public class DBUtil {
     }
 
     public static int getIntCoulmnHighestData(String tablename, String column){
-        int returnvalue = 0;
+        int returnvalue = 0, old;
         String sql = "Select " + column + " from " + tablename;
 
         try(PreparedStatement pstmt = getConnection().prepareStatement(sql)){
             ResultSet rs = pstmt.executeQuery();
             while (rs.next()){
+                old = returnvalue;
                 returnvalue = rs.getInt(column);
+                if (old > returnvalue){
+                    returnvalue = old;
+                }
+                System.out.println(returnvalue);
             }
             System.out.println(returnvalue);
             return returnvalue;
