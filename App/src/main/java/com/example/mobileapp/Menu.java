@@ -441,20 +441,3 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
     }
 }
-/*
-Is there a way to break out of this method, by scanning a QR code as a malicious payload?
-some method:
-"n
-/this return only an int
-int decodedText = readQRCode(imge);
-currntBigBag = new BigBag(decodedText);
-"
-some other method:
-"
-public BigBag(int BID) throws SQLException, SQLException {
-        this.BID = BID;
-
-        String query = "SELECT * FROM bigbags WHERE BID = ?";
-"
-
- */
