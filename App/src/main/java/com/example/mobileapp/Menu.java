@@ -1,10 +1,9 @@
 package com.example.mobileapp;
-
+//done verserion
 //import com.example.app.TableStructure.BigBags;
 import com.example.app.TableStructure.BigBag;
 import com.example.app.TableStructure.DBUtil;
 import com.example.app.TableStructure.HashTable;
-import com.example.app.TableStructure.Kooperation;
 import com.github.sarxos.webcam.*;
 import com.github.sarxos.webcam.WebcamResolution;
 import com.google.zxing.*;
@@ -18,19 +17,15 @@ import javax.swing.*;
 import java.awt.image.BufferedImage;
 
 import java.awt.Dimension;
-import java.lang.reflect.Array;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.*;
 
 
 public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory {
-
-    private WebcamPanel panel = null;
+    private WebcamPanel webcamPanel = null;
     private Webcam webcam = null;
-
-    private BigBag currntBigBag = null;
+    private BigBag currentBigBag = null;
 
     private static final long serialVersionUID = 6441489157408381878L;
     private final Executor executor = Executors.newSingleThreadExecutor(this);
@@ -286,9 +281,9 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
 
     private void changeLoc(java.awt.event.ActionEvent evt, int intOfLoc) {
-        if (currntBigBag != null){
-            currntBigBag.setLocation(intOfLoc);
-            SetResutFreld(currntBigBag);
+        if (currentBigBag != null){
+            currentBigBag.setLocation(intOfLoc);
+            SetResutFreld(currentBigBag);
         }
         else {
             System.out.println("nahej det må du ikke");
@@ -297,10 +292,10 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
 
     private void changePro(java.awt.event.ActionEvent evt, int intOfPro) {
-        if (currntBigBag != null){
-            currntBigBag.setNUVProcess(intOfPro);
-            SetResutFreld(currntBigBag);
-            System.out.println(currntBigBag.NUVProcess);
+        if (currentBigBag != null){
+            currentBigBag.setNUVProcess(intOfPro);
+            SetResutFreld(currentBigBag);
+            System.out.println(currentBigBag.NUVProcess);
 
 
         }
@@ -368,14 +363,15 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
         webcam = Webcam.getWebcams().get(0);
         webcam.setViewSize(size);
 
-        panel = new WebcamPanel(webcam);
-        panel.setPreferredSize(size);
-        panel.setFPSDisplayed(true);
+        webcamPanel = new WebcamPanel(webcam);
+        webcamPanel.setPreferredSize(size);
+        webcamPanel.setFPSDisplayed(true);
 
-        jPanel2.add(panel, new absCons(0, 0, 500, 360));
+        jPanel2.add(webcamPanel, new absCons(0, 0, 500, 360));
         executor.execute(this);
 
     }
+
 
     @Override
     public void run() {
@@ -387,7 +383,6 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-
             Result result = null;
             BufferedImage imge = null;
 
@@ -395,24 +390,15 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
                 if ((imge = webcam.getImage()) == null) {
                     continue;
                 }
-
-            }try {
-                String decodedText = readQRCode(imge);
-                System.out.println("Decoded QR code: " + decodedText);
-                String split = decodedText.replaceAll("[^\\d]", "");
-                int qrId = Integer.parseInt(split);
-                //com.example.app.TableStructure.BigBags MyBig = new BigBags();
-                currntBigBag = new BigBag(qrId);
-                SetResutFreld(currntBigBag);
-                //result_freld.setText("BID " + currntBigBag.BID + " OwnerId: " + currntBigBag.OwnerId + ", NUVProcess: " + currntBigBag.NUVProcess + ", Type: " + currntBigBag.Type);
-
-
-                // Do something with the decoded text
-            } catch (NotFoundException e) {
-                // QR code not found in the image
-            } catch (Exception e) {
-                // Other exceptions
-                //e.printStackTrace();
+                try {
+                    int decodedText = readQRCode(imge);
+                    currentBigBag = new BigBag(decodedText);
+                    SetResutFreld(currentBigBag);
+                } catch (NotFoundException e) {
+                    // QR code not found in the image
+                } catch (Exception e) {
+                    //e.printStackTrace();
+                }
             }
         }while (true);
 
@@ -425,7 +411,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
     }
 
-    public String readQRCode(BufferedImage image) throws NotFoundException {
+    public int readQRCode(BufferedImage image) throws NotFoundException {
         // Convert the BufferedImage to RGBLuminanceSource
         int[] pixels = new int[image.getWidth() * image.getHeight()];
         image.getRGB(0, 0, image.getWidth(), image.getHeight(), pixels, 0, image.getWidth());
@@ -438,7 +424,7 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
             Map<DecodeHintType, Object> hints = new HashMap<>();
             hints.put(DecodeHintType.TRY_HARDER, Boolean.TRUE);
             result = reader.decode(bitmap, hints);
-            return result.getText();
+            return Integer.parseInt(result.getText());
         } catch (NotFoundException e) {
             throw e;
         } catch (Exception e) {
@@ -455,3 +441,20 @@ public class Menu extends javax.swing.JFrame implements Runnable, ThreadFactory 
 
     }
 }
+/*
+Is there a way to break out of this method, by scanning a QR code as a malicious payload?
+some method:
+"n
+/this return only an int
+int decodedText = readQRCode(imge);
+currntBigBag = new BigBag(decodedText);
+"
+some other method:
+"
+public BigBag(int BID) throws SQLException, SQLException {
+        this.BID = BID;
+
+        String query = "SELECT * FROM bigbags WHERE BID = ?";
+"
+
+ */
